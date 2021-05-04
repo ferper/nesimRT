@@ -1,0 +1,502 @@
+#include "newneuronGraphic.h"
+#include "ui_newneuronform.h"
+#include <QDialog>
+#include <QMessageBox>
+#include <iostream>
+
+NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QGraphicsScene *scene, int *idGlobalNeuron, QList <Neuron *> *localNeurons, QList <Node*> *vectorGraphicsNodes, QString mathematicalModel,bool *sceneBeSaved):
+    QWidget(parent), ui(new Ui::NewNeuronForm) {
+
+    ui->setupUi(this);
+    this->idGlobalNeuron=idGlobalNeuron;
+    this->mathematicalModel=mathematicalModel;
+    this->vectorGraphicsNodes=vectorGraphicsNodes;
+    this->localNeurons=localNeurons;
+    this->graphWidget=graphWidget;
+    this->scene=scene;
+    this->sceneBeSaved=sceneBeSaved;
+    ui->label_17->setText(mathematicalModel);
+    ui->lineEdit_Label->setText(QString("G")+QString::number(graphWidget->getNumberItemOf(TYPENEURON_NORMAL)));
+
+    float tmpX= QRandomGenerator::global()->bounded(800)+250;
+    float tmpY= QRandomGenerator::global()->bounded(450)+100;
+
+
+    ui->lineEdit_PosX->setText(QString::number(tmpX));
+    ui->lineEdit_PosY->setText(QString::number(tmpY));
+    ui->lineEdit_Ip->setText(graphWidget->generateIPSimulated(QString::number(TYPENEURON_NORMAL)));
+    ui->lineEdit_V->setText("0");
+    ui->lineEdit_Iexc->setText("0");
+    ui->lineEdit_Iinh->setText("0");
+    ui->lineEdit_tauExc->setText("0.2");
+    ui->lineEdit_tauInh->setText("0.4");
+    ui->lineEdit_tauV->setText("0.5");
+    ui->lineEdit_R->setText("32000000");
+    ui->lineEdit_Vr->setText("0");
+    ui->lineEdit_Vrh->setText("0.005");
+    ui->lineEdit_Vth->setText("0.015");
+    ui->lineEdit_At->setText("0.0015");
+    ui->lineEdit_Amount->setText("1");
+
+    QGraphicsScene *sceneTmp = new QGraphicsScene();
+    QPixmap p0("scheme/graphics/neuron.png");
+
+    sceneTmp->addPixmap(p0);
+    ui->graphicsView->setScene(sceneTmp);
+    sceneTmp = new QGraphicsScene();
+    QPixmap p1("scheme/graphics/equation.png");
+    sceneTmp->addPixmap(p1);
+
+    ui->graphicsView_2->setScene(sceneTmp);
+
+    this->setWindowTitle("Create Neuron");
+    ui->lineEdit_Label->setFocus();
+
+    QPixmap pixmap_ok("scheme/graphics/createNeuron.png");
+    QIcon ButtonIcon(pixmap_ok);
+    ui->pushButton->setIcon(ButtonIcon);
+    QSize s0(ui->pushButton->rect().size().width()-10,ui->pushButton->rect().size().height()-10);
+    ui->pushButton->setIconSize(s0);
+    ui->pushButton->setFixedSize(ui->pushButton->rect().size());
+    ui->pushButton->setFlat(true);
+
+    QPixmap pixmap_cancel("scheme/graphics/cancel.png");
+    QIcon ButtonIcon1(pixmap_cancel);
+    ui->pushButton_2->setIcon(ButtonIcon1);
+    QSize s1(ui->pushButton_2->rect().size().width()-10,ui->pushButton_2->rect().size().height()-10);
+    ui->pushButton_2->setIconSize(s1);
+    ui->pushButton_2->setFixedSize(ui->pushButton_2->rect().size());
+    ui->pushButton_2->setFlat(true);
+
+    QGraphicsDropShadowEffect* effect0 = new QGraphicsDropShadowEffect();
+    QGraphicsDropShadowEffect* effect1 = new QGraphicsDropShadowEffect();
+
+    effect0->setBlurRadius(100);
+    effect0->setOffset(3,3);
+    effect1->setBlurRadius(100);
+    effect1->setOffset(3,3);
+
+    ui->pushButton->setGraphicsEffect(effect0);
+    ui->pushButton_2->setGraphicsEffect(effect1);
+}
+
+
+//To strecht the images into the container
+void NewNeuronGraphic::showEvent(QShowEvent *) {
+    ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
+    ui->graphicsView_2->fitInView(ui->graphicsView_2->sceneRect(),Qt::KeepAspectRatio);
+}
+
+void NewNeuronGraphic::keyPressEvent(QKeyEvent *event){
+    switch(event->key()) {
+       case Qt::Key_Escape: // si se pulsa ESCAPE se cierra la ventana
+          graphWidget->restaurateIPSimulated(QString::number(TYPENEURON_NORMAL));
+          close();
+          break;
+    }
+}
+
+NewNeuronGraphic::~NewNeuronGraphic()
+{
+    delete ui;
+}
+
+bool NewNeuronGraphic::parametersOK() {
+    bool ok=true;
+    bool error=false;
+    int valueInt;
+    double valueDouble;
+
+    if (ui->lineEdit_Ip->text().length()){
+        if (graphWidget->existIp(ui->lineEdit_Ip->text())) {
+            QMessageBox::information(this, "Informacion","Ya existe una neurona con esa IP.");
+            error=true;
+        }
+    }
+    else {
+        QMessageBox::information(this, "Informacion","Se necesita una ip válida asociada a la neurona.");
+        error=true;
+    }
+    if (!ui->lineEdit_Label->text().length()) {
+        QMessageBox::information(this, "Informacion","Se necesita una etiqueta para identificar a la neurona.\nSe le proporcionará uno automáticamente");
+        ui->lineEdit_Label->setText(QString("G")+QString::number(vectorGraphicsNodes->size()+1));
+        error=true;
+    }
+    if (!error) {
+        valueInt=ui->lineEdit_PosX->text().toInt(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para la posición en eje X de la Neurona no es válido.");
+            error=true;
+        }
+    }
+    if (!error){
+         valueInt=ui->lineEdit_PosY->text().toInt(&ok);
+         if (!ok) {
+             QMessageBox::information(this, "Informacion","El valor introducido para la posición en eje Y de la Neurona no es válido.");
+             error=true;
+         }
+    }
+    if (!error) {
+        valueDouble=ui->lineEdit_Amount->text().toInt(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para Amount de la Neurona no es válido.");
+            error=true;
+        }
+    }
+
+    if (!error) {
+        valueDouble=ui->lineEdit_V->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para V de la Neurona no es válido.");
+            error=true;
+        }
+    }
+    if (!error) {
+        valueDouble=ui->lineEdit_Iexc->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para Iexc de la Neurona no es válido.");
+            error=true;
+        }
+    }
+    if (!error) {
+        valueDouble=ui->lineEdit_Iinh->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para Iinh de la Neurona no es válido.");
+            error=true;
+        }
+    }
+
+
+    if (!error) {
+        valueDouble=ui->lineEdit_Iexc->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para Iexc de la Neurona no es válido.");
+            error=true;
+        }
+    }
+    if (!error) {
+        valueDouble=ui->lineEdit_tauExc->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para tauExc de la Neurona no es válido.");
+            error=true;
+        }
+    }
+    if (!error) {
+        valueDouble=ui->lineEdit_tauInh->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para tauInh de la Neurona no es válido.");
+            error=true;
+        }
+    }
+    if (!error) {
+        valueDouble=ui->lineEdit_tauV->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para tauV de la Neurona no es válido.");
+            error=true;
+        }
+    }
+    if (!error) {
+        valueDouble=ui->lineEdit_R->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para R de la Neurona no es válido.");
+            error=true;
+        }
+    }
+    if (!error) {
+        valueDouble=ui->lineEdit_Vr->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para Vr de la Neurona no es válido.");
+            error=true;
+        }
+    }
+    if (!error) {
+        valueDouble=ui->lineEdit_Vrh->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para Vrh de la Neurona no es válido.");
+            error=true;
+        }
+    }
+    if (!error) {
+        valueDouble=ui->lineEdit_Vth->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para Vth de la Neurona no es válido.");
+            error=true;
+        }
+    }
+    if (!error) {
+        valueDouble=ui->lineEdit_At->text().toDouble(&ok);
+        if (!ok) {
+            QMessageBox::information(this, "Informacion","El valor introducido para At de la Neurona no es válido.");
+            error=true;
+        }
+    }
+
+    return !error;
+}
+
+void NewNeuronGraphic::on_pushButton_clicked()
+{
+    if (mathematicalModel==MODEL_ADEXLIF) {
+       if (parametersOK()) {
+
+           Parameters *p1 = new Parameters(ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(), ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_tauExc->text().toDouble(), ui->lineEdit_tauInh->text().toDouble(),ui->lineEdit_tauV->text().toDouble(),ui->lineEdit_R->text().toDouble(), ui->lineEdit_Vr->text().toDouble(),ui->lineEdit_Vrh->text().toDouble(),ui->lineEdit_Vth->text().toDouble(), ui->lineEdit_At->text().toDouble());
+           QString ip=ui->lineEdit_Ip->text();
+
+           graphWidget->generateIPReal(QString::number(TYPENEURON_NORMAL));
+
+           (*idGlobalNeuron)++;
+           Neuron *n = new Neuron(nullptr,ui->lineEdit_Amount->text().toInt() ,ui->lineEdit_Label->text(),ui->lineEdit_PosX->text().toFloat(),ui->lineEdit_PosY->text().toFloat(), ui->lineEdit_Ip->text(),*idGlobalNeuron, TYPENEURON_NORMAL,LOCAL_NEURON, p1,1,"1E-9");
+
+           localNeurons->append(n);
+           *sceneBeSaved=true;
+           close();
+           QMessageBox::information(this, "Informacion","La neurona se ha creado satisfactoriamente.");
+       }
+   }
+}
+void NewNeuronGraphic::on_pushButton_2_clicked()
+{
+    graphWidget->restaurateIPSimulated(QString::number(TYPENEURON_NORMAL));
+    close();
+}
+
+void NewNeuronGraphic::on_lineEdit_Label_returnPressed()
+{
+   ui->lineEdit_Ip->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_PosX_returnPressed()
+{
+    ui->lineEdit_PosY->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_Ip_returnPressed()
+{
+    ui->lineEdit_Amount->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_Amount_returnPressed()
+{
+    ui->lineEdit_PosX->setFocus();
+}
+
+
+void NewNeuronGraphic::on_lineEdit_Label_textEdited(const QString &arg1)
+{
+    ui->lineEdit_Label->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_At_returnPressed()
+{
+    ui->pushButton->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_PosY_returnPressed()
+{
+    ui->lineEdit_V->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_V_returnPressed()
+{
+    ui->lineEdit_Iexc->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_Iexc_returnPressed()
+{
+    ui->lineEdit_Iinh->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_Iinh_returnPressed()
+{
+    ui->lineEdit_tauExc->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_tauExc_returnPressed()
+{
+    ui->lineEdit_tauInh->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_tauInh_returnPressed()
+{
+    ui->lineEdit_tauV->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_tauV_returnPressed()
+{
+    ui->lineEdit_R->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_R_returnPressed()
+{
+    ui->lineEdit_Vr->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_Vr_returnPressed()
+{
+    ui->lineEdit_Vrh->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_Vrh_returnPressed()
+{
+    ui->lineEdit_Vth->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_Vth_returnPressed()
+{
+    ui->lineEdit_At->setFocus();
+}
+
+void NewNeuronGraphic::on_lineEdit_Label_editingFinished()
+{
+    ui->lineEdit_Label->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_Ip_textEdited(const QString &arg1)
+{
+    ui->lineEdit_Ip->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_Ip_editingFinished()
+{
+    ui->lineEdit_Ip->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_Amount_textEdited(const QString &arg1)
+{
+    ui->lineEdit_Amount->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_Amount_editingFinished()
+{
+    ui->lineEdit_Amount->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_PosX_textEdited(const QString &arg1)
+{
+    ui->lineEdit_PosX->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_PosX_editingFinished()
+{
+    ui->lineEdit_PosX->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_PosY_textEdited(const QString &arg1)
+{
+    ui->lineEdit_PosY->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_PosY_editingFinished()
+{
+    ui->lineEdit_PosY->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_V_textEdited(const QString &arg1)
+{
+    ui->lineEdit_V->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_V_editingFinished()
+{
+    ui->lineEdit_V->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_Iexc_textEdited(const QString &arg1)
+{
+    ui->lineEdit_Iexc->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_Iexc_editingFinished()
+{
+    ui->lineEdit_Iexc->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_Iinh_textEdited(const QString &arg1)
+{
+    ui->lineEdit_Iinh->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_Iinh_editingFinished()
+{
+    ui->lineEdit_Iinh->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_tauExc_textEdited(const QString &arg1)
+{
+    ui->lineEdit_tauExc->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_tauExc_editingFinished()
+{
+    ui->lineEdit_tauExc->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_tauInh_textEdited(const QString &arg1)
+{
+    ui->lineEdit_tauInh->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_tauInh_editingFinished()
+{
+    ui->lineEdit_tauInh->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_tauV_textEdited(const QString &arg1)
+{
+    ui->lineEdit_tauV->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_tauV_editingFinished()
+{
+    ui->lineEdit_tauV->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_R_textEdited(const QString &arg1)
+{
+    ui->lineEdit_R->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_R_editingFinished()
+{
+    ui->lineEdit_R->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_Vr_textEdited(const QString &arg1)
+{
+    ui->lineEdit_Vr->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_Vr_editingFinished()
+{
+    ui->lineEdit_Vr->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_Vrh_textEdited(const QString &arg1)
+{
+    ui->lineEdit_Vrh->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_Vrh_editingFinished()
+{
+    ui->lineEdit_Vrh->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_Vth_textEdited(const QString &arg1)
+{
+    ui->lineEdit_Vth->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_Vth_editingFinished()
+{
+    ui->lineEdit_Vth->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
+
+void NewNeuronGraphic::on_lineEdit_At_textEdited(const QString &arg1)
+{
+    ui->lineEdit_At->setStyleSheet(EDIT_STYLE_MODIFIED);
+}
+
+void NewNeuronGraphic::on_lineEdit_At_editingFinished()
+{
+    ui->lineEdit_At->setStyleSheet(EDIT_STYLE_DEFAULT);
+}
