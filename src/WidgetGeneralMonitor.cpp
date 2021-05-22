@@ -231,7 +231,7 @@ void WidgetGeneralMonitor::paintGraphic(){
    QMap<QString, double *>::const_iterator i;
    for (i = signalsMonitor.begin(); i != signalsMonitor.end(); ++i) {
        graph->appendPoint(i.key(),*(i.value()));
-      std::cout<<"Pinto: "<<i.key().toStdString()<<" "<<*i.value()<<std::endl;
+      std::cout<<"Paint: "<<i.key().toStdString()<<" "<<*i.value()<<std::endl;
    }
 }
 
@@ -348,9 +348,9 @@ void WidgetGeneralMonitor::on_pushButton_4_clicked()
        QMap <QString, QPair <QString,int>>::iterator itSS=signalsSelected.begin();
        itSS=signalsSelected.find(serie.toStdString().c_str());
        if (itSS!=signalsSelected.end())
-          std::cout<<"EXSITE key= "<<itSS.key().toStdString()<<" ip: "<<itSS.value().first.toStdString()<<" pos: "<<itSS.value().second<<std::endl;
+          std::cout<<"EXISTS key= "<<itSS.key().toStdString()<<" ip: "<<itSS.value().first.toStdString()<<" pos: "<<itSS.value().second<<std::endl;
        else
-           std::cout<<"NO - EXISTE la serie "<<std::endl;
+           std::cout<<"Serie does not exist "<<std::endl;
        bool serieFound=true;
        bool pairFound=false;
        if (itSS==signalsSelected.end())
@@ -361,13 +361,13 @@ void WidgetGeneralMonitor::on_pushButton_4_clicked()
         while ((!pairFound) && (itSS!=signalsSelected.end())) { //No existe Pair
            if ((itSS.value().first==NeuronSelected) && (itSS.value().second==pos)) {
               pairFound=true;
-              std::cout<<"ENCONTRADOOOOO..."<<std::endl;
+              std::cout<<"Found"<<std::endl;
            }
            else ++itSS;
         }
         //Añadir registro nuevo en SS,SR y SM
         if (!pairFound && !serieFound){ //NO existe serie
-            std::cout<<"CASO 0 - AÑADIENDO"<<std::endl;
+            std::cout<<"CASE 0 - ADDING"<<std::endl;
             double *v; //= new double[4];
             QMap <QString, double *>::Iterator it = signalsReceived.begin();
             it=signalsReceived.find(NeuronSelected);
@@ -383,8 +383,8 @@ void WidgetGeneralMonitor::on_pushButton_4_clicked()
         else if (serieFound){ //La serie existe
             QMessageBox::StandardButton reply;
             itSS=signalsSelected.find(serie);
-            QString msg="1 - La serie '"+serie+"' está asignada al parámetro '"+paramsMonitor[itSS.value().second]+"' de la neurona '"+itSS.value().first+"' \n¿Desea asignar la serie '"+serie+"' al parámetro '"+paramsMonitor[pos]+"' de la neurona '"+NeuronSelected+"'?";
-            reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No);
+            QString msg="1 - Serie '"+serie+"'is assigned to parameter '"+paramsMonitor[itSS.value().second]+"' of neuron '"+itSS.value().first+"' \nWould you like to assign serie '"+serie+"' to parameter '"+paramsMonitor[pos]+"' of  neuron '"+NeuronSelected+"'?";
+            reply=QMessageBox::question(this, "Warning",msg,QMessageBox::Yes|QMessageBox::No);
             if (reply==QMessageBox::Yes) {
                QString serie_Anterior=itSS.key();
                QString ip_anterior=itSS.value().first;
@@ -423,8 +423,8 @@ void WidgetGeneralMonitor::on_pushButton_4_clicked()
             }
             if (encontrado) {
                 QMessageBox::StandardButton reply;
-                QString msg="2 - El parámetro '"+paramsMonitor[pos]+"' ya está asociado a la serie '"+itSS.key()+"' de la neurona '"+ NeuronSelected+"\n¿Desea actualizar el parmámetro '"+paramsMonitor[pos]+"' a la serie '"+serie+"'?";
-                reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No);
+                QString msg="2 - Parameter '"+paramsMonitor[pos]+"' is associated to serie '"+itSS.key()+"' of neuron '"+ NeuronSelected+"\nWould you like to update parameter '"+paramsMonitor[pos]+"' to serie '"+serie+"'?";
+                reply=QMessageBox::question(this, "Warning",msg,QMessageBox::Yes|QMessageBox::No);
                 if (reply==QMessageBox::Yes) {
                     QString serie_Anterior=itSS.key();
                     QPair<QString,int> tmp = signalsSelected.take(serie_Anterior);
@@ -440,7 +440,7 @@ void WidgetGeneralMonitor::on_pushButton_4_clicked()
         setupGraphColor();
         showLegend();
     } else
-       QMessageBox::information(this, "Informacion","No ha seleccionado ninguna neurona.");
+       QMessageBox::information(this, "Warning","A neuron has not been selected.");
 }
 
 void WidgetGeneralMonitor::on_pushButton_3_clicked() {
@@ -448,12 +448,12 @@ void WidgetGeneralMonitor::on_pushButton_3_clicked() {
     QTableWidgetItem *item = ui->tableWidget_Legend->item(ui->tableWidget_Legend->currentRow(),0);
     if (item) {
         QMessageBox::StandardButton reply;
-        reply=QMessageBox::question(this, "Atención","¿Está seguro de borrar la monitorización de la señal seleccionada?",QMessageBox::Yes|QMessageBox::No);
+        reply=QMessageBox::question(this, "Warning","Are you sure you want to delete the monitoring of the selected signal?",QMessageBox::Yes|QMessageBox::No);
         if (reply==QMessageBox::Yes) {
             QString ip=ui->tableWidget_Legend->item(ui->tableWidget_Legend->currentRow(),0)->text();
             QString signal=ui->tableWidget_Legend->item(ui->tableWidget_Legend->currentRow(),1)->text();
             QString serie=ui->tableWidget_Legend->item(ui->tableWidget_Legend->currentRow(),2)->text();
-            std::cout<<"ip: "<<ip.toStdString()<<" sginal: "<<signal.toStdString()<<" Serie: "<<serie.toStdString()<<std::endl;
+            std::cout<<"ip: "<<ip.toStdString()<<" signal: "<<signal.toStdString()<<" Serie: "<<serie.toStdString()<<std::endl;
 
             signalsSelected.remove(serie);
             //Comprobamos si existe otro registro que tenga la misma ip en signalsSelected,
@@ -477,7 +477,7 @@ void WidgetGeneralMonitor::on_pushButton_3_clicked() {
         }
     }
     else
-       QMessageBox::information(this, "Informacion","No ha seleccionado ninguna señal para eliminar.");
+       QMessageBox::information(this, "Warning","No signal has been selected.");
 }
 
 void WidgetGeneralMonitor::on_pushButton_21_clicked() {

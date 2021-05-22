@@ -385,7 +385,7 @@ void Widget::on_pushButton_2_clicked() {
     bool ok;
     ui->lineEdit_Group->text().toInt(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para el grupo de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for the group of neurons is not valid.");
     else {
 
         QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
@@ -414,7 +414,7 @@ void Widget::showSynapsys(){
     ui->tableWidget->setColumnCount(5);
     ui->tableWidget->setRowCount(0);
     QStringList labels;
-    labels << tr("id") << tr("Target") << tr("Tipo") << tr("Valor") << tr("Unidad");
+    labels << tr("id") << tr("Target") << tr("Type") << tr("Value") << tr("Unit");
     ui->tableWidget->setColumnWidth(0,30);
     ui->tableWidget->setColumnWidth(1,80);
     ui->tableWidget->setColumnWidth(2,30);
@@ -474,9 +474,9 @@ void Widget::on_pushButton_5_clicked() {
     QTableWidgetItem *itemFx = ui->tableWidget->item(ui->tableWidget->currentRow(), 4);
 
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para la sinapsis no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for the synapse is not valid.");
     else if (!itemValue)
-        QMessageBox::information(this, "Informacion","Debe seleccionar una sinapsis.");
+        QMessageBox::information(this, "Warning","You must select a synapse.");
     else {
 
         ui->tableWidget->setItem(ui->tableWidget->currentRow(), 1, itemTypeSynapse);
@@ -601,7 +601,7 @@ void Widget::on_pushButton_9_clicked() {
     bool ok;
     ui->lineEdit_R->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para la Resistencia de la Neurona no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for the resistance of the neuron is not valid.");
     else {
         p->R=ui->lineEdit_R->text().toDouble();
     }
@@ -611,7 +611,7 @@ void Widget::on_pushButton_16_clicked() {
     bool ok;
     ui->lineEdit_tauExc->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para tau Exc de la Neurona no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for the tau Exc parameter of the neuron is not valid.");
     else {
         p->tau_e=ui->lineEdit_tauExc->text().toDouble();
     }
@@ -621,7 +621,7 @@ void Widget::on_pushButton_15_clicked() {
     bool ok;
     ui->lineEdit_tauInh->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para tau Inh de la Neurona no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for the tau Inh parameter of the neuron is not valid.");
     else {
         p->tau_i=ui->lineEdit_tauInh->text().toDouble();
     }
@@ -631,7 +631,7 @@ void Widget::on_pushButton_14_clicked() {
     bool ok;
     ui->lineEdit_tauV->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para tau V de la Neurona no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for the tau V parameter of the neuron is not valid.");
     else {
         p->tau_v=ui->lineEdit_tauV->text().toDouble();
     }
@@ -641,7 +641,7 @@ void Widget::on_pushButton_10_clicked() {
     bool ok;
     ui->lineEdit_Vr->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para Vr de la Neurona no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for the Vr parameter of the neuron is not valid.");
     else {
         p->Vr=ui->lineEdit_Vr->text().toDouble();
     }
@@ -651,7 +651,7 @@ void Widget::on_pushButton_11_clicked() {
     bool ok;
     ui->lineEdit_Vrh->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para Vrh de la Neurona no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for the Vrh parameter of the neuron is not valid.");
     else {
         p->Vrh=ui->lineEdit_Vrh->text().toDouble();
     }
@@ -661,7 +661,7 @@ void Widget::on_pushButton_12_clicked() {
     bool ok;
     ui->lineEdit_Vth->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para Vth de la Neurona no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for the Vth parameter of the neuron is not valid.");
     else {
         p->Vth=ui->lineEdit_Vth->text().toDouble();
     }
@@ -671,7 +671,7 @@ void Widget::on_pushButton_13_clicked() {
     bool ok;
     ui->lineEdit_At->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para At de la Neurona no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for the At parameter of the neuron is not valid.");
     else {
         p->At=ui->lineEdit_At->text().toDouble();
     }
@@ -684,91 +684,91 @@ bool Widget::parametersOK() {
     double valueDouble;
 
     if (!ui->lineEdit_Label->text().length()) {
-        QMessageBox::information(this, "Informacion","Se necesita una etiqueta para identificar a la neurona.\nSe le proporcionará uno automáticamente");
+        QMessageBox::information(this, "Warning","A label is needed in order to identify the neuron.\nIt will be automatically providad.");
         ui->lineEdit_Label->setText(QString("G"));
         error=true;
     }
     if (!error) {
         valueInt=ui->lineEdit_Group->text().toInt(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para el grupo de Neuronas no es válido.");
+            QMessageBox::information(this, "Warning"," The value introduced for the group of neurons is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueInt=ui->lineEdit_Iexc->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para I Exc de Neuronas no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for I Exc is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueInt=ui->lineEdit_Iinh->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para I Inh de Neuronas no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for I Inh is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueInt=ui->lineEdit_V->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para V de Neuronas no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for V is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_tauExc->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Tau Exc de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for Tau Exc is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_tauInh->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Tau Inh de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for Tau Inh is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_tauV->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Tau V de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for Tau V is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_R->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para R de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for R is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_Vr->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Vr de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for Vr is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_Vrh->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Vrh de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for Vrh is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_Vth->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Vth de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for Vth is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_At->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para At de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for At is not valid.");
             error=true;
         }
     }
@@ -780,7 +780,7 @@ void Widget::on_pushButton_17_clicked() {
     bool ok;
     ui->lineEdit_V->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para V de la Neurona no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for V is not valid.");
     else {
         p->V=ui->lineEdit_V->text().toDouble();
     }
@@ -795,7 +795,7 @@ void Widget::on_pushButton_18_clicked() {
     if (ui->lineEdit_Label->text().length()>0)
         ok=true;
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para label no puede estar vacío.");
+        QMessageBox::information(this, "Warning","The value introduced for the label is not valid.");
     else {
         QString model= MODEL_ADEXLIF;
         *this->label=ui->lineEdit_Label->text();
@@ -846,7 +846,7 @@ void Widget::on_lineEdit_At_returnPressed() {
 
 void Widget::on_pushButton_okChanges_clicked() {
     QMessageBox::StandardButton reply;
-    QString msg="¿Está seguro de aplicar TODOS los cambios a la neurona?";
+    QString msg="Are you sure you want to apply all these changes to the neuron?";
     reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
     if (reply==QMessageBox::Yes) {
         QString model= MODEL_ADEXLIF;
@@ -968,7 +968,7 @@ void Widget::on_pushButton_19_clicked() {
     bool ok;
     ui->lineEdit_Iexc->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para I exc de la Neurona no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for I Exc is not valid.");
     else {
         p->Iexc=ui->lineEdit_Iexc->text().toDouble();
     }
@@ -978,7 +978,7 @@ void Widget::on_pushButton_20_clicked() {
     bool ok;
     ui->lineEdit_Iinh->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para I inh de la Neurona no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for I Inh is not valid.");
     else {
         p->Iinh=ui->lineEdit_Iinh->text().toDouble();
     }

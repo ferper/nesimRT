@@ -187,7 +187,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
     this->localRemote= localRemote;
     file.setFileName("basura10_ExInNx"+label+".csv");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QMessageBox::warning(this, "ATENCION","Imposible crear fichero de extración de datos.");
+        QMessageBox::warning(this, "Warning","It was not possible to create the data extraction file.");
     }
     out= new QTextStream(&file);
     linea=0;
@@ -211,8 +211,8 @@ void Neuron::closeEvent(QCloseEvent *event){
 
     if (localRemote==REMOTE_NEURON) {
         QMessageBox::StandardButton reply;
-        QString msg="¿Está seguro de salir?\nSe eliminarán todas las sinapsis.";
-        reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
+        QString msg="Are you sure you want to quit?\nAll the synapses will be removed.";
+        reply=QMessageBox::question(this, "Warning",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
         if (reply==QMessageBox::Yes) {
             killme(false);
             event->accept();
@@ -238,8 +238,8 @@ void Neuron::killme(bool showMessageBox) {
 
     QMessageBox::StandardButton reply=QMessageBox::Yes;
     if (showMessageBox) {
-        QString msg="¿Está seguro eliminar la neurona?\nSe borrarán todas las sinapsis asociadas a ella.";
-        reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
+        QString msg="Are you sure you want to remove this neuron?\nAll the synapses associated will be removed.";
+        reply=QMessageBox::question(this, "Warning",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
     }
     if ((reply==QMessageBox::Yes) || (!showMessageBox)) {
 
@@ -349,7 +349,7 @@ void Neuron::paintLocalMonitor(){
 int Neuron::get_NSynapses(){
 
     cout<<Vsynapse.size()<<endl;
-    cout<<"Valor de Iexc Actual:"<<p->Iexc<<endl;
+    cout<<"Current Iexc value:"<<p->Iexc<<endl;
     return Vsynapse.size();
 }
 void Neuron::set_At(double value) {
@@ -449,7 +449,7 @@ void Neuron::processPendingDatagrams()
                       s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,ipmSource, ipm_target,port_target,type,&p->Iexc,we,fx_numberTxt,fx_unitMeasureTxt,&Iexc_enabled,&V_enabled,timer,&mutexNeuron,&muestra,out,&spkOnOff_exc);
                    else
                       s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,ipmSource, ipm_target,port_target,type,&p->Iinh,wi,fx_numberTxt,fx_unitMeasureTxt,&Iinh_enabled,&V_enabled,timer,&mutexNeuron, &muestra, out,&spkOnOff_inh);
-                    cout<<"-Soy la NEURONA "<<ipmSource.toStdString()<< " y he creado synapsys con "<<ipm_target.toStdString()<<" type: "<<type<<endl;
+                    cout<<"-I am neuron "<<ipmSource.toStdString()<< " and I have created a synapse with "<<ipm_target.toStdString()<<" type: "<<type<<endl;
                     s1->timer->start();
 
                     Vsynapse.push_back(s1); //Para poder liberar memoria y borrar la synapse

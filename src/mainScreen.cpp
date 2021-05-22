@@ -132,9 +132,9 @@ void MainScreen::showEvent(QShowEvent *) {
 void MainScreen::closeEvent(QCloseEvent *event){
 
     QMessageBox::StandardButton reply;
-    QString msg="¿Está seguro de salir?";
+    QString msg="Are you sure you want to quit?";
 
-    reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
+    reply=QMessageBox::question(this, "Warning",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
     if (reply==QMessageBox::Yes) {
        event->accept();
        schemeNeuron->removeALLScenary(); //Matamos a todas la neuronas remotas y locales

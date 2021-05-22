@@ -8,7 +8,7 @@ About::About(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setWindowTitle(tr("About as..."));
+    setWindowTitle(tr("About us..."));
     ui->label_version->setText(QString::number(VERSION));
 
     QGraphicsScene *sceneTmp1 = new QGraphicsScene();

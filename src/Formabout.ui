@@ -71,7 +71,7 @@
     </font>
    </property>
    <property name="text">
-    <string>A Real Time Spike Neural Networks</string>
+    <string>A Real Time Spiking Neural Network</string>
    </property>
   </widget>
   <widget class="QGraphicsView" name="graphicsView_2">
