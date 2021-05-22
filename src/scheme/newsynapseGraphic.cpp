@@ -11,7 +11,7 @@ NewSynapseGraphic::NewSynapseGraphic(QWidget *parent, int *idGlobalSynapse, QGra
     ui(new Ui::NewSynapseForm)
 {
     if (vectorGraphicsNeuron->size()==0)
-        QMessageBox::information(this, "Informacion","No hay ninguna neurona creada.");
+        QMessageBox::information(this, "Warning","There is no created neuron.");
 
     else {
         this->parent=parent;
@@ -103,7 +103,7 @@ void NewSynapseGraphic::fullTableWidgetdataNeurons(QTableWidget *table){
     table->setColumnCount(3);
     table->setRowCount(0);
     QStringList labels;
-    labels << tr("Dirección IP") << tr("Identificación") << tr("Cantidad");
+    labels << tr("IP address") << tr("Identification") << tr("Amount");
     table->setColumnWidth(0,100);
     table->setColumnWidth(1,100);
     table->setColumnWidth(2,70);
@@ -163,7 +163,7 @@ void NewSynapseGraphic::neuronFilterSearch(int entity) {
     table->setColumnCount(3);
     table->setRowCount(0);
     QStringList labels;
-    labels << tr("Dirección IP") << tr("Identificación") << tr("Cantidad");
+    labels << tr("IP address") << tr("Identification") << tr("Amount");
     table->setColumnWidth(0,100);
     table->setColumnWidth(1,100);
     table->setColumnWidth(2,70);
@@ -258,7 +258,7 @@ void NewSynapseGraphic::on_pushButton_Create_clicked()
         if ((ui->tableWidget_Source->item(ui->tableWidget_Source->currentRow(),1)->text().contains("GENERATOR")) &&
                 (ui->tableWidget_Target->item(ui->tableWidget_Target->currentRow(),1)->text().contains("GENERATOR"))) {
 
-            QMessageBox::information(this, "Informacion","No se puede crear una synapsys entre dos neuronas generadoras.");
+            QMessageBox::information(this, "Warning","A synapse between two generator neurons cannot be created.");
             return;
         }
         bool found=false;
@@ -289,7 +289,7 @@ void NewSynapseGraphic::on_pushButton_Create_clicked()
         fx=ifx.key();
 
         if (!ok)
-            QMessageBox::information(this, "Informacion","El valor introducido para W de la Synapsis no es válido.");
+            QMessageBox::information(this, "Warning","The value of the W parameter of the synapse is not valid.");
         else {
             *idGlobalSynapse=generate_Globalidsynapse();
 
@@ -299,14 +299,14 @@ void NewSynapseGraphic::on_pushButton_Create_clicked()
 
             sendMsg(msg,NEURON_PROMISCUOS_PORT);
 
-            QMessageBox::information(this, "Informacion","La sinapsis se ha creado satisfactoriamente.");
+            QMessageBox::information(this, "Warning","The synapse has been succesfully created.");
         }
     }
     else {
         if (!item0)
-            QMessageBox::information(this, "Informacion","No hay ninguna neurona seleccionada en el origen");
+            QMessageBox::information(this, "Warning","There is no source neuron selected.");
         else
-            QMessageBox::information(this, "Informacion","No hay ninguna neurona seleccionada en el destino");
+            QMessageBox::information(this, "Warning","There is no target neuron selected.");
     }
 }
 

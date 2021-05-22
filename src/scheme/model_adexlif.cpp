@@ -14,7 +14,7 @@ ModelAdExLIF::ModelAdExLIF(QWidget *parent, Node *node) :
 
     mathematicalModel=MODEL_ADEXLIF;
     if (!node) {
-        QMessageBox::critical(this, "Critico","No hay valores establecido para esta Neurona");
+        QMessageBox::critical(this, "Warning","No values have been established for this neuron");
     }
     else {
         this->node=node;
@@ -274,9 +274,9 @@ void ModelAdExLIF::on_pushButton_5_clicked()
     QTableWidgetItem *itemFx = ui->tableWidget->item(ui->tableWidget->currentRow(), 4);
 
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para la sinapsis no es válido.");
+        QMessageBox::information(this, "Warning","The value introduced for the synapse is not valid.");
     else if (!itemValue)
-        QMessageBox::information(this, "Informacion","Debe seleccionar una sinapsis.");
+        QMessageBox::information(this, "Warning","You must select a synapse.");
     else {
 
         ui->tableWidget->setItem(ui->tableWidget->currentRow(), 1, itemTypeSynapse);
@@ -334,21 +334,21 @@ bool ModelAdExLIF::parmatersOK() {
     double valueDouble;
 
     if (!ui->lineEdit_Label->text().length()) {
-        QMessageBox::information(this, "Informacion","Se necesita una etiqueta para identificar a la neurona.\nSe le proporcionará uno automáticamente");
+        QMessageBox::information(this, "Warning","A label is needed for identifying the neuron.\nIt will be provided automatically.");
         ui->lineEdit_Label->setText(QString("G"));
         error=true;
     }
     if (!error) {
         valueInt=ui->lineEdit_Amount->text().toInt(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para el grupo de Neuronas no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_Iexc->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para I Exc de Neuronas no es válido.");
+            QMessageBox::information(this, "Warning","The value of I Exc introduced is not valid.");
             error=true;
         }
     }
@@ -356,7 +356,7 @@ bool ModelAdExLIF::parmatersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_Iinh->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para I Inh de Neuronas no es válido.");
+            QMessageBox::information(this, "Warning","The value of I Inh introduced is not valid.");
             error=true;
         }
     }
@@ -364,7 +364,7 @@ bool ModelAdExLIF::parmatersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_V->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para V de Neuronas no es válido.");
+            QMessageBox::information(this, "Warning","The value of V introduced is not valid.");
             error=true;
         }
     }
@@ -373,7 +373,7 @@ bool ModelAdExLIF::parmatersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_tauExc->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Tau Exc de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of Tau Exc introduced is not valid.");
             error=true;
         }
     }
@@ -381,7 +381,7 @@ bool ModelAdExLIF::parmatersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_tauInh->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Tau Inh de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of Tau Inh introduced is not valid.");
             error=true;
         }
     }
@@ -389,7 +389,7 @@ bool ModelAdExLIF::parmatersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_tauV->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Tau V de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of Tau V introduced is not valid.");
             error=true;
         }
     }
@@ -397,7 +397,7 @@ bool ModelAdExLIF::parmatersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_R->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para R de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of R introduced is not valid.");
             error=true;
         }
     }
@@ -405,7 +405,7 @@ bool ModelAdExLIF::parmatersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_Vr->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Vr de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of Vr introduced is not valid.");
             error=true;
         }
     }
@@ -413,7 +413,7 @@ bool ModelAdExLIF::parmatersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_Vrh->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Vrh de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of Vrh introduced is not valid.");
             error=true;
         }
     }
@@ -421,7 +421,7 @@ bool ModelAdExLIF::parmatersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_Vth->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Vth de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of Vth introduced is not valid.");
             error=true;
         }
     }
@@ -429,7 +429,7 @@ bool ModelAdExLIF::parmatersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_At->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para At de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of At introduced is not valid.");
             error=true;
         }
     }
@@ -674,7 +674,7 @@ void ModelAdExLIF::on_pushButton_2_clicked()
 
     valueInt=ui->lineEdit_Amount->text().toInt(&ok);
     if (!ok)
-       QMessageBox::information(this, "Informacion","El valor introducido para el grupo de Neuronas no es válido.");
+       QMessageBox::information(this, "Warning","The value introduced is not valid.");
     else {
        node->amountOfNeurons=ui->lineEdit_Amount->text().toInt();
 
@@ -695,7 +695,7 @@ void ModelAdExLIF::on_pushButton_19_clicked()
     bool ok=false;
 
     if (!ui->lineEdit_Label->text().length()) {
-        QMessageBox::information(this, "Informacion","Se necesita una etiqueta para identificar a la neurona.\nSe le proporcionará uno automáticamente");
+        QMessageBox::information(this, "Warning","A label is needed for identifying the neuron.\nIt will be provided automatically");
         ui->lineEdit_Label->setText(QString("G"));
         ok=false;
     }
@@ -723,7 +723,7 @@ void ModelAdExLIF::on_pushButton_6_clicked()
 
     valueDouble=ui->lineEdit_V->text().toDouble(&ok);
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para V de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value of V introduced is not valid.");
     else {
         node->parameters->V=ui->lineEdit_V->text().toDouble();
 
@@ -746,7 +746,7 @@ void ModelAdExLIF::on_pushButton_9_clicked()
 
     valueDouble=ui->lineEdit_Iexc->text().toDouble(&ok);
     if (!ok) {
-        QMessageBox::information(this, "Informacion","El valor introducido para I Exc de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value of I Exc introduced is not valid.");
         ok=false;
     }
 
@@ -772,7 +772,7 @@ void ModelAdExLIF::on_pushButton_10_clicked()
 
     valueDouble=ui->lineEdit_Iinh->text().toDouble(&ok);
     if (!ok) {
-        QMessageBox::information(this, "Informacion","El valor introducido para I Inh de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value of I Inh introduced is not valid.");
         ok=false;
     }
 
@@ -797,7 +797,7 @@ void ModelAdExLIF::on_pushButton_11_clicked()
 
     valueDouble=ui->lineEdit_tauExc->text().toDouble(&ok);
     if (!ok) {
-        QMessageBox::information(this, "Informacion","El valor introducido para Tau Exc de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value of Tau Exc introduced is not valid.");
         ok=false;
     }
 
@@ -822,7 +822,7 @@ void ModelAdExLIF::on_pushButton_12_clicked()
 
     valueDouble=ui->lineEdit_tauInh->text().toDouble(&ok);
     if (!ok) {
-        QMessageBox::information(this, "Informacion","El valor introducido para Tau Inh de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value of Tau Inh introduced is not valid.");
         ok=false;
     }
 
@@ -847,7 +847,7 @@ void ModelAdExLIF::on_pushButton_13_clicked()
 
     valueDouble=ui->lineEdit_tauV->text().toDouble(&ok);
     if (!ok) {
-        QMessageBox::information(this, "Informacion","El valor introducido para Tau V de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value of Tau V introduced is not valid.");
         ok=false;
     }
     else {
@@ -871,7 +871,7 @@ void ModelAdExLIF::on_pushButton_14_clicked()
 
     valueDouble=ui->lineEdit_R->text().toDouble(&ok);
     if (!ok) {
-        QMessageBox::information(this, "Informacion","El valor introducido para R de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value of R introduced is not valid.");
         ok=false;
     }
     else {
@@ -895,7 +895,7 @@ void ModelAdExLIF::on_pushButton_15_clicked()
 
     valueDouble=ui->lineEdit_Vr->text().toDouble(&ok);
     if (!ok) {
-        QMessageBox::information(this, "Informacion","El valor introducido para Vr de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value of Vr introduced is not valid.");
         ok=false;
     }
     else {
@@ -919,7 +919,7 @@ void ModelAdExLIF::on_pushButton_16_clicked()
 
     valueDouble=ui->lineEdit_Vrh->text().toDouble(&ok);
     if (!ok) {
-        QMessageBox::information(this, "Informacion","El valor introducido para Vrh de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value of Vrh introduced is not valid.");
         ok=false;
     }
     else {
@@ -943,7 +943,7 @@ void ModelAdExLIF::on_pushButton_17_clicked()
 
     valueDouble=ui->lineEdit_Vth->text().toDouble(&ok);
     if (!ok) {
-        QMessageBox::information(this, "Informacion","El valor introducido para Vth de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value of Vth introduced is not valid.");
         ok=false;
     }
     else {
@@ -967,7 +967,7 @@ void ModelAdExLIF::on_pushButton_18_clicked()
 
     valueDouble=ui->lineEdit_At->text().toDouble(&ok);
     if (!ok) {
-        QMessageBox::information(this, "Informacion","El valor introducido para At de Neuronas no es válido.");
+        QMessageBox::information(this, "Warning","The value of At introduced is not valid.");
         ok=false;
     }
     else {
@@ -993,7 +993,7 @@ void ModelAdExLIF::on_pushButton_applyData_clicked()
     QString model= MODEL_ADEXLIF;
     if (parmatersOK()) {
         QMessageBox::StandardButton reply;
-        QString msg="¿Está seguro de aplicar TODOS los cambios a la neurona?";
+        QString msg="Are you sure you want to apply all these changes to the neuron?";
         reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
         if (reply==QMessageBox::Yes) {
             node->label= ui->lineEdit_Label->text();
@@ -1035,9 +1035,9 @@ void ModelAdExLIF::on_pushButton_ApplySynapse_clicked()
     QTableWidgetItem *itemFx = ui->tableWidget->item(ui->tableWidget->currentRow(), 4);
 
     if (!ok)
-        QMessageBox::information(this, "Informacion","El valor introducido para la sinapsis no es válido.");
+        QMessageBox::information(this, "Warning"," The value introduced for the synapse is not valid.");
     else if (!itemValue)
-        QMessageBox::information(this, "Informacion","Debe seleccionar una sinapsis.");
+        QMessageBox::information(this, "Warning","You must select synapse.");
     else {
         ui->tableWidget->setItem(ui->tableWidget->currentRow(), 1, itemTypeSynapse);
         itemTypeSynapse->setText(ui->comboBox_2->currentText());

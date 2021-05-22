@@ -88,26 +88,26 @@ bool NewGeneratorGraphics::parametersOK() {
 
     if (ui->lineEdit_Ip->text().length()){
         if (graphWidget->existIp(ui->lineEdit_Ip->text())) {
-            QMessageBox::information(this, "Informacion","Ya existe un generador con esa IP.");
+            QMessageBox::information(this, "Warning","A generator with that IP already exists.");
             error=true;
         }
     }
     else {
-        QMessageBox::information(this, "Informacion","Se necesita una ip válida asociada al generador.");
+        QMessageBox::information(this, "Warning","A valid IP is needed for the generator.");
         error=true;
     }
 
     if (!error) {
         valueInt=ui->lineEdit_PosX->text().toInt(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para la posición en eje X del Generador no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for the X coordinate of the generator is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueInt=ui->lineEdit_PosY->text().toInt(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para la posición en eje Y del Generador no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for the Y coordinate of the generator is not valid.");
             error=true;
         }
     }
@@ -115,14 +115,14 @@ bool NewGeneratorGraphics::parametersOK() {
     if (!error) {
         valueInt=ui->lineEdit_Frecuency->text().toInt(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para la frecuencia generadora no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for the firing rate of the generator is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueInt=ui->lineEdit_Amount->text().toInt(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para la cantidad de Generadores no es válido.");
+            QMessageBox::information(this, "Warning","The value introduced for the number of generators is not valid.");
             error=true;
         }
     }
@@ -146,7 +146,7 @@ void NewGeneratorGraphics::on_pushButton_clicked()
 
         *sceneBeSaved=true;
         close();
-        QMessageBox::information(this, "Informacion","El generador se ha creado satisfactoriamente.");
+        QMessageBox::information(this, "Warning","The generator has been created correctly.");
      }
 }
 

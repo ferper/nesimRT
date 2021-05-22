@@ -127,14 +127,14 @@ bool NewSpiNNaker::ParametersOk() {
 
     cm=ui->lineEdit_cm->text().toFloat(&ok);
     if (!ok) {
-       QMessageBox::warning(this, "Error","El valor para el campo cm no es correcto.");
+       QMessageBox::warning(this, "Error","The value of the cm parameter is not valid.");
        ui->lineEdit_cm->setFocus();
        error=true;
     }
     if (!error) {
         i_offset=ui->lineEdit_i_offset->text().toFloat(&ok);
         if (!ok) {
-            QMessageBox::warning(this, "Error","El valor para el campo i_offset no es correcto.");
+            QMessageBox::warning(this, "Error","The value of the i_offset parameter is not valid.");
             ui->lineEdit_i_offset->setFocus();
             error=true;
         }
@@ -142,7 +142,7 @@ bool NewSpiNNaker::ParametersOk() {
     if (!error) {
         tau_m=ui->lineEdit_tau_m->text().toFloat(&ok);
         if (!ok) {
-            QMessageBox::warning(this, "Error","El valor para el campo tau_m no es correcto.");
+            QMessageBox::warning(this, "Error","The value of the tau_m parameter is not valid.");
             ui->lineEdit_tau_m->setFocus();
             error=true;
         }
@@ -150,7 +150,7 @@ bool NewSpiNNaker::ParametersOk() {
     if (!error) {
         tau_refrac=ui->lineEdit_tau_refrac->text().toFloat(&ok);
         if (!ok) {
-            QMessageBox::warning(this, "Error","El valor para el campo tau_refrac no es correcto.");
+            QMessageBox::warning(this, "Error","The value of the tau_refrac parameter is not valid.");
             ui->lineEdit_tau_refrac->setFocus();
             error=true;
         }
@@ -158,7 +158,7 @@ bool NewSpiNNaker::ParametersOk() {
     if (!error) {
         tau_syn_E=ui->lineEdit_tau_syn_E->text().toFloat(&ok);
         if (!ok) {
-            QMessageBox::warning(this, "Error","El valor para el campo tau_syn_E no es correcto.");
+            QMessageBox::warning(this, "Error","The value of the tau_syn_E parameter is not valid.");
             ui->lineEdit_tau_syn_E->setFocus();
             error=true;
         }
@@ -167,7 +167,7 @@ bool NewSpiNNaker::ParametersOk() {
     if (!error) {
         tau_syn_I=ui->lineEdit_tau_syn_I->text().toFloat(&ok);
         if (!ok) {
-            QMessageBox::warning(this, "Error","El valor para el campo tau_syn_I no es correcto.");
+            QMessageBox::warning(this, "Error","The value of the tau_syn_I parameter is not valid.");
             ui->lineEdit_tau_syn_I->setFocus();
             error=true;
         }
@@ -176,7 +176,7 @@ bool NewSpiNNaker::ParametersOk() {
     if (!error) {
         v_reset=ui->lineEdit_v_reset->text().toFloat(&ok);
         if (!ok) {
-            QMessageBox::warning(this, "Error","El valor para el campo v_reset no es correcto.");
+            QMessageBox::warning(this, "Error","The value of the v_reset parameter is not valid.");
             ui->lineEdit_v_reset->setFocus();
             error=true;
         }
@@ -185,7 +185,7 @@ bool NewSpiNNaker::ParametersOk() {
     if (!error) {
         v_rest=ui->lineEdit_v_rest->text().toFloat(&ok);
         if (!ok) {
-            QMessageBox::warning(this, "Error","El valor para el campo v_rest no es correcto.");
+            QMessageBox::warning(this, "Error","The value of the v_rest parameter is not valid.");
             ui->lineEdit_v_rest->setFocus();
             error=true;
         }
@@ -194,7 +194,7 @@ bool NewSpiNNaker::ParametersOk() {
     if (!error) {
         v_thresh=ui->lineEdit_v_thresh->text().toFloat(&ok);
         if (!ok) {
-            QMessageBox::warning(this, "Error","El valor para el campo v_thresh no es correcto.");
+            QMessageBox::warning(this, "Error","The value of the v_thresh parameter is not valid.");
             ui->lineEdit_v_thresh->setFocus();
             error=true;
         }
@@ -202,7 +202,7 @@ bool NewSpiNNaker::ParametersOk() {
     if (!error) {
          timeStep=ui->lineEdit_timeStep->text().toFloat(&ok);
         if (!ok) {
-            QMessageBox::warning(this, "Error","El valor para el campo timeStep no es correcto.");
+            QMessageBox::warning(this, "Error","The value of the timeStep parameter is not valid.");
             ui->lineEdit_timeStep->setFocus();
             error=true;
         }
@@ -211,7 +211,7 @@ bool NewSpiNNaker::ParametersOk() {
     if (!error) {
          delay=ui->lineEdit_delay->text().toInt(&ok);
         if (!ok) {
-            QMessageBox::warning(this, "Error","El valor para el campo delay no es correcto.");
+            QMessageBox::warning(this, "Error","The value of the delay parameter is not valid.");
             ui->lineEdit_delay->setFocus();
             error=true;
         }
@@ -219,7 +219,7 @@ bool NewSpiNNaker::ParametersOk() {
     if (!error) {
          timeSimulation=ui->lineEdit_timeSimulation->text().toInt(&ok);
         if (!ok) {
-            QMessageBox::warning(this, "Error","El valor para el campo Time Simulation no es correcto.");
+            QMessageBox::warning(this, "Error","The value of the Time Simulation parameter is not valid.");
             ui->lineEdit_timeSimulation->setFocus();
             error=true;
         }
@@ -229,7 +229,7 @@ bool NewSpiNNaker::ParametersOk() {
        for (int i=0; i<ui->tableWidget_times->rowCount() && ok ;i++)
           int t=ui->tableWidget_times->item(i,0)->text().toInt(&ok);
        if (!ok) {
-          QMessageBox::warning(this, "Error","Hay un valor icorrecto en la tabla de spikes time.");
+          QMessageBox::warning(this, "Error","There is an incorrect value in the Spikes time table.");
           error=true;
        }
     }
@@ -344,7 +344,7 @@ void NewSpiNNaker::exportToSpiNNaker(){
                 out<< "plt.show()"<<"\n";
             }
 
-            QMessageBox::information(this, "Informacion","La exportación se ha realizado satisfactoriamente.");
+            QMessageBox::information(this, "Warning","The file has been succesfully exported.");
 
         }
         else QMessageBox::warning(nullptr, tr("Save Error"), tr("The file name is empty."));
@@ -427,7 +427,7 @@ void NewSpiNNaker::on_pushButton_clicked()
             QTableWidgetItem *item = ui->tableWidget_Neurons->item(ui->tableWidget_Neurons->currentRow(),0);
             if (!item) {
                 QMessageBox::StandardButton reply;
-                QString msg="No hay ninguna neurona seleccionada para monitorizar.\n¿Desea continuar con la exportación?";
+                QString msg="There is no selected neuron to monitor.\nWould you still like to export this?";
                 reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
                 if (reply==QMessageBox::Yes)
                     exportToSpiNNaker();

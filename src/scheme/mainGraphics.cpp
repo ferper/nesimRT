@@ -310,7 +310,7 @@ QString MainGraphics::generateIPSimulated(QString type) {
             sim_DHCP_NORMAL_A++;
         }
         else
-            QMessageBox::warning(this, tr("Assigning ip"),tr("There isn't available an ip for the neurona into address space."));
+            QMessageBox::warning(this, tr("Assigning ip"),tr("There is no ip available for the neuron in the address space."));
 
         return QString::number(sim_DHCP_NORMAL_A)+QString(".")+QString::number(sim_DHCP_NORMAL_B)+QString(".")+QString::number(sim_DHCP_NORMAL_C)+QString(".")+QString::number(sim_DHCP_NORMAL_D);
      }
@@ -333,7 +333,7 @@ QString MainGraphics::generateIPSimulated(QString type) {
            sim_DHCP_GENERATOR_A++;
         }
         else
-           QMessageBox::warning(this, tr("Assigning ip"),tr("There isn't available an ip for the generator into address space."));
+           QMessageBox::warning(this, tr("Assigning ip"),tr("There is no ip available for the generator in the address space."));
 
         return QString::number(sim_DHCP_GENERATOR_A)+QString(".")+QString::number(sim_DHCP_GENERATOR_B)+QString(".")+QString::number(sim_DHCP_GENERATOR_C)+QString(".")+QString::number(sim_DHCP_GENERATOR_D);
     }
@@ -360,7 +360,7 @@ QString MainGraphics::generateIPReal(QString type) {
             DHCP_NORMAL_A++;
         }
         else
-            QMessageBox::warning(this, tr("Assigning ip"),tr("There isn't available an ip for the neurona into address space."));
+            QMessageBox::warning(this, tr("Assigning ip"),tr("There is no ip available for the neuron in the address space."));
 
         sim_DHCP_NORMAL_A=DHCP_NORMAL_A;
         sim_DHCP_NORMAL_B=DHCP_NORMAL_B;
@@ -388,7 +388,7 @@ QString MainGraphics::generateIPReal(QString type) {
            DHCP_GENERATOR_A++;
         }
         else
-           QMessageBox::warning(this, tr("Assigning ip"),tr("There isn't available an ip for the generator into address space."));
+           QMessageBox::warning(this, tr("Assigning ip"),tr("There is no ip available for the generator in the address space."));
 
         sim_DHCP_GENERATOR_A=DHCP_GENERATOR_A;
         sim_DHCP_GENERATOR_B=DHCP_GENERATOR_B;
@@ -627,7 +627,7 @@ void MainGraphics::newSynapse() {
         newSynapse->show();
     }
     else
-        QMessageBox::information(this, "Informacion","No hay ninguna neurona creada.");
+        QMessageBox::information(this, "Warning","No neuron has been created yet.");
 
 }
 
@@ -672,10 +672,10 @@ void MainGraphics::removeALLScenary() {
 void MainGraphics::newScenary() {
 
     QMessageBox::StandardButton reply;
-    QString msg="¿Desea salvar el escenario actual?";
+    QString msg="Would you like to save the current scenario?";
 
     if (sceneBeSaved)
-        reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Cancel|QMessageBox::Yes|QMessageBox::No);
+        reply=QMessageBox::question(this, "Warning",msg,QMessageBox::Cancel|QMessageBox::Yes|QMessageBox::No);
     if (reply==QMessageBox::Cancel)
         return;
 
@@ -736,7 +736,7 @@ void MainGraphics::newNeuron(){
 void MainGraphics::newRemove() {
 
     if (vectorGraphicsNodes.size()==0)
-        QMessageBox::information(this, "Informacion","No hay ninguna neurona creada.");
+        QMessageBox::information(this, "Warning","No neuron has been created yet.");
     else {
        Removeitem *removeitem= new Removeitem(nullptr, &vectorGraphicsNodes);
        removeitem->setWindowModality(Qt::ApplicationModal);
@@ -766,7 +766,7 @@ void MainGraphics::saveSceneAs(){
     QString fileName;
 
     if (!fileName.length()) {
-        QFileDialog fileDialog(this, tr("Salvar modelo neuronal"), QDir::currentPath(),tr("Neuronal Files (*.xNS *.xml)"));
+        QFileDialog fileDialog(this, tr("Save neuron model"), QDir::currentPath(),tr("Neuronal Files (*.xNS *.xml)"));
         fileDialog.setOption(QFileDialog::DontUseNativeDialog,true);//Very important for refresh
         fileDialog.setAcceptMode(QFileDialog::AcceptSave);
         if (QDialog::Accepted != fileDialog.exec())
@@ -787,8 +787,8 @@ void MainGraphics::saveScene(QString fileName) {
 
     QFile file(fileName);
     if (!file.open(QFile::WriteOnly | QFile::Text)) {
-       QMessageBox::warning(this, tr("Esquema Neuronal"),
-                                tr("Error escribiendo fichero %1:\n%2.")
+       QMessageBox::warning(this, tr("Neuronal scheme"),
+                                tr("Error writting file %1:\n%2.")
                                 .arg(QDir::toNativeSeparators(fileName),
                                  file.errorString()));
        return;
@@ -929,8 +929,8 @@ void MainGraphics::loadSceneFromMsg(QString filename) {
     QFile file(filename);
 
         if (!file.open(QFile::ReadOnly | QFile::Text)) {
-            QMessageBox::warning(this, tr("Esquema Neuronal"),
-                                 tr("No puedo leer el fichero %1:\n%2.")
+            QMessageBox::warning(this, tr("Neuronal scheme"),
+                                 tr("File %1:\n%2 could not be read.")
                                  .arg(QDir::toNativeSeparators(fileNameToSave),
                                       file.errorString()));
             return;
@@ -1101,7 +1101,7 @@ void MainGraphics::loadScene(){
 
    QXmlStreamReader xml;
 
-   QFileDialog fileDialog(this, tr("Cargar modelo Neuronal"), QDir::currentPath(),tr("Neuronal Files (*.xNS *.xml)"));
+   QFileDialog fileDialog(this, tr("Load neuron model"), QDir::currentPath(),tr("Neuronal Files (*.xNS *.xml)"));
    fileDialog.setOption(QFileDialog::DontUseNativeDialog,true);// QFileDialog::DontUseNativeDialog,true); //Very important for refresh
    fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
    fileDialog.setFileMode(QFileDialog::ExistingFiles);

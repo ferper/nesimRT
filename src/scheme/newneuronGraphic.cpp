@@ -109,37 +109,37 @@ bool NewNeuronGraphic::parametersOK() {
 
     if (ui->lineEdit_Ip->text().length()){
         if (graphWidget->existIp(ui->lineEdit_Ip->text())) {
-            QMessageBox::information(this, "Informacion","Ya existe una neurona con esa IP.");
+            QMessageBox::information(this, "Warning","A neuron with that IP already exists.");
             error=true;
         }
     }
     else {
-        QMessageBox::information(this, "Informacion","Se necesita una ip válida asociada a la neurona.");
+        QMessageBox::information(this, "Warning","A valid IP is needed for the neuron.");
         error=true;
     }
     if (!ui->lineEdit_Label->text().length()) {
-        QMessageBox::information(this, "Informacion","Se necesita una etiqueta para identificar a la neurona.\nSe le proporcionará uno automáticamente");
+        QMessageBox::information(this, "Warning","A label is needed to identify the neuron.\nIt will be provided automatically.");
         ui->lineEdit_Label->setText(QString("G")+QString::number(vectorGraphicsNodes->size()+1));
         error=true;
     }
     if (!error) {
         valueInt=ui->lineEdit_PosX->text().toInt(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para la posición en eje X de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the X coordinate of the neuron is not valid.");
             error=true;
         }
     }
     if (!error){
          valueInt=ui->lineEdit_PosY->text().toInt(&ok);
          if (!ok) {
-             QMessageBox::information(this, "Informacion","El valor introducido para la posición en eje Y de la Neurona no es válido.");
+             QMessageBox::information(this, "Warning","The value of the Y coordinate of the neuron is not valid.");
              error=true;
          }
     }
     if (!error) {
         valueDouble=ui->lineEdit_Amount->text().toInt(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Amount de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the Amount parameter of the neuron is not valid.");
             error=true;
         }
     }
@@ -147,21 +147,21 @@ bool NewNeuronGraphic::parametersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_V->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para V de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the V parameter of the neuron is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_Iexc->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Iexc de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the Iexc parameter of the neuron is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_Iinh->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Iinh de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the Iinh parameter of the neuron is not valid.");
             error=true;
         }
     }
@@ -170,63 +170,63 @@ bool NewNeuronGraphic::parametersOK() {
     if (!error) {
         valueDouble=ui->lineEdit_Iexc->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Iexc de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the Iexc parameter of the neuron is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_tauExc->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para tauExc de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the tauExc parameter of the neuron is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_tauInh->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para tauInh de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the tauInh parameter of the neuron is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_tauV->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para tauV de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the tauV parameter of the neuron is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_R->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para R de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the R parameter of the neuron is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_Vr->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Vr de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the Vr parameter of the neuron is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_Vrh->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Vrh de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the Vrh parameter of the neuron is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_Vth->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para Vth de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the Vth parameter of the neuron is not valid.");
             error=true;
         }
     }
     if (!error) {
         valueDouble=ui->lineEdit_At->text().toDouble(&ok);
         if (!ok) {
-            QMessageBox::information(this, "Informacion","El valor introducido para At de la Neurona no es válido.");
+            QMessageBox::information(this, "Warning","The value of the At parameter of the neuron is not valid.");
             error=true;
         }
     }
@@ -250,7 +250,7 @@ void NewNeuronGraphic::on_pushButton_clicked()
            localNeurons->append(n);
            *sceneBeSaved=true;
            close();
-           QMessageBox::information(this, "Informacion","La neurona se ha creado satisfactoriamente.");
+           QMessageBox::information(this, "Warning","The neuron has been succesfully created.");
        }
    }
 }

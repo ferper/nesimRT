@@ -394,8 +394,8 @@ bool Removeitem::NodeHasSynapsys(Node *node){
 void Removeitem::on_pushButton_clicked()
 {
     QMessageBox::StandardButton reply;
-    QString msg="¿Está seguro de borrar la Neurona seleccionada?";
-    reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
+    QString msg="Are you sure you want to delete the selected neuron?";
+    reply=QMessageBox::question(this, "Warinng",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
     if (reply==QMessageBox::Yes) {
         QTableWidgetItem *item = ui->tableWidget_Neurons->item(ui->tableWidget_Neurons->currentRow(),0);
 
@@ -418,7 +418,7 @@ void Removeitem::on_pushButton_clicked()
 
            if (NodeHasSynapsys(node)){
                 QMessageBox::StandardButton reply;
-                QString msg="La neurona que quiere eliminar tiene sinapsis de otras neuronas.\n Si desea continuar con la eliminación, se borraran las synapsis entrantes en la Neurona.\n¿Continuar?";
+                QString msg="The neuron that you want to delete has synapses associated with other neurons.\n If you want to continue, these will be deleted too. Continue?";
                 reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No);
                 if (reply==QMessageBox::Yes) {
                     int n=0; //Recorrer todas las neuronas y todas las sinapsis
@@ -454,7 +454,7 @@ void Removeitem::on_pushButton_clicked()
             }
         }
         else {
-            QMessageBox::information(this, "Informacion","No hay ninguna neurona creada.");
+            QMessageBox::information(this, "Warning","No neuron has been created yet.");
         }
     }
 }
@@ -479,7 +479,7 @@ void Removeitem::on_pushButton_3_clicked()
 {
 
     QMessageBox::StandardButton reply;
-    QString msg="¿Está seguro de borrar la sinapsis seleccionada?";
+    QString msg="Are you sure you want to delete the selected synapse?";
     reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
     if (reply==QMessageBox::Yes) {
         QTableWidgetItem *item = ui->tableWidget_GlobalSynapsys->item(ui->tableWidget_GlobalSynapsys->currentRow(),5);
@@ -498,7 +498,7 @@ void Removeitem::on_pushButton_3_clicked()
             timer_GlobalSynapsysRefresh.start(1000);
         }
         else {
-            QMessageBox::information(this, "Informacion","No hay ninguna synapsys seleccionada.");
+            QMessageBox::information(this, "Warning","No synapse has been selected.");
         }
     }
 }
@@ -565,8 +565,8 @@ void Removeitem::GlobalSynapsysFilterSearch(){
 void Removeitem::on_pushButton_2_clicked()
 {
     QMessageBox::StandardButton reply;
-    QString msg="¿Está seguro de borrar la sinapsis seleccionada?";
-    reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
+    QString msg="Are you sure you want to delete the selected synapse?";
+    reply=QMessageBox::question(this, "Warning",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
     if (reply==QMessageBox::Yes) {
 
         QTableWidgetItem *item = ui->tableWidget_LocalSynapsys->item(ui->tableWidget_LocalSynapsys->currentRow(),5);
@@ -587,7 +587,7 @@ void Removeitem::on_pushButton_2_clicked()
         }
 
         else {
-            QMessageBox::information(this, "Informacion","No hay ninguna synapsys seleccionada.");
+            QMessageBox::information(this, "Warning","No synapse has been selected.");
         }
     }
 }
