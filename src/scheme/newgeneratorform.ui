@@ -87,7 +87,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Generator  Data</string>
+    <string>Data generator</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_Ip">

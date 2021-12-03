@@ -78,17 +78,17 @@
     </property>
     <item>
      <property name="text">
-      <string>Dirección red</string>
+      <string>IP address</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Identificación</string>
+      <string>ID</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Cantidad</string>
+      <string>Amount</string>
      </property>
     </item>
    </widget>
@@ -108,7 +108,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Destino</string>
+    <string>Target</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -126,7 +126,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Origen</string>
+    <string>Source</string>
    </property>
   </widget>
   <widget class="QGraphicsView" name="graphicsView">
@@ -212,7 +212,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Valor de W</string>
+     <string>W value</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -225,7 +225,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Tipo</string>
+     <string>Type</string>
     </property>
    </widget>
    <widget class="QComboBox" name="comboBox_type">
@@ -239,12 +239,12 @@
     </property>
     <item>
      <property name="text">
-      <string>Excitadora</string>
+      <string>Excitatory</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Inhibidora</string>
+      <string>Inhibitory</string>
      </property>
     </item>
    </widget>
@@ -285,17 +285,17 @@
     </property>
     <item>
      <property name="text">
-      <string>Dirección red</string>
+      <string>IP address</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Identificación</string>
+      <string>ID</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Cantidad</string>
+      <string>Amount</string>
      </property>
     </item>
    </widget>

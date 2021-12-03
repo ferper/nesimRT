@@ -94,7 +94,7 @@ Synapse</string>
     </rect>
    </property>
    <property name="text">
-    <string>Tipo</string>
+    <string>Type</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_V">
@@ -370,7 +370,7 @@ Synapse</string>
     </rect>
    </property>
    <property name="text">
-    <string>Unidad</string>
+    <string>Unit</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_tauInh">

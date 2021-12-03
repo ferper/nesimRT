@@ -391,7 +391,7 @@ synapse</string>
     </rect>
    </property>
    <property name="text">
-    <string>     &amp;Salir</string>
+    <string>Exit</string>
    </property>
    <property name="iconSize">
     <size>
