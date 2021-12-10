@@ -18,7 +18,7 @@ void EncodeDecodeMsg::decodeMsg(QString input)
        operation = input.toStdString().substr(idx,idx1-idx).c_str(); //Assinging the operation type
        idx1++;
 
-       idx= input.indexOf(separator,idx1); //
+       idx= input.indexOf(separator,idx1);
        if (idx==-1)
           return;
        field1=input.toStdString().substr(idx1, idx-idx1).c_str();

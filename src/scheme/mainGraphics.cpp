@@ -51,7 +51,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     btload->setGeometry(QRect(50,0,140,70));
     btload->setText("   &Load");
 
-    QPixmap pixmap_load("scheme/graphics/load.png");
+    QPixmap pixmap_load(":graphics/load.png");
     QIcon ButtonIcon(pixmap_load);
     btload->setIcon(ButtonIcon);
 
@@ -65,7 +65,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     btNewScenary->setGeometry(QRect(50,70,140,70));
     btNewScenary->setText("    new \nS&cenary");
 
-    QPixmap pixmap_NewScenary("scheme/graphics/newScenary.png");
+    QPixmap pixmap_NewScenary(":graphics/newScenary.png");
     QIcon ButtonIcon0(pixmap_NewScenary);
     btNewScenary->setIcon(ButtonIcon0);
 
@@ -78,7 +78,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     btCurrentSave->setGeometry(QRect(50,140,140,70));
     btCurrentSave->setText("   &Save");
 
-    QPixmap pixmap_save("scheme/graphics/save.jpeg");
+    QPixmap pixmap_save(":graphics/save.jpeg");
     QIcon ButtonIcon1(pixmap_save);
     btCurrentSave->setIcon(ButtonIcon1);
 
@@ -91,7 +91,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     btSaveAs->setGeometry(QRect(50,210,140,70));
     btSaveAs->setText("  S&ave \n    as...");
 
-    QPixmap pixmap_saveAs("scheme/graphics/saveas.jpeg");
+    QPixmap pixmap_saveAs(":graphics/saveas.jpeg");
     QIcon ButtonIcon2(pixmap_saveAs);
     btSaveAs->setIcon(ButtonIcon2);
 
@@ -105,7 +105,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     btNewNeuron->setGeometry(QRect(50,280,140,70));
     btNewNeuron->setText("     new \n  &Neuron");
 
-    QPixmap pixmap_NewNeuron("scheme/graphics/newNeuron.jpg");
+    QPixmap pixmap_NewNeuron(":graphics/newNeuron.jpg");
     QIcon ButtonIcon3(pixmap_NewNeuron);
     btNewNeuron->setIcon(ButtonIcon3);
 
@@ -119,7 +119,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     btNewGenerator->setGeometry(QRect(50,350,140,70));
     btNewGenerator->setText("     new \n&Generator");
 
-    QPixmap pixmap_NewGenerator("scheme/graphics/newGenerator.jpg");
+    QPixmap pixmap_NewGenerator(":graphics/newGenerator.jpg");
     QIcon ButtonIcon4(pixmap_NewGenerator);
     btNewGenerator->setIcon(ButtonIcon4);
 
@@ -134,7 +134,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     btNewSynapse->setGeometry(QRect(50,420,140,70));
     btNewSynapse->setText("    new \n S&ynapse");
 
-    QPixmap pixmap_NewSynapse("scheme/graphics/newSynapse.jpg");
+    QPixmap pixmap_NewSynapse(":graphics/newSynapse.jpg");
     QIcon ButtonIcon5(pixmap_NewSynapse);
     btNewSynapse->setIcon(ButtonIcon5);
 
@@ -148,7 +148,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     btRemove->setGeometry(QRect(50,490,140,70));
     btRemove->setText("  &Remove \n  Neuron");
 
-    QPixmap pixmap_RemoveNeuron("scheme/graphics/removeNeuron.jpeg");
+    QPixmap pixmap_RemoveNeuron(":graphics/removeNeuron.jpeg");
     QIcon ButtonIcon6(pixmap_RemoveNeuron);
     btRemove->setIcon(ButtonIcon6);
 
@@ -160,7 +160,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     QPushButton *btExit = new QPushButton();
     btExit->setGeometry( QRect(1490,560,140,70));
     btExit->setText("   E&xit");
-    QPixmap pixmap_Exit("scheme/graphics/exit.png");
+    QPixmap pixmap_Exit(":graphics/exit.png");
     QIcon ButtonIcon7(pixmap_Exit);
     btExit->setIcon(ButtonIcon7);
     QSize s8(btExit->rect().size().width()-20,btExit->rect().size().height()-20);
@@ -172,7 +172,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     btSpiNNaker->setGeometry(QRect(50,560,140,70));
     btSpiNNaker->setText("   SpiNNa&ker");
 
-    QPixmap pixmap_SpiNNaker("scheme/graphics/exit.png");
+    QPixmap pixmap_SpiNNaker(":graphics/exit.png");
     QIcon ButtonIcon8(pixmap_SpiNNaker);
     btExit->setIcon(ButtonIcon8);
 

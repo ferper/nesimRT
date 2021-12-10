@@ -101,3 +101,6 @@ SUBDIRS += \
 
 DISTFILES += \
     scheme/graphics/Neuron.png
+
+RESOURCES += \
+    scheme/graphics/graphics.qrc

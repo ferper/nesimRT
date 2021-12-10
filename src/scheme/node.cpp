@@ -31,7 +31,7 @@ Node::Node(MainGraphics *graphWidget,float posX, float posY, QList <Neuron*> *lo
     frecuency=1000; //Only if the Node is a Generator
 
     w=1; // Default value for synapse
-        this->fx_numberTxt="1e-9"; //Units of measure is nA
+    this->fx_numberTxt="1e-9"; //Units of measure is nA
 }
 
 void Node::setLabel(QString label)  {

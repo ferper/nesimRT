@@ -69,7 +69,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
 
     auto btnLocalMonitor = new QPushButton(tr("  Local\n  Monitor"));
     btnLocalMonitor->setGeometry(0,0,150,50);
-    QPixmap pixmap_Local("scheme/graphics/localMonitor.jpg");
+    QPixmap pixmap_Local(":graphics/localMonitor.jpg");
     QIcon ButtonIconLocal(pixmap_Local);
     btnLocalMonitor->setIcon(ButtonIconLocal);
     QSize s1(btnLocalMonitor->rect().size().width()-10,btnLocalMonitor->rect().size().height()-10);
@@ -79,7 +79,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
 
     auto btnGeneralMonitor = new QPushButton(tr("  General\n  Monitor"));
     btnGeneralMonitor->setGeometry(0,0,150,50);
-    QPixmap pixmap_General("scheme/graphics/generalMonitor.jpg");
+    QPixmap pixmap_General(":graphics/generalMonitor.jpg");
     QIcon ButtonIconGeneral(pixmap_General);
     btnGeneralMonitor->setIcon(ButtonIconGeneral);
     QSize s2(btnGeneralMonitor->rect().size().width()-10,btnGeneralMonitor->rect().size().height()-10);
@@ -89,7 +89,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
 
     auto btnKillme = new QPushButton(tr("  kill me"));
     btnKillme->setGeometry(0,0,150,50);
-    QPixmap pixmap_Killme("scheme/graphics/cancel.png");
+    QPixmap pixmap_Killme(":graphics/cancel.png");
     QIcon ButtonIconKillme(pixmap_Killme);
     btnKillme->setIcon(ButtonIconKillme);
     QSize s3(btnKillme->rect().size().width()-10,btnKillme->rect().size().height()-10);
@@ -99,7 +99,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
 
     auto quitButton = new QPushButton(tr("&Quit"));
     quitButton->setGeometry(0,0,150,50);
-    QPixmap pixmap_Quit("scheme/graphics/exit.png");
+    QPixmap pixmap_Quit(":graphics/exit.png");
     QIcon ButtonIconQuit(pixmap_Quit);
     quitButton->setIcon(ButtonIconQuit);
     QSize s4(quitButton->rect().size().width()-10,quitButton->rect().size().height()-10);

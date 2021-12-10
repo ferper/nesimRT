@@ -14,7 +14,7 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
     ui->setupUi(this);
 
     QGraphicsScene *sceneTmp = new QGraphicsScene();
-    QPixmap p0("scheme/graphics/neuron.png");
+    QPixmap p0(":graphics/neuron.png");
     p0=p0.scaledToWidth(ui->graphicsView->width()-5);
     p0=p0.scaledToHeight(ui->graphicsView->height()-5);
 
@@ -22,7 +22,7 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
     ui->graphicsView->setScene(sceneTmp);
 
     sceneTmp = new QGraphicsScene();
-    QPixmap p1("scheme/graphics/equation.png");
+    QPixmap p1(":graphics/equation.png");
 
     sceneTmp->addPixmap(p1);
     ui->graphicsView_2->setScene(sceneTmp);
@@ -37,7 +37,7 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
 
     ui->label_25->setText(MODEL_ADEXLIF);
 
-    QPixmap pixmap_RemoveNeuron("scheme/graphics/RemoveNeuron.png");
+    QPixmap pixmap_RemoveNeuron(":graphics/RemoveNeuron.png");
     QIcon ButtonIconRN(pixmap_RemoveNeuron);
     ui->pushButton->setIcon(ButtonIconRN);
     QSize sRN(ui->pushButton->rect().size().width()-10,ui->pushButton->rect().size().height()-10);
@@ -45,7 +45,7 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
     ui->pushButton->setFixedSize(ui->pushButton->rect().size());
     ui->pushButton->setFlat(true);
 
-    QPixmap pixmap_RemoveLocalNeuron("scheme/graphics/RemoveLocalSynapse.png");
+    QPixmap pixmap_RemoveLocalNeuron(":graphics/RemoveLocalSynapse.png");
     QIcon ButtonIconRLN(pixmap_RemoveLocalNeuron);
     ui->pushButton_2->setIcon(ButtonIconRLN);
     QSize sRLN(ui->pushButton_2->rect().size().width()-10,ui->pushButton_2->rect().size().height()-10);
@@ -53,7 +53,7 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
     ui->pushButton_2->setFixedSize(ui->pushButton_2->rect().size());
     ui->pushButton_2->setFlat(true);
 
-    QPixmap pixmap_RemoveGlobalNeuron("scheme/graphics/RemoveGlobalSynapse.png");
+    QPixmap pixmap_RemoveGlobalNeuron(":graphics/RemoveGlobalSynapse.png");
     QIcon ButtonIconRGN(pixmap_RemoveGlobalNeuron);
     ui->pushButton_3->setIcon(ButtonIconRGN);
     QSize sRGN(ui->pushButton_3->rect().size().width()-10,ui->pushButton_3->rect().size().height()-10);
@@ -61,7 +61,7 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
     ui->pushButton_3->setFixedSize(ui->pushButton_3->rect().size());
     ui->pushButton_3->setFlat(true);
 
-    QPixmap pixmap_Exit("scheme/graphics/exit.png");
+    QPixmap pixmap_Exit(":graphics/exit.png");
     QIcon ButtonIconExit(pixmap_Exit);
     ui->pushButton_8->setIcon(ButtonIconExit);
     QSize sExit(ui->pushButton_8->rect().size().width()-10,ui->pushButton_8->rect().size().height()-10);

@@ -39,7 +39,7 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     ui->lineEdit_Amount->setText("1");
 
     QGraphicsScene *sceneTmp = new QGraphicsScene();
-    QPixmap p0("scheme/graphics/neuron.png");
+    QPixmap p0(":graphics/neuron.png");
 
     sceneTmp->addPixmap(p0);
     ui->graphicsView->setScene(sceneTmp);

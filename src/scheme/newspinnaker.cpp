@@ -46,12 +46,12 @@ NewSpiNNaker::NewSpiNNaker(QWidget *parent,QList <Node*> *vectorGraphicsNodes,QV
     connect(ui->lineEdit_Neuron, SIGNAL(textChanged(const QString &)), this, SLOT(neuronFilterSearch()));
 
     QGraphicsScene *sceneTmp = new QGraphicsScene();
-    QPixmap p0("scheme/graphics/neuron.png");
+    QPixmap p0(":graphics/neuron.png");
 
     sceneTmp->addPixmap(p0);
     ui->graphicsView->setScene(sceneTmp);
     sceneTmp = new QGraphicsScene();
-    QPixmap p1("scheme/graphics/equation.png");
+    QPixmap p1(":graphics/equation.png");
     sceneTmp->addPixmap(p1);
 
     ui->graphicsView_2->setScene(sceneTmp);
@@ -59,7 +59,7 @@ NewSpiNNaker::NewSpiNNaker(QWidget *parent,QList <Node*> *vectorGraphicsNodes,QV
     this->setWindowTitle("Export to SpiNNaker");
     ui->lineEdit_cm->setFocus();
 
-    QPixmap pixmap_ok("scheme/graphics/createNeuron.png");
+    QPixmap pixmap_ok(":graphics/createNeuron.png");
     QIcon ButtonIcon(pixmap_ok);
     ui->pushButton->setIcon(ButtonIcon);
     QSize s0(ui->pushButton->rect().size().width()-10,ui->pushButton->rect().size().height()-10);
@@ -67,7 +67,7 @@ NewSpiNNaker::NewSpiNNaker(QWidget *parent,QList <Node*> *vectorGraphicsNodes,QV
     ui->pushButton->setFixedSize(ui->pushButton->rect().size());
     ui->pushButton->setFlat(true);
 
-    QPixmap pixmap_cancel("scheme/graphics/cancel.png");
+    QPixmap pixmap_cancel(":graphics/cancel.png");
     QIcon ButtonIcon1(pixmap_cancel);
     ui->pushButton_2->setIcon(ButtonIcon1);
     QSize s1(ui->pushButton_2->rect().size().width()-10,ui->pushButton_2->rect().size().height()-10);

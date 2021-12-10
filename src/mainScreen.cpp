@@ -37,7 +37,7 @@ MainScreen::MainScreen(QWidget *parent) :
     ui->label_4->setText("Neural Scheme");
     ui->label_5->setText("General Monitor");
 
-    QPixmap pixmap_General("scheme/graphics/generalMonitorMain.png");
+    QPixmap pixmap_General(":graphics/generalMonitorMain.png");
     QIcon ButtonIconGeneral(pixmap_General);
     ui->pushButton_12->setIcon(ButtonIconGeneral);
     QSize s1(ui->pushButton_12->rect().size().width()-10,ui->pushButton_12->rect().size().height()-10);
@@ -45,21 +45,21 @@ MainScreen::MainScreen(QWidget *parent) :
     ui->pushButton_12->setFixedSize(ui->pushButton_12->rect().size());
 
 
-    QPixmap pixmap_Scheme("scheme/graphics/schemeNeurons.jpg");
+    QPixmap pixmap_Scheme(":graphics/schemeNeurons.jpg");
     QIcon ButtonIconScheme(pixmap_Scheme);
     ui->pushButton_5->setIcon(ButtonIconScheme);
     QSize s2(ui->pushButton_5->rect().size().width()-10,ui->pushButton_5->rect().size().height()-10);
     ui->pushButton_5->setIconSize(s2);
     ui->pushButton_5->setFixedSize(ui->pushButton_5->rect().size());
 
-    QPixmap pixmap_About("scheme/graphics/about3.jpg");
+    QPixmap pixmap_About(":graphics/about3.jpg");
     QIcon ButtonIconAbout(pixmap_About);
     ui->pushButton_14->setIcon(ButtonIconAbout);
     QSize s3(ui->pushButton_14->rect().size().width()-10,ui->pushButton_14->rect().size().height()-10);
     ui->pushButton_14->setIconSize(s3);
     ui->pushButton_14->setFixedSize(ui->pushButton_14->rect().size());
 
-    QPixmap pixmap_Exit("scheme/graphics/exit.png");
+    QPixmap pixmap_Exit(":graphics/exit.png");
     QIcon ButtonIconExit(pixmap_Exit);
     ui->pushButton_13->setIcon(ButtonIconExit);
     QSize s4(ui->pushButton_13->rect().size().width()-10,ui->pushButton_13->rect().size().height()-10);
@@ -95,7 +95,7 @@ MainScreen::MainScreen(QWidget *parent) :
     ui->label_2->setStyleSheet("QLabel {background-color: transparent; color: white;}");
     ui->label_3->setStyleSheet("QLabel {background-color: transparent; color: white;}");
     ui->label->setStyleSheet("QLabel {background-color: transparent; color: white;}");
-    setWindowFlags(Qt::FramelessWindowHint);
+    //setWindowFlags(Qt::FramelessWindowHint);
 }
 
 void MainScreen::keyPressEvent(QKeyEvent *event){
@@ -108,7 +108,7 @@ void MainScreen::keyPressEvent(QKeyEvent *event){
 void MainScreen::showEvent(QShowEvent *) {
 
       QGraphicsScene *sceneTmp = new QGraphicsScene();
-      QPixmap p0("scheme/graphics/neuron_background.jpg");
+      QPixmap p0(":graphics/neuron_background.jpg");
       sceneTmp->addPixmap(p0);
 
       ui->graphicsView->setStyleSheet("background: transparent");
@@ -120,7 +120,7 @@ void MainScreen::showEvent(QShowEvent *) {
 
 
      QGraphicsScene *sceneTmp1 = new QGraphicsScene();
-     QPixmap p1("scheme/graphics/logoUCA1.png");
+     QPixmap p1(":graphics/logoUCA1.png");
      sceneTmp1->addPixmap(p1);
      ui->graphicsView_2->setStyleSheet("background: transparent");
      ui->graphicsView_2->setScene(sceneTmp1);

@@ -69,16 +69,16 @@ WidgetGeneralMonitor::WidgetGeneralMonitor(QWidget *parent, typeDataNeurons *Qne
     timer.stop();
 
     QGraphicsScene *sceneTmp = new QGraphicsScene();
-    QPixmap p0("scheme/graphics/neuron.png");
+    QPixmap p0(":graphics/neuron.png");
     sceneTmp->addPixmap(p0);
     ui->graphicsView->setScene(sceneTmp);
 
     sceneTmp = new QGraphicsScene();
-    QPixmap p1("scheme/graphics/equation.png");
+    QPixmap p1(":graphics/equation.png");
     sceneTmp->addPixmap(p1);
     ui->graphicsView_2->setScene(sceneTmp);
 
-    QPixmap pixmap_Exit("scheme/graphics/exit.png");
+    QPixmap pixmap_Exit(":graphics/exit.png");
     QIcon ButtonIconExit(pixmap_Exit);
     ui->pushButton_Exit->setIcon(ButtonIconExit);
     QSize sExit(ui->pushButton_Exit->rect().size().width()-10,ui->pushButton_Exit->rect().size().height()-10);
@@ -86,7 +86,7 @@ WidgetGeneralMonitor::WidgetGeneralMonitor(QWidget *parent, typeDataNeurons *Qne
     ui->pushButton_Exit->setFixedSize(ui->pushButton_Exit->rect().size());
     ui->pushButton_Exit->setFlat(true);
 
-    QPixmap pixmap_Start("scheme/graphics/play.png");
+    QPixmap pixmap_Start(":graphics/play.png");
     QIcon ButtonIconStart(pixmap_Start);
     ui->pushButton_Start->setIcon(ButtonIconStart);
     QSize s6(ui->pushButton_Start->rect().size().width()-10,ui->pushButton_Start->rect().size().height()-10);
@@ -94,7 +94,7 @@ WidgetGeneralMonitor::WidgetGeneralMonitor(QWidget *parent, typeDataNeurons *Qne
     ui->pushButton_Start->setFixedSize(ui->pushButton_Start->rect().size());
     ui->pushButton_Start->setFlat(true);
 
-    QPixmap pixmap_Capture("scheme/graphics/capture.png");
+    QPixmap pixmap_Capture(":graphics/capture.png");
     QIcon ButtonIconCapture(pixmap_Capture);
     ui->pushButton_Capture->setIcon(ButtonIconCapture);
     QSize s7(ui->pushButton_Capture->rect().size().width()-10,ui->pushButton_Capture->rect().size().height()-10);
@@ -102,7 +102,7 @@ WidgetGeneralMonitor::WidgetGeneralMonitor(QWidget *parent, typeDataNeurons *Qne
     ui->pushButton_Capture->setFixedSize(ui->pushButton_Capture->rect().size());
     ui->pushButton_Capture->setFlat(true);
 
-    QPixmap pixmap_autoRange("scheme/graphics/signal.png");
+    QPixmap pixmap_autoRange(":graphics/signal.png");
     QIcon ButtonIcon_autoRange(pixmap_autoRange);
     ui->pushButton_autoRange->setIcon(ButtonIcon_autoRange);
     QSize sAuto(ui->pushButton_autoRange->rect().size().width()-10,ui->pushButton_autoRange->rect().size().height()-10);
@@ -534,7 +534,7 @@ void WidgetGeneralMonitor::on_pushButton_Start_clicked() {
        timer.start(timer.interval());
    }
 
-   QPixmap pixmap_Stop("scheme/graphics/"+image);
+   QPixmap pixmap_Stop(":graphics/"+image);
    QIcon ButtonIcon1(pixmap_Stop);
    ui->pushButton_Start->setIcon(ButtonIcon1);
    QSize s6(ui->pushButton_Start->rect().size().width()-10,ui->pushButton_Start->rect().size().height()-10);

@@ -22,13 +22,13 @@ ModelAdExLIF::ModelAdExLIF(QWidget *parent, Node *node) :
         showSynapsys();
     }
     QGraphicsScene *sceneTmp = new QGraphicsScene();
-    QPixmap p0("scheme/graphics/neuron.png");
+    QPixmap p0(":graphics/neuron.png");
 
     sceneTmp->addPixmap(p0);
     ui->graphicsView->setScene(sceneTmp);
 
     sceneTmp = new QGraphicsScene();
-    QPixmap p1("scheme/graphics/equation.png");
+    QPixmap p1(":graphics/equation.png");
     sceneTmp->addPixmap(p1);
 
     ui->graphicsView_2->setScene(sceneTmp);
@@ -60,7 +60,7 @@ ModelAdExLIF::ModelAdExLIF(QWidget *parent, Node *node) :
     connect(ui->tableWidget, SIGNAL(cellClicked (int, int) ),this, SLOT( cellSelected( int, int ) ) );
 
 
-    QPixmap pixmap_exit("scheme/graphics/exit.png");
+    QPixmap pixmap_exit(":graphics/exit.png");
     QIcon ButtonIcon2(pixmap_exit);
     ui->pushButton_Exit->setIcon(ButtonIcon2);
     QSize s0(ui->pushButton_Exit->rect().size().width()-10,ui->pushButton_Exit->rect().size().height()-10);
@@ -69,7 +69,7 @@ ModelAdExLIF::ModelAdExLIF(QWidget *parent, Node *node) :
     ui->pushButton_Exit->setFlat(true);
 
 
-    QPixmap pixmap_ApplyData("scheme/graphics/applyChangeNeuron.gif");
+    QPixmap pixmap_ApplyData(":graphics/applyChangeNeuron.gif");
     QIcon ButtonIcon3(pixmap_ApplyData);
     ui->pushButton_applyData->setIcon(ButtonIcon3);
     QSize s1(ui->pushButton_applyData->rect().size().width()-10,ui->pushButton_applyData->rect().size().height()-10);
@@ -77,7 +77,7 @@ ModelAdExLIF::ModelAdExLIF(QWidget *parent, Node *node) :
     ui->pushButton_applyData->setFixedSize(ui->pushButton_applyData->rect().size());
     ui->pushButton_applyData->setFlat(true);
 
-    QPixmap pixmap_ApplySynapse("scheme/graphics/applyChangeSynapse.png");
+    QPixmap pixmap_ApplySynapse(":graphics/applyChangeSynapse.png");
     QIcon ButtonIcon4(pixmap_ApplySynapse);
     ui->pushButton_ApplySynapse->setIcon(ButtonIcon4);
     QSize s2(ui->pushButton_ApplySynapse->rect().size().width()-10,ui->pushButton_ApplySynapse->rect().size().height()-10);
@@ -86,7 +86,7 @@ ModelAdExLIF::ModelAdExLIF(QWidget *parent, Node *node) :
     ui->pushButton_ApplySynapse->setFlat(true);
 
 
-    QPixmap pixmap_Refresh("scheme/graphics/refresh.png");
+    QPixmap pixmap_Refresh(":graphics/refresh.png");
     QIcon ButtonIcon5(pixmap_Refresh);
     ui->pushButton_Refresh->setIcon(ButtonIcon5);
     QSize s3(ui->pushButton_Refresh->rect().size().width()-10,ui->pushButton_ApplySynapse->rect().size().height()-10);
@@ -94,7 +94,7 @@ ModelAdExLIF::ModelAdExLIF(QWidget *parent, Node *node) :
     ui->pushButton_Refresh->setFixedSize(ui->pushButton_Refresh->rect().size());
     ui->pushButton_Refresh->setFlat(true);
 
-    QPixmap pixmap_Remove("scheme/graphics/removeSynapse.png");
+    QPixmap pixmap_Remove(":graphics/removeSynapse.png");
     QIcon ButtonIcon6(pixmap_Remove);
     ui->pushButton_Remove->setIcon(ButtonIcon6);
     QSize s4(ui->pushButton_Remove->rect().size().width()-10,ui->pushButton_Remove->rect().size().height()-10);

@@ -27,13 +27,13 @@ NewGeneratorGraphics::NewGeneratorGraphics(QWidget *parent,MainGraphics *graphWi
 
 
     QGraphicsScene *sceneTmp = new QGraphicsScene();
-    QPixmap p0("scheme/graphics/carefullycra.jpg");
+    QPixmap p0(":graphics/carefullycra.jpg");
 
     sceneTmp->addPixmap(p0);
     ui->graphicsView->setStyleSheet("background: transparent");
     ui->graphicsView->setScene(sceneTmp);
 
-    QPixmap pixmap_ok("scheme/graphics/ok.png");
+    QPixmap pixmap_ok(":graphics/ok.png");
     QIcon ButtonIcon(pixmap_ok);
     ui->pushButton->setIcon(ButtonIcon);
     QSize s0(ui->pushButton->rect().size().width()-10,ui->pushButton->rect().size().height()-10);
@@ -41,7 +41,7 @@ NewGeneratorGraphics::NewGeneratorGraphics(QWidget *parent,MainGraphics *graphWi
     ui->pushButton->setFixedSize(ui->pushButton->rect().size());
     ui->pushButton->setFlat(true);
 
-    QPixmap pixmap_cancel("scheme/graphics/cancel.png");
+    QPixmap pixmap_cancel(":graphics/cancel.png");
     QIcon ButtonIcon1(pixmap_cancel);
     ui->pushButton_2->setIcon(ButtonIcon1);
     QSize s1(ui->pushButton_2->rect().size().width()-10,ui->pushButton_2->rect().size().height()-10);

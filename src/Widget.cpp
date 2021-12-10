@@ -129,14 +129,14 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
     connect(ui->tableWidget, SIGNAL(cellClicked (int, int) ),this, SLOT( cellSelected( int, int ) ) );
 
    QGraphicsScene *sceneTmp = new QGraphicsScene();
-   QPixmap p0("scheme/graphics/neuron.png");
+   QPixmap p0(":graphics/neuron.png");
    sceneTmp->addPixmap(p0);
    ui->graphicsView->setScene(sceneTmp);
    sceneTmp = new QGraphicsScene();
-   QPixmap p1("scheme/graphics/equation.png");
+   QPixmap p1(":graphics/equation.png");
    sceneTmp->addPixmap(p1);
 
-   QPixmap pixmap_ApplyChanges("scheme/graphics/applyChangeNeuron.gif");
+   QPixmap pixmap_ApplyChanges(":graphics/applyChangeNeuron.gif");
    QIcon ButtonIcon4(pixmap_ApplyChanges);
    ui->pushButton_okChanges->setIcon(ButtonIcon4);
    QSize s2(ui->pushButton_okChanges->rect().size().width()-10,ui->pushButton_okChanges->rect().size().height()-10);
@@ -144,7 +144,7 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
    ui->pushButton_okChanges->setFixedSize(ui->pushButton_okChanges->rect().size());
    ui->pushButton_okChanges->setFlat(true);
 
-   QPixmap pixmap_ApplySynapse("scheme/graphics/applyChangeSynapse.png");
+   QPixmap pixmap_ApplySynapse(":graphics/applyChangeSynapse.png");
    QIcon ButtonIcon5(pixmap_ApplySynapse);
    ui->pushButton_5->setIcon(ButtonIcon5);
    QSize s3(ui->pushButton_5->rect().size().width()-10,ui->pushButton_5->rect().size().height()-10);
@@ -153,7 +153,7 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
    ui->pushButton_5->setFlat(true);
 
 
-   QPixmap pixmap_Refresh("scheme/graphics/refresh.png");
+   QPixmap pixmap_Refresh(":graphics/refresh.png");
    QIcon ButtonIcon6(pixmap_Refresh);
    ui->pushButton_3->setIcon(ButtonIcon6);
    QSize s4(ui->pushButton_3->rect().size().width()-10,ui->pushButton_3->rect().size().height()-10);
@@ -161,7 +161,7 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
    ui->pushButton_3->setFixedSize(ui->pushButton_3->rect().size());
    ui->pushButton_3->setFlat(true);
 
-   QPixmap pixmap_Remove("scheme/graphics/removeSynapse.png");
+   QPixmap pixmap_Remove(":graphics/removeSynapse.png");
    QIcon ButtonIcon7(pixmap_Remove);
    ui->pushButton_4->setIcon(ButtonIcon7);
    QSize s5(ui->pushButton_4->rect().size().width()-10,ui->pushButton_4->rect().size().height()-10);
@@ -170,7 +170,7 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
    ui->pushButton_4->setFlat(true);
 
 
-   QPixmap pixmap_Stop("scheme/graphics/stop.png");
+   QPixmap pixmap_Stop(":graphics/stop.png");
    QIcon ButtonIcon8(pixmap_Stop);
    ui->pushButton->setIcon(ButtonIcon8);
    QSize s6(ui->pushButton->rect().size().width()-10,ui->pushButton->rect().size().height()-10);
@@ -178,7 +178,7 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
    ui->pushButton->setFixedSize(ui->pushButton->rect().size());
    ui->pushButton->setFlat(true);
 
-   QPixmap pixmap_Capture("scheme/graphics/capture.png");
+   QPixmap pixmap_Capture(":graphics/capture.png");
    QIcon ButtonIcon9(pixmap_Capture);
    ui->pushButton_6->setIcon(ButtonIcon9);
    QSize s7(ui->pushButton_6->rect().size().width()-10,ui->pushButton_6->rect().size().height()-10);
@@ -186,7 +186,7 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
    ui->pushButton_6->setFixedSize(ui->pushButton_6->rect().size());
    ui->pushButton_6->setFlat(true);
 
-   QPixmap pixmap_Auto("scheme/graphics/signal.png");
+   QPixmap pixmap_Auto(":graphics/signal.png");
    QIcon ButtonIconAuto(pixmap_Auto);
    ui->pushButton_7->setIcon(ButtonIconAuto);
    QSize sAuto(ui->pushButton_7->rect().size().width()-10,ui->pushButton_7->rect().size().height()-10);
@@ -194,7 +194,7 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
    ui->pushButton_7->setFixedSize(ui->pushButton_7->rect().size());
    ui->pushButton_7->setFlat(true);
 
-   QPixmap pixmap_Exit("scheme/graphics/exit.png");
+   QPixmap pixmap_Exit(":graphics/exit.png");
    QIcon ButtonIcon_exit(pixmap_Exit);
    ui->pushButton_8->setIcon(ButtonIcon_exit);
    QSize s_exit(ui->pushButton_8->rect().size().width()-10,ui->pushButton_8->rect().size().height()-10);
@@ -365,7 +365,7 @@ void Widget::on_pushButton_clicked() {
        timer.start(ui->spinSampler->value());
    }
 
-   QPixmap pixmap_Stop("scheme/graphics/"+image);
+   QPixmap pixmap_Stop(":graphics/"+image);
    QIcon ButtonIcon8(pixmap_Stop);
    ui->pushButton->setIcon(ButtonIcon8);
    QSize s6(ui->pushButton->rect().size().width()-10,ui->pushButton->rect().size().height()-10);

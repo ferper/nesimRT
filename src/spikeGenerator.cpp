@@ -23,7 +23,7 @@ SpikeGenerator::SpikeGenerator(QWidget *parent, int frecuency_ms, QString ip)
 
     startButton = new QPushButton(tr("&Start"));
     startButton->setGeometry(0,0,100,50);
-    QPixmap pixmap_Start("scheme/graphics/play.png");
+    QPixmap pixmap_Start(":graphics/play.png");
     QIcon ButtonIconStart(pixmap_Start);
     startButton->setIcon(ButtonIconStart);
     QSize s1(startButton->rect().size().width()-10,startButton->rect().size().height()-10);
@@ -34,7 +34,7 @@ SpikeGenerator::SpikeGenerator(QWidget *parent, int frecuency_ms, QString ip)
 
     stopButton = new QPushButton(tr("S&top"));
     stopButton->setGeometry(0,0,100,50);
-    QPixmap pixmap_Stop("scheme/graphics/stop.png");
+    QPixmap pixmap_Stop(":graphics/stop.png");
     QIcon ButtonIconStop(pixmap_Stop);
     stopButton->setIcon(ButtonIconStop);
     QSize s2(stopButton->rect().size().width()-10,stopButton->rect().size().height()-10);
@@ -45,7 +45,7 @@ SpikeGenerator::SpikeGenerator(QWidget *parent, int frecuency_ms, QString ip)
     auto quitButton = new QPushButton(tr("&Quit"));
 
     quitButton->setGeometry(0,0,100,50);
-    QPixmap pixmap_Quit("scheme/graphics/exit.png");
+    QPixmap pixmap_Quit(":graphics/exit.png");
     QIcon ButtonIconQuit(pixmap_Quit);
     quitButton->setIcon(ButtonIconQuit);
     QSize s3(quitButton->rect().size().width()-10,quitButton->rect().size().height()-10);

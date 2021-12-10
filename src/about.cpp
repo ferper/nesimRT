@@ -12,7 +12,7 @@ About::About(QWidget *parent) :
     ui->label_version->setText(QString::number(VERSION));
 
     QGraphicsScene *sceneTmp1 = new QGraphicsScene();
-    QPixmap p1("scheme/graphics/logoUCA1.png");
+    QPixmap p1(":graphics/logoUCA1.png");
     sceneTmp1->addPixmap(p1);
     ui->graphicsView_2->setStyleSheet("background: transparent");
     ui->graphicsView_2->setScene(sceneTmp1);
@@ -20,7 +20,7 @@ About::About(QWidget *parent) :
 
 
 
-    QPixmap pixmap_ok("scheme/graphics/ok.png");
+    QPixmap pixmap_ok(":graphics/ok.png");
     QIcon ButtonIcon(pixmap_ok);
     ui->pushButton->setIcon(ButtonIcon);
     QSize s0(ui->pushButton->rect().size().width()-10,ui->pushButton->rect().size().height()-10);
@@ -29,7 +29,7 @@ About::About(QWidget *parent) :
     ui->pushButton->setFlat(true);
 
     QGraphicsScene *sceneTmp = new QGraphicsScene();
-    QPixmap p0("scheme/graphics/about3.jpg");
+    QPixmap p0(":graphics/about3.jpg");
     sceneTmp->addPixmap(p0);
 
     ui->graphicsView->setStyleSheet("background: transparent");
@@ -38,7 +38,7 @@ About::About(QWidget *parent) :
 
 
     //Para que la ventana no se maximice
-   setFixedSize(width(),height());
+    //setFixedSize(width(),height());
 
 
     QGraphicsDropShadowEffect* effect0 = new QGraphicsDropShadowEffect();
@@ -50,7 +50,7 @@ About::About(QWidget *parent) :
 
 
     //Para que la ventana no se maximice
-    setFixedSize(width(),height());
+    //setFixedSize(width(),height());
     //Posicionamos la ventana en el centro
     this->move(QApplication::desktop()->availableGeometry().center() - this->rect().center());
 

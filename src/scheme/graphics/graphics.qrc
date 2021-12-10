@@ -1,0 +1,40 @@
+<RCC>
+    <qresource prefix="/graphics">
+        <file>about3.jpg</file>
+        <file>applyChangeNeuron.gif</file>
+        <file>applyChangeSynapse.png</file>
+        <file>cancel.png</file>
+        <file>capture.png</file>
+        <file>carefullycra.jpg</file>
+        <file>createNeuron.png</file>
+        <file>createSynapse.png</file>
+        <file>equation.png</file>
+        <file>exit.png</file>
+        <file>generalMonitor.jpg</file>
+        <file>generalMonitorMain.png</file>
+        <file>graphics.qrc</file>
+        <file>load.png</file>
+        <file>localMonitor.jpg</file>
+        <file>logoUCA1.png</file>
+        <file>neuron.png</file>
+        <file>neuron_background.jpg</file>
+        <file>newGenerator.jpg</file>
+        <file>newNeuron.jpg</file>
+        <file>newScenary.png</file>
+        <file>newSynapse.jpg</file>
+        <file>ok.png</file>
+        <file>play.png</file>
+        <file>refresh.png</file>
+        <file>RemoveGlobalSynapse.png</file>
+        <file>RemoveLocalSynapse.png</file>
+        <file>removeNeuron.jpeg</file>
+        <file>RemoveNeuron.png</file>
+        <file>removeSynapse.png</file>
+        <file>save.jpeg</file>
+        <file>saveas.jpeg</file>
+        <file>schemeNeurons.jpg</file>
+        <file>signal.png</file>
+        <file>stop.png</file>
+        <file>synapsys.jpeg</file>
+    </qresource>
+</RCC>
