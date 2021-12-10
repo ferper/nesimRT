@@ -29,44 +29,37 @@ MainScreen::MainScreen(QWidget *parent) :
     fxI.insert("nA","1E-9");
     fxI.insert("pA","1E-12");
 
-
     spikeGenerator=nullptr;
     schemeNeuron = new MainGraphics(nullptr);
     motherNeuron = new MotherNeuron(nullptr,IPM_MOTHER,schemeNeuron);
 
-    ui->label_4->setText("Neural Scheme");
-    ui->label_5->setText("General Monitor");
-
     QPixmap pixmap_General(":graphics/generalMonitorMain.png");
     QIcon ButtonIconGeneral(pixmap_General);
-    ui->pushButton_12->setIcon(ButtonIconGeneral);
-    QSize s1(ui->pushButton_12->rect().size().width()-10,ui->pushButton_12->rect().size().height()-10);
-    ui->pushButton_12->setIconSize(s1);
-    ui->pushButton_12->setFixedSize(ui->pushButton_12->rect().size());
-
+    ui->bt_general_monitor->setIcon(ButtonIconGeneral);
+    QSize s1(ui->bt_general_monitor->rect().size().width()-10,ui->bt_general_monitor->rect().size().height()-10);
+    ui->bt_general_monitor->setIconSize(s1);
+    ui->bt_general_monitor->setFixedSize(ui->bt_general_monitor->rect().size());
 
     QPixmap pixmap_Scheme(":graphics/schemeNeurons.jpg");
     QIcon ButtonIconScheme(pixmap_Scheme);
-    ui->pushButton_5->setIcon(ButtonIconScheme);
-    QSize s2(ui->pushButton_5->rect().size().width()-10,ui->pushButton_5->rect().size().height()-10);
-    ui->pushButton_5->setIconSize(s2);
-    ui->pushButton_5->setFixedSize(ui->pushButton_5->rect().size());
+    ui->bt_neural_scheme->setIcon(ButtonIconScheme);
+    QSize s2(ui->bt_neural_scheme->rect().size().width()-10,ui->bt_neural_scheme->rect().size().height()-10);
+    ui->bt_neural_scheme->setIconSize(s2);
+    ui->bt_neural_scheme->setFixedSize(ui->bt_neural_scheme->rect().size());
 
     QPixmap pixmap_About(":graphics/about3.jpg");
     QIcon ButtonIconAbout(pixmap_About);
-    ui->pushButton_14->setIcon(ButtonIconAbout);
-    QSize s3(ui->pushButton_14->rect().size().width()-10,ui->pushButton_14->rect().size().height()-10);
-    ui->pushButton_14->setIconSize(s3);
-    ui->pushButton_14->setFixedSize(ui->pushButton_14->rect().size());
+    ui->bt_about->setIcon(ButtonIconAbout);
+    QSize s3(ui->bt_about->rect().size().width()-10,ui->bt_about->rect().size().height()-10);
+    ui->bt_about->setIconSize(s3);
+    ui->bt_about->setFixedSize(ui->bt_about->rect().size());
 
     QPixmap pixmap_Exit(":graphics/exit.png");
     QIcon ButtonIconExit(pixmap_Exit);
-    ui->pushButton_13->setIcon(ButtonIconExit);
-    QSize s4(ui->pushButton_13->rect().size().width()-10,ui->pushButton_13->rect().size().height()-10);
-    ui->pushButton_13->setIconSize(s4);
-    ui->pushButton_13->setFixedSize(ui->pushButton_13->rect().size());
-    //ui->pushButton_5->setFlat(true);
-
+    ui->bt_exit->setIcon(ButtonIconExit);
+    QSize s4(ui->bt_exit->rect().size().width()-10,ui->bt_exit->rect().size().height()-10);
+    ui->bt_exit->setIconSize(s4);
+    ui->bt_exit->setFixedSize(ui->bt_exit->rect().size());
 
     QGraphicsDropShadowEffect* effect0 = new QGraphicsDropShadowEffect();
     QGraphicsDropShadowEffect* effect1 = new QGraphicsDropShadowEffect();
@@ -83,18 +76,19 @@ MainScreen::MainScreen(QWidget *parent) :
     effect3->setOffset(3,3);
 
 
-    ui->pushButton_5->setGraphicsEffect(effect0);
-    ui->pushButton_12->setGraphicsEffect(effect1);
-    ui->pushButton_14->setGraphicsEffect(effect2);
-    ui->pushButton_13->setGraphicsEffect(effect3);
+    ui->bt_neural_scheme->setGraphicsEffect(effect0);
+    ui->bt_general_monitor->setGraphicsEffect(effect1);
+    ui->bt_about->setGraphicsEffect(effect2);
+    ui->bt_exit->setGraphicsEffect(effect3);
 
     QGraphicsDropShadowEffect* effect4 = new QGraphicsDropShadowEffect();
     effect4->setBlurRadius(100);
     effect4->setOffset(3,3);
     this->setGraphicsEffect(effect4);
-    ui->label_2->setStyleSheet("QLabel {background-color: transparent; color: white;}");
-    ui->label_3->setStyleSheet("QLabel {background-color: transparent; color: white;}");
-    ui->label->setStyleSheet("QLabel {background-color: transparent; color: white;}");
+
+    ui->lb_name->setStyleSheet("QLabel {background-color: transparent; color: white;}");
+    ui->lb_title->setStyleSheet("QLabel {background-color: transparent; color: white;}");
+    ui->lb_author->setStyleSheet("QLabel {background-color: transparent; color: white;}");
     //setWindowFlags(Qt::FramelessWindowHint);
 }
 
@@ -107,26 +101,24 @@ void MainScreen::keyPressEvent(QKeyEvent *event){
 }
 void MainScreen::showEvent(QShowEvent *) {
 
-      QGraphicsScene *sceneTmp = new QGraphicsScene();
-      QPixmap p0(":graphics/neuron_background.jpg");
-      sceneTmp->addPixmap(p0);
+    QGraphicsScene *sceneTmp = new QGraphicsScene();
+    QPixmap p0(":graphics/neuron_background.jpg");
+    sceneTmp->addPixmap(p0);
 
-      ui->graphicsView->setStyleSheet("background: transparent");
-      ui->graphicsView->setScene(sceneTmp);
-      ui->graphicsView->fitInView(sceneTmp->itemsBoundingRect() ,Qt::IgnoreAspectRatio);
+    ui->graphicsView->setStyleSheet("background: transparent");
+    ui->graphicsView->setScene(sceneTmp);
+    ui->graphicsView->fitInView(sceneTmp->itemsBoundingRect() ,Qt::IgnoreAspectRatio);
 
-     //Para que la ventana no se maximice
-     setFixedSize(width(),height());
+    QGraphicsScene *sceneTmp1 = new QGraphicsScene();
+    QPixmap p1(":graphics/logoUCA1.png");
+    sceneTmp1->addPixmap(p1);
 
+    ui->gv_logo->setStyleSheet("background: transparent");
+    ui->gv_logo->setScene(sceneTmp1);
+    ui->gv_logo->fitInView(sceneTmp1->itemsBoundingRect() ,Qt::IgnoreAspectRatio);
 
-     QGraphicsScene *sceneTmp1 = new QGraphicsScene();
-     QPixmap p1(":graphics/logoUCA1.png");
-     sceneTmp1->addPixmap(p1);
-     ui->graphicsView_2->setStyleSheet("background: transparent");
-     ui->graphicsView_2->setScene(sceneTmp1);
-     ui->graphicsView_2->fitInView(sceneTmp1->itemsBoundingRect() ,Qt::IgnoreAspectRatio);
-
-     this->move(QApplication::desktop()->availableGeometry().center() - this->rect().center());
+    this->move(QApplication::desktop()->availableGeometry().center() - this->rect().center());
+    setFixedSize(width(),height());
 }
 
 void MainScreen::closeEvent(QCloseEvent *event){
@@ -151,26 +143,26 @@ MainScreen::~MainScreen()
     delete ui;
 }
 
-void MainScreen::on_pushButton_5_clicked()
+void MainScreen::on_bt_neural_scheme_clicked()
 {
     schemeNeuron->show();
     schemeNeuron->activateWindow();
 }
 
-void MainScreen::on_pushButton_12_clicked()
+void MainScreen::on_bt_general_monitor_clicked()
 {
     WidgetGeneralMonitor *generalMonitor = new WidgetGeneralMonitor(nullptr,&motherNeuron->dataNeurons);
     generalMonitor->show();
 }
 
 
-void MainScreen::on_pushButton_13_clicked()
+void MainScreen::on_bt_exit_clicked()
 {
   close();
 }
 
 
-void MainScreen::on_pushButton_14_clicked()
+void MainScreen::on_bt_about_clicked()
 {
     About *about = new About();
     about->setWindowModality(Qt::ApplicationModal);

@@ -39,13 +39,13 @@ public:
 
 private slots:
 
-    void on_pushButton_5_clicked();
+    void on_bt_neural_scheme_clicked();
 
-    void on_pushButton_12_clicked();
+    void on_bt_general_monitor_clicked();
 
-    void on_pushButton_13_clicked();
+    void on_bt_about_clicked();
 
-    void on_pushButton_14_clicked();
+    void on_bt_exit_clicked();
 
  private:
     Ui::MainWindow *ui;
