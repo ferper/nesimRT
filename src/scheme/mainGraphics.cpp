@@ -1086,7 +1086,7 @@ void MainGraphics::loadSceneFromMsg(QString filename) {
                  fx_numberTxt=fxI.find(fx_unitMeasureTxt).value();
                  msg+=target+separator+QString::number(port)+separator+ QString::number(typeSynapse)+separator+QString::number(w)+separator+fx_numberTxt+separator+fx_unitMeasureTxt+separator;
                  msg+=QString::number(typeTargetNeuron)+separator+QString::number(idGlobalSynapse)+separator;
-                 sendMsg(msg,IPM_MOTHER,NEURON_PROMISCUOS_PORT);
+                 sendMsg(msg,IPM_NEURON_PROMISCUOUS,NEURON_PROMISCUOS_PORT);
 
              }
                  // Next component
@@ -1118,7 +1118,7 @@ void MainGraphics::loadScene(){
 
    QString msg=QString("#")+sep_operation+REMOVE_ALL_NEURON_FROM_GRAPHICS_TO_MOTHER_LOADSCENE+sep_operation;
    msg+=tmpFileName+separator;
-   sendMsg(msg,IPM_MOTHER,NEURON_PROMISCUOS_PORT);
+   sendMsg(msg,IPM_NEURON_PROMISCUOUS,NEURON_PROMISCUOS_PORT);
 
    fileDialog.close();
 }
