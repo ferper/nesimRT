@@ -162,7 +162,12 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
 
             QByteArray datagram = msg.encondeMsg(ENABLE_SEND_GENERAL_MONITOR,ipmSource,QString::number(enableDataGeneralMonitor)).toStdString().c_str();
             cout<<"salida:::  "<<datagram.toStdString()<<endl;
-            udpSocket4_MotherNeuron.writeDatagram(datagram, groupAddress4_to_MotherNeuron, NEURON_PROMISCUOS_PORT);
+
+            QUdpSocket udpSocket;
+            QHostAddress groupAddress;
+            groupAddress=QHostAddress(IPM_NEURON_PROMISCUOUS);
+            udpSocket.setSocketOption(QAbstractSocket::MulticastTtlOption, TTL);
+            udpSocket.writeDatagram(datagram, groupAddress, NEURON_PROMISCUOS_PORT);
         }
     });
 
