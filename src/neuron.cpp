@@ -21,17 +21,16 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
 {
 
     // The neuron is operative, has an IP
-    this->ipmSource=ip; //Se asigna en el metodo processPendingDatagrams
+    this->ipmSource=ip; // It is assigned in the processPendingDatagrams method
     this->id=QString::number(idGlobalNeuron);
     isBuilded=(ipmSource.length()>0);
-    cout<<"VALOR: "<<isBuilded<<endl;
     this->label=label;
     this->posX=posX;
     this->posY=posY;
 
     this->MAC=getLocalMAC();
     this->Motherneuron_port=MOTHER_PORT;
-    this->ipmMother=ipmMother; //Ip multicast de la Neurona Madre
+    this->ipmMother=ipmMother; // Mother Neuron multicast ip
     this->monitor=nullptr;
     this->GeneralMonitorPort=MONITOR_PORT;
     this->typeNeuron=typeNeuron;
@@ -40,7 +39,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
     else if (typeNeuron==int(TYPENEURON_GENERATOR))
         this->SourcePort= int(GENERATOR_PORT);
 
-    this->nSpikes=0; //Number of the spikes produced by the neuron
+    this->nSpikes=0; // Number of the spikes produced by the neuron
     this->Iexc_prior=0;
     this->Iinh_prior=0;
     this->V_prior=0;
@@ -58,7 +57,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
     this->dataIsAvailable=false;
     this->NumberNeuronsGroup=NumberNeuronsGroup;
     this->enableDataGeneralMonitor=false;
-    this->FormDialog = (QDialog*) this; //By default, all Neurons are TYPENODE_NORMAL
+    this->FormDialog = (QDialog*) this; // By default, all Neurons are TYPENODE_NORMAL
 
     if (enableDataGeneralMonitor)
         statusLabel = new QLabel(tr("Neuron ready - General Monitor: ON" ));
@@ -161,7 +160,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
             EncodeDecodeMsg msg;
 
             QByteArray datagram = msg.encondeMsg(ENABLE_SEND_GENERAL_MONITOR,ipmSource,QString::number(enableDataGeneralMonitor)).toStdString().c_str();
-            cout<<"salida:::  "<<datagram.toStdString()<<endl;
+            //cout<<"salida:::  "<<datagram.toStdString()<<endl;
 
             QUdpSocket udpSocket;
             QHostAddress groupAddress;
@@ -179,7 +178,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
 
     timer_RequestIP = new QTimer(this);
     if (!isBuilded) {
-        //Request an IP by message sending my MAC throught a port
+        // Request an IP by message sending my MAC throught a port
         timer_RequestIP->setTimerType(Qt::PreciseTimer);
         timer_RequestIP->setInterval(2000); // Every two seconds a request of IP it's send
         connect(timer_RequestIP, SIGNAL(timeout()), this, SLOT(sendRequestIP_DHCP()));
@@ -205,7 +204,7 @@ void Neuron::quit() {
 
 void Neuron::keyPressEvent(QKeyEvent *event){
     switch(event->key()) {
-        case Qt::Key_Escape: // if ESCAPE key is pressed, the window is closed
+        case Qt::Key_Escape: // If ESCAPE key is pressed, the window is closed
           close();
         break;
     }
@@ -287,15 +286,15 @@ QString Neuron::getLocalMAC() {
 /**************************************************************
         When the Neuron has got all necesary data for to live
 ***************************************************************/
-void Neuron::liveNeuron(){ //The neuron is completly functional
+void Neuron::liveNeuron(){ // The neuron is completly functional
 
     this->isBuilded=true;
     timer_RequestIP->stop();
 
     groupAddress4_to_Public=QHostAddress(ipmSource);
-    // force binding to their respective families
+    // Force binding to their respective families
     udpSocket4_sender.setSocketOption(QAbstractSocket::MulticastTtlOption, TTL);
-    udpSocket4_senderMonitor.setSocketOption(QAbstractSocket::MulticastTtlOption, TTL); // to public data calculated to General Monitor
+    udpSocket4_senderMonitor.setSocketOption(QAbstractSocket::MulticastTtlOption, TTL); // To public data calculated to General Monitor
 
     if (!this->label.length())
        label="N-"+ipmSource;
@@ -352,8 +351,8 @@ void Neuron::paintLocalMonitor(){
 
 int Neuron::get_NSynapses(){
 
-    cout<<Vsynapse.size()<<endl;
-    cout<<"Current Iexc value:"<<p->Iexc<<endl;
+    //cout<<Vsynapse.size()<<endl;
+    //cout<<"Current Iexc value:"<<p->Iexc<<endl;
     return Vsynapse.size();
 }
 void Neuron::set_At(double value) {
@@ -397,7 +396,7 @@ void Neuron::calculateValues(){
           }
               linea++;
 
-         // Valores iniciales para Iexc, Iinh y V
+         // Initial values for Iexc, Iinh y V
              IexcCurrent=p->Iexc;
              IinhCurrent=p->Iinh;
              VCurrent=p->V;
@@ -433,7 +432,7 @@ void Neuron::processPendingDatagrams()
         msg.decodeMsg(QString(data));
 
         if (msg.operation==CREATE_SYNAPSE_INTO_NEURON) {
-           if (ipmSource==msg.field1) { // El mensaje es para mi
+           if (ipmSource==msg.field1) { // The IP of the recipient matches that of the process
                this->p->Iexc=0;
                this->Iexc_prior=0;
                this->p->Iinh=0;
@@ -448,22 +447,22 @@ void Neuron::processPendingDatagrams()
                QString fx_numberTxt=msg.field6;
                QString fx_unitMeasureTxt =msg.field7;
                int idGlobalSynapse=msg.field9.toInt();
-               if (ipmSource==msg.field1) { // El mensaje es para mi
+               if (ipmSource==msg.field1) { // The IP of the recipient matches that of the process
                    if (type==TYPE_SYP_EXCITATION)
                       s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,ipmSource, ipm_target,port_target,type,&p->Iexc,we,fx_numberTxt,fx_unitMeasureTxt,&Iexc_enabled,&V_enabled,timer,&mutexNeuron,&muestra,out,&spkOnOff_exc);
                    else
                       s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,ipmSource, ipm_target,port_target,type,&p->Iinh,wi,fx_numberTxt,fx_unitMeasureTxt,&Iinh_enabled,&V_enabled,timer,&mutexNeuron, &muestra, out,&spkOnOff_inh);
-                    cout<<"-I am neuron "<<ipmSource.toStdString()<< " and I have created a synapse with "<<ipm_target.toStdString()<<" type: "<<type<<endl;
+                    //cout<<"-I am neuron "<<ipmSource.toStdString()<< " and I have created a synapse with "<<ipm_target.toStdString()<<" type: "<<type<<endl;
                     s1->timer->start();
 
-                    Vsynapse.push_back(s1); //Para poder liberar memoria y borrar la synapse
+                    Vsynapse.push_back(s1); // The memory is freed and the synapse will be erased
                }
            }
            if (monitor!=nullptr)
                 monitor->showSynapsys();
         }
         else if (msg.operation==UPDATE_VALUES_SYNAPSE_FROM_MOTHER_TO_NEURON) {
-           if (ipmSource==msg.field1) { // El mensaje es para mi
+           if (ipmSource==msg.field1) { // The IP of the recipient matches that of the process
                int id=msg.field2.toInt();
                double w=msg.field3.toDouble();
                QString fx_numberTxt=msg.field4;
@@ -483,13 +482,13 @@ void Neuron::processPendingDatagrams()
                    Vsynapse.at(idx)->fx_numberTxt=fx_numberTxt;
                    Vsynapse.at(idx)->fx_unitMeasureTxt=fx_unitMeasureTxt;
                    Vsynapse.at(idx)->type=typeSynapse;
-                   if (monitor) //Hacer refresh en tabla si esta visible del widget
+                   if (monitor) // If it is visible from the widget, refresh is done in table
                        monitor->showSynapsys();
                }
            }
         }
         else if (msg.operation==UPDATE_MODEL_VALUES_PARAMETERS_FROM_MOTHER_TO_NEURON) {
-           if (ipmSource==msg.field1) { // El mensaje es para mi
+           if (ipmSource==msg.field1) { // The IP of the recipient matches that of the process
               p->V=msg.field3.toDouble();
               p->Iexc=msg.field4.toDouble();
               p->Iinh=msg.field5.toDouble();
@@ -509,7 +508,7 @@ void Neuron::processPendingDatagrams()
            }
         }
         else if (msg.operation==REMOVE_SYNAPSE_FROM_MOTHER_TO_NEURON) {
-            if (ipmSource==msg.field1) { // El mensaje es para mi
+            if (ipmSource==msg.field1) { // The IP of the recipient matches that of the process
                 bool found=false;
                 int idx=0;
                 int idGlobal_tmp=msg.field2.toInt();
@@ -521,7 +520,7 @@ void Neuron::processPendingDatagrams()
                        idx++;
                 }
                 if (found) {
-                    if (Vsynapse.size()==1) //Si la neurona solo tiene 1 sinapsis, al eliminarla dejará de funcionar el motor calculador
+                    if (Vsynapse.size()==1) // If the neuron has only one synapse, when it is removed, the calculating motor will stop working.
                         this->dataIsAvailable=false;
                     Vsynapse.at(idx)->timer->stop();
                     *(Vsynapse.at(idx)->startICalculate)=false;
@@ -545,7 +544,7 @@ void Neuron::processPendingDatagrams()
             if (monitor)
                 monitor->close();
             delete this;
-            if (localRemote==REMOTE_NEURON) { //Solo cuando es una Neurona creada remotamente
+            if (localRemote==REMOTE_NEURON) { // Only when it is a remotely created Neuron
                QApplication::closeAllWindows();
                QApplication::exit();
             }
@@ -565,14 +564,14 @@ void Neuron::processPendingDatagrams()
             if (this->localRemote==LOCAL_NEURON)
                 close();
 
-            if (localRemote==REMOTE_NEURON) { //Solo cuando es una Neurona creada remotamente
+            if (localRemote==REMOTE_NEURON) { // Only when it is a remotely created neuron
                QApplication::closeAllWindows();
                QApplication::exit();
             }
             delete this;
         }
         else if (msg.operation==REMOVE_NEURON_FROM_MOTHER_TO_NEURON) {
-            if ((ipmSource==msg.field1) && (id==msg.field2)) { // El mensaje es para mi
+            if ((ipmSource==msg.field1) && (id==msg.field2)) { // The IP of the recipient matches that of the process
                 this->timer->stop();
                 if (monitor)
                     monitor->close();
@@ -581,7 +580,7 @@ void Neuron::processPendingDatagrams()
                     ((SpikeGenerator *)FormDialog)->set_timerStop();
                 }
                 delete this;
-                if (localRemote==REMOTE_NEURON) { //Solo cuando es una Neurona creada remotamente
+                if (localRemote==REMOTE_NEURON) { // Only when it is a remotely created neuron
                    QApplication::closeAllWindows();
                    QApplication::exit();
                 }
@@ -589,15 +588,15 @@ void Neuron::processPendingDatagrams()
         }
         else if (msg.operation==ACK_REQ_IP_DHCP) { //Assign the ip to the Neuron
             if (!isBuilded) {
-                if (MAC==msg.field1) { // The message is for me
+                if (MAC==msg.field1) { // The IP of the recipient matches that of the process
                     timer_RequestIP->stop();
                     this->isBuilded=true;
-                    MAC=QString(MAC)+QString("AX"); //es una marca quitar esto y poner una marca aleatorea para que dentro de un
-                                                    // dispositivo pueda haber varias Neuronas
+                    MAC=QString(MAC)+QString("AX"); //TODO: It is a mark to remove this and put a random mark so 
+                                                    // that within a device there can be several Neurons
                     this->ipmSource=msg.field2;
                     this->id=msg.field3;
                     this->label=msg.field4;
-                    this->liveNeuron(); //Da vida a la neurona
+                    this->liveNeuron(); // A Neuron is brought to life
                 }
             }
         }
