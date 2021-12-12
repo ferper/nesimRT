@@ -31,7 +31,7 @@ MainScreen::MainScreen(QWidget *parent) :
 
     spikeGenerator=nullptr;
     schemeNeuron = new MainGraphics(nullptr);
-    motherNeuron = new MotherNeuron(nullptr,IPM_MOTHER,schemeNeuron);
+    motherNeuron = new MotherNeuron(nullptr, schemeNeuron);
 
     QPixmap pixmap_General(":graphics/generalMonitorMain.png");
     QIcon ButtonIconGeneral(pixmap_General);
@@ -132,6 +132,7 @@ void MainScreen::closeEvent(QCloseEvent *event){
        schemeNeuron->removeALLScenary(); //Matamos a todas la neuronas remotas y locales
        schemeNeuron->close();
        delete schemeNeuron;
+       delete motherNeuron;
        QApplication::closeAllWindows();
     }
     else

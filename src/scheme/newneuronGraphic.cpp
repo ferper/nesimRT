@@ -44,7 +44,7 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     sceneTmp->addPixmap(p0);
     ui->graphicsView->setScene(sceneTmp);
     sceneTmp = new QGraphicsScene();
-    QPixmap p1("scheme/graphics/equation.png");
+    QPixmap p1(":graphics/equation.png");
     sceneTmp->addPixmap(p1);
 
     ui->graphicsView_2->setScene(sceneTmp);
@@ -52,7 +52,7 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     this->setWindowTitle("Create Neuron");
     ui->lineEdit_Label->setFocus();
 
-    QPixmap pixmap_ok("scheme/graphics/createNeuron.png");
+    QPixmap pixmap_ok(":graphics/createNeuron.png");
     QIcon ButtonIcon(pixmap_ok);
     ui->pushButton->setIcon(ButtonIcon);
     QSize s0(ui->pushButton->rect().size().width()-10,ui->pushButton->rect().size().height()-10);
@@ -60,7 +60,7 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     ui->pushButton->setFixedSize(ui->pushButton->rect().size());
     ui->pushButton->setFlat(true);
 
-    QPixmap pixmap_cancel("scheme/graphics/cancel.png");
+    QPixmap pixmap_cancel(":graphics/cancel.png");
     QIcon ButtonIcon1(pixmap_cancel);
     ui->pushButton_2->setIcon(ButtonIcon1);
     QSize s1(ui->pushButton_2->rect().size().width()-10,ui->pushButton_2->rect().size().height()-10);

@@ -145,7 +145,6 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
 
     groupAddress4_to_MotherNeuron=QHostAddress(IPM_MOTHER);
     udpSocket4_MotherNeuron.bind(QHostAddress::AnyIPv4, MOTHER_PORT, QUdpSocket::ShareAddress);
-    //I'am a Neuron and I subscribe to the Mother Neuron
     udpSocket4_MotherNeuron.joinMulticastGroup(groupAddress4_to_MotherNeuron);
 
     connect(&udpSocket4_MotherNeuron, SIGNAL(readyRead()),this, SLOT(processPendingDatagrams()));
@@ -317,7 +316,7 @@ void Neuron::sendMsg(QString msg,quint16 port){
 
     QUdpSocket udpSocket;
     QHostAddress groupAddress;
-    groupAddress=QHostAddress(IPM_MOTHER);
+    groupAddress=QHostAddress(IPM_NEURON_PROMISCUOUS);
     udpSocket.setSocketOption(QAbstractSocket::MulticastTtlOption, TTL);
     QByteArray datagram = msg.toStdString().c_str();
     udpSocket.writeDatagram(datagram, groupAddress, port);

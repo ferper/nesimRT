@@ -395,9 +395,9 @@ Range</string>
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>70</y>
+     <y>56</y>
      <width>171</width>
-     <height>17</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -444,9 +444,9 @@ Range</string>
    <property name="geometry">
     <rect>
      <x>1040</x>
-     <y>70</y>
+     <y>56</y>
      <width>141</width>
-     <height>17</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -478,9 +478,9 @@ Range</string>
    <property name="geometry">
     <rect>
      <x>940</x>
-     <y>70</y>
+     <y>56</y>
      <width>81</width>
-     <height>17</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">

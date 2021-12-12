@@ -37,7 +37,7 @@ About::About(QWidget *parent) :
     ui->graphicsView->fitInView(sceneTmp->itemsBoundingRect() ,Qt::IgnoreAspectRatio);
 
 
-    //Para que la ventana no se maximice
+    // This is so that the window is not maximized
     //setFixedSize(width(),height());
 
 
@@ -49,9 +49,9 @@ About::About(QWidget *parent) :
 
 
 
-    //Para que la ventana no se maximice
+    // This is so that the window is not maximized
     //setFixedSize(width(),height());
-    //Posicionamos la ventana en el centro
+    // This line is to position the window in the center
     this->move(QApplication::desktop()->availableGeometry().center() - this->rect().center());
 
 }

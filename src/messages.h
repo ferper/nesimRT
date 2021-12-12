@@ -60,11 +60,11 @@ const QString ACK_REQ_IP_DHCP="ACKREQIPDHCP";
 
 
 
-//MENSAJE ENVIADO POR UNA NEURONA AL NACER A LA MOTHER
+// Message sent by a Neuron to Mother, when it is create
 //#:CREATEA_N:id;label;amountOfNeurons;ipmSource;typeNeuron;w;fx;param1..param26
 const QString CREATE_NEURON_FROM_NEURON_TO_MOTHER="CREATE_N";
 
-//MENSAJE ENVIADO POR MOTHER NEURON Y RECIBIDO POR GRAPHICS
+// Message sent by Mother Neuron and received by Graphics
 //#:CGRAPHICN:ip;id;label;typeNeuron;amountOfNeurons;w_default;fx;param1..param26;
 const QString CREATE_GRAPHIC_NEURON_FROM_MOTHER_TO_GRAPHICS="CGRAPHICN";
 
