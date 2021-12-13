@@ -25,9 +25,8 @@ Synapse::Synapse(int *N,int idGlobalSynapse, QString ipmS, QString ipmT, quint16
    this->out=out;
    this->spkOnOff=spkOnOff;
 
-   groupAddress4=QHostAddress(ipmT);
-   udpSocket4.bind(QHostAddress(ipmT), port_target, QUdpSocket::ShareAddress);
-
+   groupAddress4=QHostAddress(ipmS);
+   udpSocket4.bind(QHostAddress::AnyIPv4, port_target, QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
    udpSocket4.joinMulticastGroup(groupAddress4);
    connect(&udpSocket4, SIGNAL(readyRead()),this, SLOT(processPendingDatagrams()));
 }

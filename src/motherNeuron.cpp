@@ -11,11 +11,14 @@ MotherNeuron::MotherNeuron(QWidget *parent, MainGraphics *schemeNeuron)
 {
     this->schemeNeuron=schemeNeuron;
 
+    udpSocket4.bind(QHostAddress(QHostAddress::AnyIPv4), 0);
+    udpSocket4.setSocketOption(QAbstractSocket::MulticastTtlOption, TTL);
+
     // Listening to the IPM_NEURON_PROMISCUOUS to any Neuron
     groupAddress4_allNeurons=QHostAddress(IPM_NEURON_PROMISCUOUS);
-    udpSocket4_allNeurons.bind(QHostAddress::AnyIPv4, NEURON_PROMISCUOS_PORT, QUdpSocket::ShareAddress);
+    udpSocket4_allNeurons.bind(QHostAddress::AnyIPv4, NEURON_PROMISCUOS_PORT, QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
     udpSocket4_allNeurons.joinMulticastGroup(groupAddress4_allNeurons);
-    connect(&udpSocket4_allNeurons, SIGNAL(readyRead()),this, SLOT(MotherNeuron::processPendingDatagramsPromiscuous()));
+    connect(&udpSocket4_allNeurons, SIGNAL(readyRead()),this, SLOT(processPendingDatagramsPromiscuous()));
 }
 
 // Can be sent to all Neuron or to the Graphic part
@@ -105,6 +108,7 @@ void MotherNeuron::processPendingDatagramsPromiscuous()
                     schemeNeuron->vectorGraphicsJunction[idGlobalSynapse.toInt()-1]->w=w;
                     schemeNeuron->vectorGraphicsJunction[idGlobalSynapse.toInt()-1]->fx=fx_unitMeasureTxt;
                     schemeNeuron->vectorGraphicsJunction[idGlobalSynapse.toInt()-1]->typeSynapse=typeSynapse;
+
                     // the new values are refreshed in real time
                     schemeNeuron->vectorGraphicsJunction[idGlobalSynapse.toInt()-1]->adjust();
                     schemeNeuron->vectorGraphicsNodes[idxNode]->synapsys[idxSynapse].w=w;//*fx_numberTxt.toDouble();
@@ -172,7 +176,7 @@ void MotherNeuron::processPendingDatagramsPromiscuous()
             msg1=QString("#")+sep_operation+CREATE_SYNAPSE_INTO_GRAPHIC+sep_operation+source+separator;
             msg1+=target+separator+QString::number(port)+separator+QString::number(typeSynapse)+separator+QString::number(w)+separator+fx_numberTxt;
             msg1+=separator+ fx_unitMeasureTxt + separator+QString::number(typeNeuronTarget)+separator+idGlobalSynapse+separator;
-            publicAMessage(msg1,IPM_MOTHER,GRAPHICS_PORT );
+            publicAMessage(msg1,IPM_MOTHER,GRAPHICS_PORT);
         }
         else if (msg.operation==UPDATE_MODEL_VALUES_PARAMETERS_FROM_WIDGET_TO_MOTHER) {
             // It is found out if it is local Neuron or it is created externally
@@ -214,14 +218,14 @@ void MotherNeuron::processPendingDatagramsPromiscuous()
         }
         else if (msg.operation==UPDATE_MODEL_VALUES_PARAMETERS_FROM_MODEL_TO_MOTHER) {
 
-            QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+            //QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
             QHostAddress groupAddress4_to_MotherNeuron; // The Neuron Mother is listening 
 
-            groupAddress4_to_MotherNeuron=QHostAddress(IPM_MOTHER);
             EncodeDecodeMsg msgtmp;
             QByteArray datagram = msgtmp.encondeMsg(UPDATE_MODEL_VALUES_PARAMETERS_FROM_MOTHER_TO_NEURON,msg.field1,msg.field2,msg.field3,msg.field4,msg.field5,msg.field6,msg.field7,msg.field8,msg.field9,msg.field10,msg.field11,msg.field12,msg.field13, msg.field14,msg.field15).toStdString().c_str();
-            udpSocket4_MotherNeuron.writeDatagram(datagram, groupAddress4_to_MotherNeuron, MOTHER_PORT);
-
+            groupAddress4_to_MotherNeuron=QHostAddress(IPM_MOTHER);
+            udpSocket4.bind(QHostAddress(QHostAddress::AnyIPv4), 0);
+            udpSocket4.writeDatagram(datagram, groupAddress4_to_MotherNeuron, MOTHER_PORT);
         }
         else if (msg.operation==REMOVE_SYNAPSE_FROM_GRAPHIC_TO_MOTHER) {
             // 1 - Run kill code on MOTHER

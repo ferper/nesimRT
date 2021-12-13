@@ -149,7 +149,6 @@ void NewSynapseGraphic::neuronFilterSearch(int entity) {
        patron= ui->lineEdit_Source->text().toUpper();
        index= ui->comboBox_Source->currentIndex();
        exclude1="MOTHER"; //Nobody can subscribe again to MotherNeuron
-       exclude2="GENERATOR"; ////A generator can not subscribe to a Neuron
 
     }
     else { //lineEdit_Target
@@ -157,6 +156,7 @@ void NewSynapseGraphic::neuronFilterSearch(int entity) {
        patron= ui->lineEdit_Target->text().toUpper();
        index= ui->comboBox_Target->currentIndex();
        exclude1="MOTHER";
+       exclude2="GENERATOR"; //A generator can not subscribe to a Neuron
     }
 
     table->clearContents();
@@ -190,7 +190,7 @@ void NewSynapseGraphic::neuronFilterSearch(int entity) {
 
        if (vectorGraphicsNeuron->at(i)->typeNode==TYPENEURON_MOTHER)
             matched=false;
-       else if ((vectorGraphicsNeuron->at(i)->typeNode==TYPENEURON_GENERATOR) && (entity==0))
+       else if ((vectorGraphicsNeuron->at(i)->typeNode==TYPENEURON_GENERATOR) && (entity==1))
            matched=false;
        if (matched) {
           QTableWidgetItem *tIp = new QTableWidgetItem();
@@ -264,20 +264,20 @@ void NewSynapseGraphic::on_pushButton_Create_clicked()
         bool found=false;
         int idx=0;
         while ((!found) && (idx<vectorGraphicsNeuron->size())) {
-            if (vectorGraphicsNeuron->at(idx)->ipmSource ==ipmTarget)
+            if (vectorGraphicsNeuron->at(idx)->ipmSource ==ipmSource)
                 found=true;
             else
                 idx++;
         }
 
-        int typeNeuronTarget=TYPENEURON_NORMAL;
+        int typeNeuronSource=TYPENEURON_NORMAL;
         if (found)
-           typeNeuronTarget=  vectorGraphicsNeuron->at(idx)->typeNode;
+           typeNeuronSource=  vectorGraphicsNeuron->at(idx)->typeNode;
         QString fx;
         bool ok;
         quint16 port=INTERNEURON_PORT; //Interneuron port by default;
         int typeSynapse=TYPE_SYP_EXCITATION; //Excitator by default;
-        if (typeNeuronTarget==TYPENEURON_GENERATOR)
+        if (typeNeuronSource==TYPENEURON_GENERATOR)
             port=GENERATOR_PORT;
         if (ui->comboBox_type->currentIndex()==1)
             typeSynapse=TYPE_SYP_INHIBITION;
@@ -295,7 +295,7 @@ void NewSynapseGraphic::on_pushButton_Create_clicked()
 
             QString msg=QString("#")+sep_operation+CREATE_SYNAPSE_INTO_MOTHER+sep_operation+ipmSource+separator;
             msg+=ipmTarget+separator+QString::number(port)+separator+QString::number(typeSynapse)+separator+QString::number(w)+separator+ifx.value();
-            msg+=separator+ fx + separator+QString::number(typeNeuronTarget)+separator+QString::number(*idGlobalSynapse)+separator;
+            msg+=separator+ fx + separator+QString::number(typeNeuronSource)+separator+QString::number(*idGlobalSynapse)+separator;
 
             sendMsg(msg,NEURON_PROMISCUOS_PORT);
 
@@ -309,12 +309,6 @@ void NewSynapseGraphic::on_pushButton_Create_clicked()
             QMessageBox::information(this, "Warning","There is no target neuron selected.");
     }
 }
-
-void NewSynapseGraphic::on_SALIR_clicked()
-{
-    close();
-}
-
 
 void NewSynapseGraphic::on_pushButton_Exit_clicked()
 {

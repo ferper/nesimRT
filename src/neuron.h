@@ -40,19 +40,19 @@ public:
     double IinhCurrent;
     double VCurrent;
     bool dataIsAvailable;
-    int NumberNeuronsGroup; //If N==1 the neuron es alone. N>1 it's a group
-    QString ipmSource;      //Ip multicast de la neurona. Para que otras puedan subscribirse a ella.
-    QString ipmMother;      //Ip multicast de la Neurona Madre
+    int NumberNeuronsGroup; // If N==1 the neuron es alone. N>1 it's a group
+    QString ipmSource;      // Neuron multicast IP. So that others can subscribe to it
+    //QString ipmMother;      // Mother Neuron multicast IP
     bool enableDataGeneralMonitor;
-    double we; //current value for synapsys
-    double wi; //current value for synapsys
-    QString fx_numberTxt; //fx's value Text
-    QString fx_unitMeasureTxt; //fx's unit's name
+    double we; // Current value for synapsys
+    double wi; // Current value for synapsys
+    QString fx_numberTxt; // fx's value Text
+    QString fx_unitMeasureTxt; // fx's unit's name
 
-    int typeNeuron; //0= none, 1= Mother, 2= Generator, 3= Normal
+    int typeNeuron; // 0= none, 1= Mother, 2= Generator, 3= Normal
     void * FormDialog;
     QVector <Synapse *> Vsynapse;
-    int localRemote; //Neurona creada localmente o remotamente.
+    int localRemote; // Neuron created locally or remotely
     QMutex mutexNeuron;
 
     int linea;
@@ -92,22 +92,22 @@ private:
     bool Iexc_enabled;
     bool Iinh_enabled;
     bool V_enabled;
-    bool isBuilded; //The Neuron is builded. It's operative
+    bool isBuilded; // The Neuron is builded. It's operative
 
-    quint16 Motherneuron_port; //Puerto de escucha de la Neurona Madre
-    quint16 SourcePort; //Puerto para conexion con otras neuronas
-    quint16 GeneralMonitorPort; //Puerto para enviar los datos calculados al General Monitor
-    qlonglong nSpikes; //Number of the spikes produced by the neuron
+    quint16 Motherneuron_port; // Listening port of the Mother Neuron
+    quint16 SourcePort; // Port for connection with other neurons
+    quint16 GeneralMonitorPort; // Port to send the calculated data to the General Monitor
+    qlonglong nSpikes; // Number of the spikes produced by the neuron
 
     QLabel *statusLabel = nullptr;
-    QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-    QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+    QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+    QHostAddress groupAddress4_to_MotherNeuron; // The mother neuron is listened to
 
-    QUdpSocket udpSocket4_sender; // to public a SPIKE
-    QHostAddress groupAddress4_to_Public; //other neurons listen to me
+    QUdpSocket udpSocket4_sender; // To public a SPIKE
+    QUdpSocket udpSocket4_senderMonitor; // To public data calculated to General Monitor
+    QHostAddress groupAddress4_to_Public; // Other neurons listen to me
 
-    QUdpSocket udpSocket4_Promiscuous; // To receive datas in promiscuous mode from a Mother Neuron's port. Ejemplo: Ip from DHCP
-    QUdpSocket udpSocket4_senderMonitor; // to public data calculated to General Monitor
+    //QUdpSocket udpSocket4_Promiscuous; // To receive datas in promiscuous mode from a Mother Neuron's port. Ejemplo: Ip from DHCP
 
     QFile file;
     QTextStream *out;

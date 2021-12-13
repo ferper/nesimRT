@@ -414,7 +414,7 @@ void Widget::showSynapsys(){
     ui->tableWidget->setColumnCount(5);
     ui->tableWidget->setRowCount(0);
     QStringList labels;
-    labels << tr("id") << tr("Target") << tr("Type") << tr("Value") << tr("Unit");
+    labels << tr("id") << tr("Source") << tr("Type") << tr("Value") << tr("Unit");
     ui->tableWidget->setColumnWidth(0,30);
     ui->tableWidget->setColumnWidth(1,80);
     ui->tableWidget->setColumnWidth(2,30);
@@ -428,20 +428,20 @@ void Widget::showSynapsys(){
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (int i=0; i<Vsynapse->size();i++) {
-        if (Vsynapse->at(i)->ipmS==*ipmSource) {
+        if (Vsynapse->at(i)->ipmT==*ipmSource) {
             QTableWidgetItem *id = new QTableWidgetItem();
-            QTableWidgetItem *target = new QTableWidgetItem();
+            QTableWidgetItem *source = new QTableWidgetItem();
             QTableWidgetItem *type = new QTableWidgetItem;
             QTableWidgetItem *value = new QTableWidgetItem;
             QTableWidgetItem *fx_unit = new QTableWidgetItem;
             id->setText(QString::number(Vsynapse->at(i)->idGlobalSynapse));
-            target->setText(Vsynapse->at(i)->ipmT);
+            source->setText(Vsynapse->at(i)->ipmS);
             if (Vsynapse->at(i)->type==TYPE_SYP_EXCITATION)
                 type->setText("Exc");
             else {
                 type->setText("Inh");
                 id->setForeground(QColor::fromRgb(255,0,0));
-                target->setForeground(id->foreground());
+                source->setForeground(id->foreground());
                 type->setForeground(id->foreground());
                 value->setForeground(id->foreground());
                 fx_unit->setForeground(id->foreground());
@@ -452,7 +452,7 @@ void Widget::showSynapsys(){
 
             ui->tableWidget->insertRow(row);
             ui->tableWidget->setItem(row, 0,id);
-            ui->tableWidget->setItem(row, 1,target);
+            ui->tableWidget->setItem(row, 1,source);
             ui->tableWidget->setItem(row, 2,type);
             ui->tableWidget->setItem(row, 3,value);
             ui->tableWidget->setItem(row, 4,fx_unit);
@@ -509,7 +509,7 @@ void Widget::on_pushButton_5_clicked() {
             QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
             EncodeDecodeMsg msg;
 
-            groupAddress4_to_MotherNeuron=QHostAddress(IPM_MOTHER);
+            groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
             QByteArray datagram = msg.encondeMsg(UPDATE_VALUES_SYNAPSE_FROM_NEURONWIDGET_TO_MOTHER,*ipmSource,QString::number(id),QString::number(w),fx_numberTxt,fx_unitMeasureTxt,QString::number(type)).toStdString().c_str();
             udpSocket4_MotherNeuron.writeDatagram(datagram, groupAddress4_to_MotherNeuron, NEURON_PROMISCUOS_PORT);
 

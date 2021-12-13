@@ -39,8 +39,6 @@ private slots:
 
     void on_pushButton_Create_clicked();
 
-    void on_SALIR_clicked();
-
     void on_pushButton_Exit_clicked();
 
 private:

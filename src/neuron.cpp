@@ -30,7 +30,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
 
     this->MAC=getLocalMAC();
     this->Motherneuron_port=MOTHER_PORT;
-    this->ipmMother=ipmMother; // Mother Neuron multicast ip
+    //this->ipmMother=ipmMother; // Mother Neuron multicast ip
     this->monitor=nullptr;
     this->GeneralMonitorPort=MONITOR_PORT;
     this->typeNeuron=typeNeuron;
@@ -143,7 +143,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
 
 
     groupAddress4_to_MotherNeuron=QHostAddress(IPM_MOTHER);
-    udpSocket4_MotherNeuron.bind(QHostAddress::AnyIPv4, MOTHER_PORT, QUdpSocket::ShareAddress);
+    udpSocket4_MotherNeuron.bind(QHostAddress::AnyIPv4, MOTHER_PORT, QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
     udpSocket4_MotherNeuron.joinMulticastGroup(groupAddress4_to_MotherNeuron);
 
     connect(&udpSocket4_MotherNeuron, SIGNAL(readyRead()),this, SLOT(processPendingDatagrams()));
@@ -363,6 +363,7 @@ Neuron::~Neuron(){
     delete out;
     for (int i=0; i<Vsynapse.size();i++)
        delete Vsynapse[i];
+    delete monitor;
 }
 
 void Neuron::calculateIinh() {
@@ -432,7 +433,7 @@ void Neuron::processPendingDatagrams()
         msg.decodeMsg(QString(data));
 
         if (msg.operation==CREATE_SYNAPSE_INTO_NEURON) {
-           if (ipmSource==msg.field1) { // The IP of the recipient matches that of the process
+           if (ipmSource==msg.field2) { // The IP of the recipient matches that of the process
                this->p->Iexc=0;
                this->Iexc_prior=0;
                this->p->Iinh=0;
@@ -441,22 +442,19 @@ void Neuron::processPendingDatagrams()
                double w1;
                Synapse *s1;
                w1=1.13/1000000000;
-               QString ipm_target=msg.field2;
                quint16 port_target=quint16(msg.field3.toInt());
                int type =msg.field4.toInt();
                QString fx_numberTxt=msg.field6;
                QString fx_unitMeasureTxt =msg.field7;
                int idGlobalSynapse=msg.field9.toInt();
-               if (ipmSource==msg.field1) { // The IP of the recipient matches that of the process
-                   if (type==TYPE_SYP_EXCITATION)
-                      s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,ipmSource, ipm_target,port_target,type,&p->Iexc,we,fx_numberTxt,fx_unitMeasureTxt,&Iexc_enabled,&V_enabled,timer,&mutexNeuron,&muestra,out,&spkOnOff_exc);
-                   else
-                      s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,ipmSource, ipm_target,port_target,type,&p->Iinh,wi,fx_numberTxt,fx_unitMeasureTxt,&Iinh_enabled,&V_enabled,timer,&mutexNeuron, &muestra, out,&spkOnOff_inh);
-                    //cout<<"-I am neuron "<<ipmSource.toStdString()<< " and I have created a synapse with "<<ipm_target.toStdString()<<" type: "<<type<<endl;
-                    s1->timer->start();
+               if (type==TYPE_SYP_EXCITATION)
+                   s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,msg.field1,msg.field2,port_target,type,&p->Iexc,we,fx_numberTxt,fx_unitMeasureTxt,&Iexc_enabled,&V_enabled,timer,&mutexNeuron,&muestra,out,&spkOnOff_exc);
+               else
+                   s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,msg.field1,msg.field2,port_target,type,&p->Iinh,wi,fx_numberTxt,fx_unitMeasureTxt,&Iinh_enabled,&V_enabled,timer,&mutexNeuron,&muestra,out,&spkOnOff_inh);
+               //cout<<"-I am neuron "<<ipmSource.toStdString()<< " and I have created a synapse with "<<msg.field1.toStdString()<<" type: "<<type<<endl;
+               s1->timer->start();
 
-                    Vsynapse.push_back(s1); // The memory is freed and the synapse will be erased
-               }
+               Vsynapse.push_back(s1); // The memory is freed and the synapse will be erased
            }
            if (monitor!=nullptr)
                 monitor->showSynapsys();
@@ -525,7 +523,7 @@ void Neuron::processPendingDatagrams()
                     Vsynapse.at(idx)->timer->stop();
                     *(Vsynapse.at(idx)->startICalculate)=false;
                     *(Vsynapse.at(idx)->startVCalculate)=false;
-                    Vsynapse.at(idx)->udpSocket4.leaveMulticastGroup(QHostAddress(Vsynapse.at(idx)->ipmT));
+                    Vsynapse.at(idx)->udpSocket4.leaveMulticastGroup(QHostAddress(Vsynapse.at(idx)->ipmS));
                     Vsynapse.at(idx)->deleteSynapse();
                     Vsynapse.remove(idx);
                 }
