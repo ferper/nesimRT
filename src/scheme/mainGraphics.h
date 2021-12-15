@@ -26,8 +26,8 @@ public:
 
     bool existIp(QString ip);
 
-    void updateDataNeuronsNeuron(QString ip, QString id, int N);
-    void updateDataNeuronSypnapse(QString idGlobal, QString ipmSourceNeuron, QString ipmTarget, int type, quint16 port, double w, double fx_numberTxt);
+    //void updateDataNeuronsNeuron(QString ip, QString id, int N);
+    //void updateDataNeuronSypnapse(QString idGlobal, QString ipmSourceNeuron, QString ipmTarget, int type, quint16 port, double w, double fx_numberTxt);
 
     QString generateIPReal(QString type);
     QString generateIPSimulated(QString type);

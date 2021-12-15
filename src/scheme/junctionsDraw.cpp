@@ -169,9 +169,9 @@ void JunctionsDraw::paint(QPainter *painter, const QStyleOptionGraphicsItem *, Q
         painter->setPen(QPen(Qt::black,2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 
         painter->drawPolygon(QPolygonF() << line.p2() << destArrowP1 << destArrowP2);
-        std::cout<<"angle before: " <<angulo<<std::endl;
+        //std::cout<<"angle before: " <<angulo<<std::endl;
 
-       std::cout<<"angle after: " <<angulo<<std::endl;
+       //std::cout<<"angle after: " <<angulo<<std::endl;
 
     }
     else {

@@ -186,7 +186,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     QLabel *label0 = new QLabel();
     label0->setText("model - ");
     label0->setGeometry(QRect(650,-40,200,20));
-    //Transparente y negro
+    // Transparent and black
     label0->setStyleSheet("background-color: rgba(0,0,0,0); color: black;");
 
     QFont font = label0->font();
@@ -204,7 +204,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     proxy = scene->addWidget(label1);
 
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-    scene->setSceneRect(200, 0, 1280, 630); //Tamaño ventana
+    scene->setSceneRect(200, 0, 1280, 630); // Window size
 
     setScene(scene);
     setCacheMode(CacheBackground);
@@ -228,13 +228,13 @@ MainGraphics::MainGraphics(QWidget *parent )
     connect(btExit, &QPushButton::clicked, [=]() {close();});
 
 
-    //Escuachaos en el puerto PROMISCUOUS_MOTHER_PORT cualquier neurona
+    // We listen to the PROMISCUOUS_MOTHER_PORT any Neuron
     groupAddress=QHostAddress(IPM_MOTHER);
     udpSocket.bind(QHostAddress::AnyIPv4, GRAPHICS_PORT, QUdpSocket::ShareAddress);
     udpSocket.joinMulticastGroup(groupAddress);
     connect(&udpSocket, SIGNAL(readyRead()),this, SLOT(processPendingDatagrams()));
 
-    //Posicionar la ventana en el centro de la pantalla
+    // The window is positioned in the center of the screen
     this->move(QApplication::desktop()->availableGeometry().center() - this->rect().center());
 
     timerEmpty = new QTimer(this);
@@ -451,7 +451,7 @@ void MainGraphics::processPendingDatagrams()
             node->w=msg.field9.toDouble();
             node->fx_numberTxt=msg.field10;
 
-            //Parameters of Neuronal Model
+            // Parameters of Neuronal Model
             Parameters *p = new Parameters();
 
             p->V=msg.field11.toDouble();
@@ -467,7 +467,7 @@ void MainGraphics::processPendingDatagrams()
             p->At=msg.field21.toDouble();
             node->parameters=p;
 
-            node->FormDialog=nullptr; //La neurona se ha creado en el exterior // (QDialog*) this;
+            node->FormDialog=nullptr; // The Neuron has been created outside // (QDialog*) this;
             scene->addItem(node);
             vectorGraphicsNodes.push_back(node);
         }
@@ -501,11 +501,10 @@ void MainGraphics::processPendingDatagrams()
             if (node1->FormDialog!=nullptr)
                 ((ModelAdExLIF *) node1->FormDialog)->showSynapsys();
 
-            // NO es necesario añadir las sinapsys, ya que solo nos interesa las neuronas.
-
+            // It is NOT necessary to add synapses, because only Neurons are of interest
         }
         else if (msg.operation==REMOVE_NEURON_FROM_MOTHER_TO_GRAPHIC){
-        //Ya están eliminadas las synapsys
+        // Synapses are already being created
             int idx=0;
             bool found=false;
             QString ipmSource=msg.field1;
@@ -518,7 +517,7 @@ void MainGraphics::processPendingDatagrams()
             }
             if (found)
                 localNeurons.removeAt(idx);
-            //Hay que quitar la neurona de la parte grafica. Sea local o remota.
+            // The neuron must be elimiated from the graphic part. Whether local or remote
             found=false;
             idx=0;
             while ((!found) && (idx<vectorGraphicsNodes.size())) {
@@ -529,15 +528,15 @@ void MainGraphics::processPendingDatagrams()
             }
 
             if (found) {
-                scene->removeItem(vectorGraphicsNodes.at(idx));// Lo eliminamos graficamente
+                scene->removeItem(vectorGraphicsNodes.at(idx));// Is graphically removed
                 if ((QDialog*) vectorGraphicsNodes.at(idx)->FormDialog)
                     if (((QDialog*) vectorGraphicsNodes.at(idx)->FormDialog)->isEnabled())
                         ((QDialog*) vectorGraphicsNodes.at(idx)->FormDialog)->close();
-                vectorGraphicsNodes.removeAt(idx); //Lo eliminamos del vector
+                vectorGraphicsNodes.removeAt(idx); // Is remved from the vector
             }
         }
         else if (msg.operation==REMOVE_SYNAPSE_FROM_MOTHER_TO_GRAPHICS){
-            //Hay que eliminar la sinapsis de 3 sitios:
+            // Synapse is removed from three sites:
             // 1- localNeuron
             // 2- VectorGraphicsNodes
             // 3- VectorGraphicsJunction
@@ -562,7 +561,7 @@ void MainGraphics::processPendingDatagrams()
                   idx_n++;
             }
             if (found) {
-                if (localNeurons.at(idx_n)->Vsynapse.at(idx_s)) //puede haber sido borrado desde mother
+                if (localNeurons.at(idx_n)->Vsynapse.at(idx_s)) // The synapse may have been removed from Mothers
                    localNeurons.at(idx_n)->Vsynapse.at(idx_s)->deleteSynapse();
                 localNeurons.at(idx_n)->Vsynapse.remove(idx_s);
             }
@@ -594,8 +593,8 @@ void MainGraphics::processPendingDatagrams()
                    idx++;
             }
             if (found) {
-                scene->removeItem(vectorGraphicsJunction.at(idx));// Lo eliminamos graficamente
-                vectorGraphicsJunction.remove(idx); // Lo eliminamos del vector
+                scene->removeItem(vectorGraphicsJunction.at(idx));// Is graphically removed
+                vectorGraphicsJunction.remove(idx); // Is remved from the vector
             }
         }
         else if (msg.operation==LOADSCENE_FROM_MOTHER_TO_GRAPHIC){
@@ -648,7 +647,7 @@ void MainGraphics::removeALLScenary() {
            sendMsg(m,IPM_NEURON_PROMISCUOUS, NEURON_PROMISCUOS_PORT);
         }
     }
-    //Comprobar si hay alguna sinapsis que le llegue a la neurona, para borrarla también.
+    // It must be checked if there are any synapses that are connected to the neuron, to be deleted as well
     EncodeDecodeMsg msg1;
     for (int n=0; n<vectorGraphicsNodes.size();n++ ) {
        Node *node = vectorGraphicsNodes.at(n);
@@ -663,7 +662,7 @@ void MainGraphics::removeALLScenary() {
             }
             s++;
         }
-        //Nota: FutureWork Todos los mensajes de borrado de neuronas deberían ser por idLGobalNeuron y no por ip.
+        //TODO: FutureWork All Neuron deletion messages should be by idLGobalNeuron and not by IP.
         QString m= msg1.encondeMsg(REMOVE_NEURON_FROM_GRAPHIC_TO_MOTHER,node->ipmSource,node->id).toStdString().c_str();
         sendMsg(m ,IPM_NEURON_PROMISCUOUS,NEURON_PROMISCUOS_PORT);
       }
@@ -713,7 +712,7 @@ int MainGraphics::generateIdGlobalNeuron(){
 
 void MainGraphics::newNeuron(){
 
-// CREAR NEURONA y hacer show del Form Widget
+// CREATE NEURON and do the Form Widget Show
     Parameters *p = new Parameters();
     p->V=0;
     p->Iexc=0;
@@ -744,16 +743,16 @@ void MainGraphics::newRemove() {
     }
 }
 
-void MainGraphics::updateDataNeuronsNeuron(QString ip, QString id, int N) {
-   //No hace falta poner nada aqui, ya que el contructor de Neuron envía un mensaje
-   //a la neurona madre y se autoregistra.
-}
+//void MainGraphics::updateDataNeuronsNeuron(QString ip, QString id, int N) {
+   // It is not necessary to put anything here, since the Neuron constructor sends
+   // a message to the Mother Neruon and registers itself
+//}
 
-void MainGraphics::updateDataNeuronSypnapse(QString idGlobal, QString ipmSourceNeuron, QString ipmTarget, int type, quint16 port, double w, double fx){
-//Se puede pegar el mismo código de CREATE_SYNAPSYS
-//o bien enviar mensaje a motherNeuron para CREATE_SYNAPSYS
+//void MainGraphics::updateDataNeuronSypnapse(QString idGlobal, QString ipmSourceNeuron, QString ipmTarget, int type, quint16 port, double w, double fx){
+// Se puede pegar el mismo código de CREATE_SYNAPSYS
+// o bien enviar mensaje a motherNeuron para CREATE_SYNAPSYS
 
-}
+//}
 
 void MainGraphics::saveCurrentScene(){
     if (fileNameToSave.length())
@@ -767,7 +766,7 @@ void MainGraphics::saveSceneAs(){
 
     if (!fileName.length()) {
         QFileDialog fileDialog(this, tr("Save neuron model"), QDir::currentPath(),tr("Neuronal Files (*.xNS *.xml)"));
-        fileDialog.setOption(QFileDialog::DontUseNativeDialog,true);//Very important for refresh
+        fileDialog.setOption(QFileDialog::DontUseNativeDialog,true);// Very important for refresh
         fileDialog.setAcceptMode(QFileDialog::AcceptSave);
         if (QDialog::Accepted != fileDialog.exec())
             return ;
