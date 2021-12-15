@@ -137,10 +137,10 @@ WidgetGeneralMonitor::WidgetGeneralMonitor(QWidget *parent, typeDataNeurons *Qne
 
     //-- Para recibir todas las señales
     udpSocket4_GeneralMonitor = new QUdpSocket();
-    groupAddress4_GeneralMonitor = new QHostAddress();
+    groupAddress4_GeneralMonitor = new QHostAddress(IPM_NEURON_PROMISCUOUS);
 
     //Escuchamos por un unico puerto todas las señales
-    udpSocket4_GeneralMonitor->bind(QHostAddress::AnyIPv4,  MONITOR_PORT, QUdpSocket::ShareAddress);
+    udpSocket4_GeneralMonitor->bind(QHostAddress::AnyIPv4,  MONITOR_PORT, QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
     udpSocket4_GeneralMonitor->joinMulticastGroup(*groupAddress4_GeneralMonitor);
     connect(udpSocket4_GeneralMonitor, SIGNAL(readyRead()),this, SLOT(processDataGeneralMonitor()));
 

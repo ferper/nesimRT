@@ -11,8 +11,8 @@ void EncodeDecodeMsg::decodeMsg(QString input)
     int idx1;
 
     if (input.toStdString().substr(0,idx)==header.toStdString()) {
-       std::cout<<" IS A CONFIGURATION MESSAGE"<<std::endl;
-       std::cout<<input.toStdString()<<"\n";
+       //std::cout<<" IS A CONFIGURATION MESSAGE"<<std::endl;
+       //std::cout<<input.toStdString()<<"\n";
        idx++;
        idx1= input.indexOf(sep_operation,idx);  //Searching the operation type
        operation = input.toStdString().substr(idx,idx1-idx).c_str(); //Assinging the operation type

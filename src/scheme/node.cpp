@@ -152,7 +152,7 @@ void Node::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     update();
     this->posGraph_X=event->scenePos().x();
     this->posGraph_Y=event->scenePos().y();
-    std::cout<<"X: "<<posGraph_X<<" Y:"<<posGraph_Y<<std::endl;
+    //std::cout<<"X: "<<posGraph_X<<" Y:"<<posGraph_Y<<std::endl;
 
     QGraphicsItem::mouseReleaseEvent(event);
 }

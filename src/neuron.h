@@ -60,7 +60,7 @@ public:
     bool spkOnOff_inh;
 public slots:
     void paintLocalMonitor();
-    void sendDataToGeneralMonitor();
+    void sendDataToGeneralMonitor(bool spiking);
     int get_NSynapses();
     void calculateValues();
     void quit();

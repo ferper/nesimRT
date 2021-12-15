@@ -291,7 +291,7 @@ void Neuron::liveNeuron(){ // The neuron is completly functional
     this->isBuilded=true;
     timer_RequestIP->stop();
 
-    groupAddress4_to_Public=QHostAddress(ipmSource);
+    groupAddress4_to_Public=QHostAddress(IPM_NEURON_PROMISCUOUS);
     // Force binding to their respective families
     udpSocket4_sender.setSocketOption(QAbstractSocket::MulticastTtlOption, TTL);
     udpSocket4_senderMonitor.setSocketOption(QAbstractSocket::MulticastTtlOption, TTL); // To public data calculated to General Monitor
@@ -326,10 +326,10 @@ void Neuron::sendMsg(QString msg,quint16 port){
     udpSocket.writeDatagram(datagram, groupAddress, port);
 }
 
-void Neuron::sendDataToGeneralMonitor(){
+void Neuron::sendDataToGeneralMonitor(bool spiking){
 
     QString spike="0";
-    if (VCurrent==0.0)
+    if (spiking)
         spike="100000000";
     QString cadena=ipmSource+";"+spike+";"+QString::number((double)IexcCurrent*10000000000)+";"+QString::number((double)IinhCurrent*10000000000)+";"+QString::number((double)VCurrent*5000)+";";
     QByteArray datagram = cadena.toStdString().c_str();
@@ -387,27 +387,29 @@ void Neuron::calculateV() {
 }
 
 void Neuron::calculateValues(){
-     dataIsAvailable=false;
-       mutexNeuron.lock();
-       for (int i=0; i<10; i++) {
-          calculateV();
-          if (p->V>p->Vth) { //SPIKE Generator
-             p->V=p->Vr;
-             generateSpike();
-          }
-              linea++;
+    bool spiking=false;
+    dataIsAvailable=false;
+    mutexNeuron.lock();
+    for (int i=0; i<10; i++) {
+        calculateV();
+        if (p->V>p->Vth) { //SPIKE Generator
+            p->V=p->Vr;
+            spiking = true;
+            generateSpike();
+        }
+        linea++;
 
-         // Initial values for Iexc, Iinh y V
-             IexcCurrent=p->Iexc;
-             IinhCurrent=p->Iinh;
-             VCurrent=p->V;
-             calculateIexc();
-             calculateIinh();
-       }
-       mutexNeuron.unlock();
-       dataIsAvailable=true;
-      if (enableDataGeneralMonitor)
-         sendDataToGeneralMonitor();
+        // Initial values for Iexc, Iinh y V
+        IexcCurrent=p->Iexc;
+        IinhCurrent=p->Iinh;
+        VCurrent=p->V;
+        calculateIexc();
+        calculateIinh();
+    }
+    mutexNeuron.unlock();
+    dataIsAvailable=true;
+    if (enableDataGeneralMonitor)
+        sendDataToGeneralMonitor(spiking);
 }
 double Neuron::get_IexcCurrent(){
     return IexcCurrent;
@@ -480,6 +482,7 @@ void Neuron::processPendingDatagrams()
                    Vsynapse.at(idx)->fx_numberTxt=fx_numberTxt;
                    Vsynapse.at(idx)->fx_unitMeasureTxt=fx_unitMeasureTxt;
                    Vsynapse.at(idx)->type=typeSynapse;
+                   //Vsynapse.at(idx)->Iinc = &p->Iinh;&p->Iexcep
                    if (monitor) // If it is visible from the widget, refresh is done in table
                        monitor->showSynapsys();
                }
@@ -570,6 +573,10 @@ void Neuron::processPendingDatagrams()
         }
         else if (msg.operation==REMOVE_NEURON_FROM_MOTHER_TO_NEURON) {
             if ((ipmSource==msg.field1) && (id==msg.field2)) { // The IP of the recipient matches that of the process
+                QVector <Synapse*>::iterator it=this->Vsynapse.begin();
+                while (it!=Vsynapse.end()) {
+                    it= Vsynapse.erase(it);
+                }
                 this->timer->stop();
                 if (monitor)
                     monitor->close();
@@ -577,11 +584,13 @@ void Neuron::processPendingDatagrams()
                     ((SpikeGenerator *)FormDialog)->close();
                     ((SpikeGenerator *)FormDialog)->set_timerStop();
                 }
-                delete this;
+                if (this->localRemote==LOCAL_NEURON)
+                    close();
                 if (localRemote==REMOTE_NEURON) { // Only when it is a remotely created neuron
                    QApplication::closeAllWindows();
                    QApplication::exit();
                 }
+                delete this;
              }
         }
         else if (msg.operation==ACK_REQ_IP_DHCP) { //Assign the ip to the Neuron
