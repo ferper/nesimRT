@@ -496,7 +496,7 @@ void MainGraphics::processPendingDatagrams()
             synap.port=(quint16) port;
             synap.type=typeSynapse;
 
-            Node *node1=findNode(source);
+            Node *node1=findNode(target);
             node1->synapsys.push_back(synap);
             if (node1->FormDialog!=nullptr)
                 ((ModelAdExLIF *) node1->FormDialog)->showSynapsys();
