@@ -291,7 +291,7 @@ void Neuron::liveNeuron(){ // The neuron is completly functional
     this->isBuilded=true;
     timer_RequestIP->stop();
 
-    groupAddress4_to_Public=QHostAddress(IPM_NEURON_PROMISCUOUS);
+    groupAddress4_to_Public=QHostAddress(ipmSource);
     // Force binding to their respective families
     udpSocket4_sender.setSocketOption(QAbstractSocket::MulticastTtlOption, TTL);
     udpSocket4_senderMonitor.setSocketOption(QAbstractSocket::MulticastTtlOption, TTL); // To public data calculated to General Monitor
@@ -333,7 +333,8 @@ void Neuron::sendDataToGeneralMonitor(bool spiking){
         spike="100000000";
     QString cadena=ipmSource+";"+spike+";"+QString::number((double)IexcCurrent*10000000000)+";"+QString::number((double)IinhCurrent*10000000000)+";"+QString::number((double)VCurrent*5000)+";";
     QByteArray datagram = cadena.toStdString().c_str();
-    udpSocket4_senderMonitor.writeDatagram(datagram, groupAddress4_to_Public, GeneralMonitorPort);
+    QHostAddress groupAddress4=QHostAddress(IPM_NEURON_PROMISCUOUS);
+    udpSocket4_senderMonitor.writeDatagram(datagram, groupAddress4, GeneralMonitorPort);
 }
 void Neuron::generateSpike(){
     nSpikes++;
