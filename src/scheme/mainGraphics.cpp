@@ -749,8 +749,8 @@ void MainGraphics::newRemove() {
 //}
 
 //void MainGraphics::updateDataNeuronSypnapse(QString idGlobal, QString ipmSourceNeuron, QString ipmTarget, int type, quint16 port, double w, double fx){
-// Se puede pegar el mismo código de CREATE_SYNAPSYS
-// o bien enviar mensaje a motherNeuron para CREATE_SYNAPSYS
+// You can copy the same code from CREATE_SYNAPSYS,  
+// or you can send the message to Mother for CREATE_SYNAPSYS
 
 //}
 
@@ -848,7 +848,7 @@ void MainGraphics::saveScene(QString fileName) {
 
 }
 
-//TODO: Crear otra funcion, por ejemplo, addRemoteNeuron, para cubrir el caso de añadir una neurona (raspi) remotamente y activa por MDHCP
+//TODO: Create another function, for example, addRemoteNeuron, to cover the case of adding a neuron (raspi) remotely and activated by MDHCP
 void MainGraphics::addNeuron(int typeNeuron, QString ip,QString name, QString label, float posX, float posY, double scale,int amountOfNeurons, Parameters *p) {
     addNeuron(typeNeuron,ip,name,label,posX,posY,scale,p->V,p->Iexc,p->Iinh,p->tau_e,p->tau_i,p->tau_v,p->R,p->Vr,p->Vrh,p->Vth,p->At,amountOfNeurons);
 }
@@ -884,21 +884,21 @@ void MainGraphics::addNeuron(int typeNeuron, QString ip, QString id, QString lab
 void MainGraphics::emptyLocalNeurons() {
 
     while (!localNeurons.empty()) {
-        //Eliminamos los punteros a los FormDialog de cada neurona
-        //Esto no tiene sentido es localNeuron y siempre es LOCAL_NEURON y no REMOTE_NEURON
+        // Is removed removes the pointers to the FormDialogs of each neuron
+        
         if (localNeurons.at(0)->localRemote==REMOTE_NEURON) {
             if (localNeurons.at(0)->typeNeuron==TYPENEURON_NORMAL) {
                 delete ((ModelAdExLIF*) localNeurons[0]->FormDialog);
             }
             else if (localNeurons.at(0)->typeNeuron==TYPENEURON_GENERATOR) {
-                //Este caso no esta contemplado. Lo ponemos por si en un futuro se
-                //quiere tener un generator REMOTO.
+                // This case is not contemplated. We put it in case in the future you want to have a REMOTE generator
+                
             }
         }
         else { //LOCAL_NEURON
             if  ((localNeurons.at(0)->typeNeuron==TYPENEURON_NORMAL) ||
                 (localNeurons.at(0)->typeNeuron==TYPENEURON_GENERATOR)) {
-                    //No es necesario eliminar las sinapsis de localNeuron, ya que no se crean
+                    // No need to remove synapses from localNeuron as they are not created
             }
         }
 
@@ -943,9 +943,9 @@ void MainGraphics::loadSceneFromMsg(QString filename) {
 
          for(int i = 0; i < allGraphicsItems.size(); i++) {
              QGraphicsItem *graphicItem = allGraphicsItems[i];
-             if (!graphicItem->toGraphicsObject()) { //No es un botón
+             if (!graphicItem->toGraphicsObject()) { 
                  scene->removeItem(graphicItem);
-             delete graphicItem; //???
+             delete graphicItem; 
                  scene->update();
              }
          }
@@ -1073,7 +1073,7 @@ void MainGraphics::loadSceneFromMsg(QString filename) {
                      // Next child
                      Child = Child.nextSibling().toElement();
                  }
-                 //Actualizamos el valor general de idGlobalSynapse
+                 // The general value of idGlobalSynapse is updated
 
                  idGlobalSynapse=idGlobalSynapse_tmp;
                  if (typeTargetNeuron==TYPENEURON_NORMAL)

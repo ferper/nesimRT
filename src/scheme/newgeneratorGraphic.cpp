@@ -61,7 +61,7 @@ NewGeneratorGraphics::NewGeneratorGraphics(QWidget *parent,MainGraphics *graphWi
     ui->pushButton_2->setGraphicsEffect(effect1);
 
 }
-//To strecht the images into the container
+// To strecht the images into the container
 void NewGeneratorGraphics::showEvent(QShowEvent *) {
 
     ui->graphicsView->fitInView(ui->graphicsView->sceneRect(), Qt::KeepAspectRatio);
@@ -69,7 +69,7 @@ void NewGeneratorGraphics::showEvent(QShowEvent *) {
 
 void NewGeneratorGraphics::keyPressEvent(QKeyEvent *event){
     switch(event->key()) {
-       case Qt::Key_Escape: // si se pulsa ESCAPE se cierra la ventana
+       case Qt::Key_Escape: // Pressing ESCAPE closes the window
           graphWidget->restaurateIPSimulated(QString::number(TYPENEURON_GENERATOR));
           close();
           break;
@@ -134,7 +134,7 @@ void NewGeneratorGraphics::on_pushButton_clicked()
     if (parametersOK()) {
         int posX= QRandomGenerator::global()->bounded(800)+250;
         int posY= QRandomGenerator::global()->bounded(450)+100;
-        //Actualizamos los valores de DHCP simulado y real
+        // Actual and simulated DHCP settings are updated
         graphWidget->generateIPReal(QString::number(TYPENEURON_GENERATOR));
 
         (*idGlobalNeuron)++;

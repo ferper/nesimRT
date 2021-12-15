@@ -47,7 +47,7 @@ void Node::addJunction(JunctionsDraw *junction)
 QRectF Node::boundingRect() const
 {
     qreal adjust = 2;
-    //Ancho de etiqueta de Neurona
+    // Neuron Label Width
     return QRectF( -10 - adjust, -10 - adjust, 100 + adjust, 23 + adjust);
 }
 
@@ -135,9 +135,9 @@ void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
             ((ModelAdExLIF*)FormDialog)->activateWindow();
         }
         else {
-            //Solo creamos un ModelAdExLIF form cuando se hace un doble click sobre el Node
+            // A ModelAdExLIF form is only created when the Node is double clicked
             ModelAdExLIF *m1 = new  ModelAdExLIF(nullptr,this);
-            FormDialog=m1; //Para que se pueda refrescar los cambios realizados desde fuera en tiempo real.
+            FormDialog=m1; // So that changes made from outside can be refreshed in real time
             m1->show();
         }
     }

@@ -91,7 +91,7 @@ NewSynapseGraphic::NewSynapseGraphic(QWidget *parent, int *idGlobalSynapse, QGra
 
 void NewSynapseGraphic::keyPressEvent(QKeyEvent *event){
     switch(event->key()) {
-       case Qt::Key_Escape: // si se pulsa ESCAPE se cierra la ventana
+       case Qt::Key_Escape: // Pressing ESCAPE closes the window
           close();
           break;
     }
@@ -228,7 +228,7 @@ void NewSynapseGraphic::on_comboBox_Target_currentIndexChanged(int index)
 }
 
 int NewSynapseGraphic::generate_Globalidsynapse(){
-   //TODO: Se puede quitar el mutex, ya que ahora se hace desde la propia sinapsis
+   //TODO: The mutex can be removed, as it is now done from the synapse itself
    mutexIdSynapse.lock();
    (*idGlobalSynapse)++;
    mutexIdSynapse.unlock();

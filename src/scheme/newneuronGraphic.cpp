@@ -89,7 +89,7 @@ void NewNeuronGraphic::showEvent(QShowEvent *) {
 
 void NewNeuronGraphic::keyPressEvent(QKeyEvent *event){
     switch(event->key()) {
-       case Qt::Key_Escape: // si se pulsa ESCAPE se cierra la ventana
+       case Qt::Key_Escape: // Pressing ESCAPE closes the window
           graphWidget->restaurateIPSimulated(QString::number(TYPENEURON_NORMAL));
           close();
           break;

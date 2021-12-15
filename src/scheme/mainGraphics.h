@@ -17,7 +17,7 @@ class MainGraphics : public QGraphicsView
 public:
     MainGraphics(QWidget *parent = nullptr);
     void itemMoved();
-    //add a new neuron into the structure data
+    // Add a new neuron into the structure data
     void addNeuron(int typeNeuron, QString ip, QString name, QString label, float posX, float posY, double scale,double V,
                    double Iexc, double Iinh, double tauExc, double tauInh, double tauV,
                    double R, double Vr, double Vrh, double Vth, double At, int amountOfNeurons);
@@ -39,9 +39,9 @@ public:
     QString mathematicalModel;
     QList <Node*> vectorGraphicsNodes;
     QVector <JunctionsDraw*> vectorGraphicsJunction;
-    QList <Neuron *> localNeurons; //Neuronas creadas localmente, para mostrar los monitores
+    QList <Neuron *> localNeurons; // Neurons created locally, to display the monitors
     int generateIdGlobalNeuron();
-    int idGlobalNeuron; //Es pasado a Neuron y este a través de mensajes a newNeuronGraphics y newGenerator.
+    int idGlobalNeuron; // It is passed to Neuron and it is passed through messages to newNeuronGraphics and newGenerator
 
 public slots:
     void newGenerator();
@@ -78,7 +78,7 @@ protected:
 
 private:
     int timerId;
-    //Contadores para construir una ip Multicast (MDHCP)
+    // Counters to build a multicast IP (MDHCP)
     int DHCP_NORMAL_A,DHCP_NORMAL_B,DHCP_NORMAL_C,DHCP_NORMAL_D;
     int DHCP_GENERATOR_A,DHCP_GENERATOR_B,DHCP_GENERATOR_C,DHCP_GENERATOR_D;
 
@@ -90,9 +90,9 @@ private:
     void saveScene(QString filename);
     void sendMsg(QString message, QString ipmTarget, int port);
 
-    QUdpSocket udpSocket; //from to send a message
-    QHostAddress groupAddress; //I'm listening
-    int idGlobalSynapse; //Es pasado a newsynapseGraphic por referencia y alli se modifica tantas veces como sinapsis se creen.
+    QUdpSocket udpSocket; // From to send a message
+    QHostAddress groupAddress; // I'm listening
+    int idGlobalSynapse; // It is passed to newsynapseGraphic by reference and there it is modified as many times as synapses are created
 
     QTimer *timerEmpty;
     void emptyLocalNeurons();

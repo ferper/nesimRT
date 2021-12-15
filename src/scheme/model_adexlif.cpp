@@ -138,7 +138,7 @@ ModelAdExLIF::ModelAdExLIF(QWidget *parent, Node *node) :
 }
 
 
-//To strecht the images into the container
+// To strecht the images into the container
 void ModelAdExLIF::showEvent(QShowEvent *) {
     ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
     ui->graphicsView_2->fitInView(ui->graphicsView_2->sceneRect(),Qt::KeepAspectRatio);
@@ -146,7 +146,7 @@ void ModelAdExLIF::showEvent(QShowEvent *) {
 
 void ModelAdExLIF::keyPressEvent(QKeyEvent *event){
     switch(event->key()) {
-       case Qt::Key_Escape: // si se pulsa ESCAPE se cierra la ventana
+       case Qt::Key_Escape: // Pressing ESCAPE closes the window
           close();
           break;
     }
@@ -209,7 +209,7 @@ void ModelAdExLIF::showSynapsys(){
                 fx->setForeground(id->foreground());
             }
 
-            //Recibimos "nA" o "pA" o "mA"...
+            // Is received "nA" o "pA" o "mA"...
             typeFxI::const_iterator ifx=fxI.cbegin();
             ifx=fxI.find(node->synapsys.at(i).fx_unitMeasureTxt);
 
@@ -225,9 +225,9 @@ void ModelAdExLIF::showSynapsys(){
             ui->tableWidget->setItem(row, 3,value);
             ui->tableWidget->setItem(row, 4,fx);
 
-/*         TODO: Poner vector que contenga las quivalencias de unidades de medidas fx
-                 y monstrar en la tabla las unidades en vez de los valores
-                 Modificar los colores y poner el grosor del monitor igual que este, el de la neurona.
+/*         TODO: Put a vector that contains the equivalences of units of measurements fx and show the units in the 
+        table instead of the values. Modify the colors and set the thickness of the monitor the same as this, 
+        that of the neuron.
 */
         }
     }
@@ -305,9 +305,9 @@ void ModelAdExLIF::on_pushButton_5_clicked()
             if (typeSynapse=="Inh")
                 type=TYPE_SYP_INHIBITION;
 
-// LOS DATOS DE Vsynapse SON ACTUALIZADOS POR UN MENSAJE ENTRANTE DESDE MOTHER A NEURON
+// Vsynapse DATA IS UPDATED BY AN INCOMING MESSAGE FROM MOTHER TO NEURON
 
-            QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
+            QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
             QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
 
             EncodeDecodeMsg msg;
@@ -678,8 +678,8 @@ void ModelAdExLIF::on_pushButton_2_clicked()
     else {
        node->amountOfNeurons=ui->lineEdit_Amount->text().toInt();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -704,8 +704,8 @@ void ModelAdExLIF::on_pushButton_19_clicked()
        node->label= ui->lineEdit_Label->text();
        node->hide();
        node->show();
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -727,8 +727,8 @@ void ModelAdExLIF::on_pushButton_6_clicked()
     else {
         node->parameters->V=ui->lineEdit_V->text().toDouble();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -753,8 +753,8 @@ void ModelAdExLIF::on_pushButton_9_clicked()
     else {
        node->parameters->Iexc=ui->lineEdit_Iexc->text().toDouble();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -779,8 +779,8 @@ void ModelAdExLIF::on_pushButton_10_clicked()
     else {
        node->parameters->Iinh=ui->lineEdit_Iinh->text().toDouble();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -804,8 +804,8 @@ void ModelAdExLIF::on_pushButton_11_clicked()
     else {
        node->parameters->tau_e=ui->lineEdit_tauExc->text().toDouble();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -829,8 +829,8 @@ void ModelAdExLIF::on_pushButton_12_clicked()
     else {
        node->parameters->tau_i=ui->lineEdit_tauInh->text().toDouble();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -853,8 +853,8 @@ void ModelAdExLIF::on_pushButton_13_clicked()
     else {
        node->parameters->tau_v=ui->lineEdit_tauV->text().toDouble();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -877,8 +877,8 @@ void ModelAdExLIF::on_pushButton_14_clicked()
     else {
        node->parameters->R=ui->lineEdit_R->text().toDouble();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -901,8 +901,8 @@ void ModelAdExLIF::on_pushButton_15_clicked()
     else {
        node->parameters->Vr=ui->lineEdit_Vr->text().toDouble();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -925,8 +925,8 @@ void ModelAdExLIF::on_pushButton_16_clicked()
     else {
        node->parameters->Vrh=ui->lineEdit_Vrh->text().toDouble();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -949,8 +949,8 @@ void ModelAdExLIF::on_pushButton_17_clicked()
     else {
        node->parameters->Vth=ui->lineEdit_Vth->text().toDouble();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -973,8 +973,8 @@ void ModelAdExLIF::on_pushButton_18_clicked()
     else {
        node->parameters->At=ui->lineEdit_At->text().toDouble();
 
-       QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-       QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+       QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+       QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
        groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
        EncodeDecodeMsg msg;
@@ -1013,8 +1013,8 @@ void ModelAdExLIF::on_pushButton_applyData_clicked()
             node->hide();
             node->show();
 
-            QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-            QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+            QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+            QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
 
             groupAddress4_to_MotherNeuron=QHostAddress(IPM_NEURON_PROMISCUOUS);
             EncodeDecodeMsg msg;
@@ -1058,10 +1058,10 @@ void ModelAdExLIF::on_pushButton_ApplySynapse_clicked()
             int type=TYPE_SYP_EXCITATION;
             if (typeSynapse=="Inh")
                 type=TYPE_SYP_INHIBITION;
-// LOS DATOS DE Vsynapse SON ACTUALIZADOS POR UN MENSAJE ENTRANTE DESDE MOTHER A NEURON
+// Vsynapse DATA IS UPDATED BY AN INCOMING MESSAGE FROM MOTHER TO NEURON
 
-            QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
-            QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
+            QUdpSocket udpSocket4_MotherNeuron; // From mother neuron
+            QHostAddress groupAddress4_to_MotherNeuron; // I'm listening to the neuron mother
             EncodeDecodeMsg msg;
 
             groupAddress4_to_MotherNeuron=QHostAddress(IPM_MOTHER);

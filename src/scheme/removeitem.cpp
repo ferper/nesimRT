@@ -109,14 +109,14 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
     connect(ui->lineEdit_Local, SIGNAL(textChanged(const QString &)), this, SLOT(LocalSynapsysFilterSearch()));
     connect(ui->lineEdit_Global, SIGNAL(textChanged(const QString &)), this, SLOT(GlobalSynapsysFilterSearch()));
 
-    //Cuando se envia mensajes para eliminacion, se refresca en pantalla los cambios
+    // When messages are sent for deletion, the changes are refreshed on the screen
     connect(&timer_NeuronsRefresh, SIGNAL(timeout()), this, SLOT(neuronFilterSearch()));
     connect(&timer_LocalSynapsysRefresh, SIGNAL(timeout()), this, SLOT(LocalSynapsysFilterSearch()));
     connect(&timer_GlobalSynapsysRefresh, SIGNAL(timeout()), this, SLOT(GlobalSynapsysFilterSearch()));
 
 }
 
-//To strecht the images into the container
+// To strecht the images into the container
 void Removeitem::showEvent(QShowEvent *) {
     ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
     ui->graphicsView_2->fitInView(ui->graphicsView_2->sceneRect(),Qt::KeepAspectRatio);
@@ -176,7 +176,7 @@ void Removeitem::fill_GlobalSynapsys(QString key, QString value) {
    ui->tableWidget_GlobalSynapsys->setColumnWidth(2,30);
    ui->tableWidget_GlobalSynapsys->setColumnWidth(3,80);
    ui->tableWidget_GlobalSynapsys->setColumnWidth(4,60);
-   ui->tableWidget_GlobalSynapsys->setColumnWidth(5,0); //Es 0, para no mostrarlo
+   ui->tableWidget_GlobalSynapsys->setColumnWidth(5,0); // It is 0, not to show it
    ui->tableWidget_GlobalSynapsys->setHorizontalHeaderLabels(labels);
 
    ui->tableWidget_GlobalSynapsys->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -259,7 +259,7 @@ void Removeitem::fill_LocalSynapsys(QString ipNodeSource, QString key, QString v
     ui->tableWidget_LocalSynapsys->setColumnWidth(2,30);
     ui->tableWidget_LocalSynapsys->setColumnWidth(3,80);
     ui->tableWidget_LocalSynapsys->setColumnWidth(4,60);
-    ui->tableWidget_LocalSynapsys->setColumnWidth(5,0); //Es 0, para no mostrarlo
+    ui->tableWidget_LocalSynapsys->setColumnWidth(5,0); // It is 0, not to show it
     ui->tableWidget_LocalSynapsys->setHorizontalHeaderLabels(labels);
     ui->tableWidget_LocalSynapsys->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_LocalSynapsys->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -334,7 +334,7 @@ void Removeitem::fillAllNeurons(QString key, QString value) {
     labels << tr("Label") << tr("IP Address") <<tr("ID") ;
     ui->tableWidget_Neurons->setColumnWidth(0,100);
     ui->tableWidget_Neurons->setColumnWidth(1,80);
-    ui->tableWidget_Neurons->setColumnWidth(2,80); //Es 0 para que no se muestre
+    ui->tableWidget_Neurons->setColumnWidth(2,80); // It is 0, not to show it
 
     ui->tableWidget_Neurons->setHorizontalHeaderLabels(labels);
     ui->tableWidget_Neurons->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -413,7 +413,7 @@ void Removeitem::on_pushButton_clicked()
                 QString m=msg.encondeMsg(REMOVE_SYNAPSE_FROM_GRAPHIC_TO_MOTHER,idGlobalSynapse,ipSource,ipTarget).toStdString().c_str();
                 sendMsg(m ,NEURON_PROMISCUOS_PORT);
             }
-            //Comprobar si hay alguna sinapsis que le llegue a la neurona, para borrarla tambien.
+            // Check if there is any synapse that reaches the neuron, to erase it as well.
             EncodeDecodeMsg msg1;
 
            if (NodeHasSynapsys(node)){
@@ -421,7 +421,7 @@ void Removeitem::on_pushButton_clicked()
                 QString msg="The neuron that you want to delete has synapses associated with other neurons.\n If you want to continue, these will be deleted too. Continue?";
                 reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No);
                 if (reply==QMessageBox::Yes) {
-                    int n=0; //Recorrer todas las neuronas y todas las sinapsis
+                    int n=0; // Traverse all neurons and all synapses
                     while (n<vectorGraphicsNodes->size()) {
                         int s=0;
                         ipSource=node->ipmSource;
@@ -437,7 +437,7 @@ void Removeitem::on_pushButton_clicked()
                         }
                         n++;
                     }
-                  //Nota: FutureWork Todos los mensajes de borrado de neuronas deberían ser por idLGobalNeuron y no por ip.
+                  //Nota: FutureWork All neuron delete messages should be by idLGobalNeuron and not by ip.
                     QString m= msg1.encondeMsg(REMOVE_NEURON_FROM_GRAPHIC_TO_MOTHER,node->ipmSource,node->id).toStdString().c_str();
                     sendMsg(m ,NEURON_PROMISCUOS_PORT);
                     timer_NeuronsRefresh.start(1000);
@@ -523,7 +523,7 @@ void Removeitem::neuronFilterSearch(){
     if (ui->tableWidget_Neurons->rowCount()>0)
        fill_LocalSynapsys(ui->tableWidget_Neurons->item(0,1)->text());
     else
-       fill_LocalSynapsys("........"); //Para que no muestre nada
+       fill_LocalSynapsys("........"); // So that it does not show anything
 }
 
 void Removeitem::LocalSynapsysFilterSearch(){
@@ -535,7 +535,7 @@ void Removeitem::LocalSynapsysFilterSearch(){
     if (ui->tableWidget_Neurons->rowCount()>0)
        ip=ui->tableWidget_Neurons->item(0,1)->text();
     else
-       ip=("........"); //Para que no muestre nada
+       ip=("........"); // So that it does not show anything
 
     QString key="";
     if (ui->comboBox_Local->currentIndex()==0)

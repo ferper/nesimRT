@@ -104,7 +104,7 @@ void NewSpiNNaker::showEvent(QShowEvent *) {
 
 void NewSpiNNaker::keyPressEvent(QKeyEvent *event){
     switch(event->key()) {
-       case Qt::Key_Escape: // si se pulsa ESCAPE se cierra la ventana
+       case Qt::Key_Escape: // Pressing ESCAPE closes the window
           close();
           break;
     }
@@ -278,7 +278,7 @@ void NewSpiNNaker::exportToSpiNNaker(){
             out <<"sim.set_number_of_neurons_per_core(sim.IF_curr_exp, 100)"<<"\n";
 
             out <<"\n";
-            /* Exportamos todas las neuronas incluido los Generadores*/
+            /* Export all neurons including Generators*/
             Node *nodeSource;
             for (int i=0; i<vectorGraphicsNodes->size();i++ ) {
                         nodeSource=vectorGraphicsNodes->at(i);
@@ -299,7 +299,7 @@ void NewSpiNNaker::exportToSpiNNaker(){
 
             }
             out << "\n";
-            /* Exportamos todas las synapsis */
+            /* Export all synapses */
             Node *nodeTarget;
             for (int i=0; i<vectorGraphicsNodes->size();i++ ) {
                 nodeSource=vectorGraphicsNodes->at(i);
@@ -358,7 +358,7 @@ void NewSpiNNaker::fillAllNeurons(QString key, QString value) {
         labels << tr("Label") << tr("IP Address") <<tr("ID") ;
         ui->tableWidget_Neurons->setColumnWidth(0,100);
         ui->tableWidget_Neurons->setColumnWidth(1,80);
-        ui->tableWidget_Neurons->setColumnWidth(2,80); //Es 0 para que no se muestre
+        ui->tableWidget_Neurons->setColumnWidth(2,80); // It is 0 so it does not show
 
         ui->tableWidget_Neurons->setHorizontalHeaderLabels(labels);
         ui->tableWidget_Neurons->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -441,7 +441,7 @@ void NewSpiNNaker::on_pushButton_clicked()
 void NewSpiNNaker::on_pushButton_3_clicked()
 {
    QFileDialog fileDialog(this, tr("Export to SpiNNaker"), QDir::currentPath(),tr("SpiNNaker Files (*.py)"));
-   fileDialog.setOption(QFileDialog::DontUseNativeDialog,true); //Very important for refresh
+   fileDialog.setOption(QFileDialog::DontUseNativeDialog,true); // Very important for refresh
    fileDialog.setAcceptMode(QFileDialog::AcceptSave);
    if (QDialog::Accepted != fileDialog.exec())
       return ;
