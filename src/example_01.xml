@@ -92,8 +92,8 @@
     </Node>
     <Synapsys>NEURONAL SYNAPSES</Synapsys>
     <Synapse>
-        <source>233.0.0.1</source>
-        <target>232.0.0.1</target>
+        <source>232.0.0.1</source>
+        <target>233.0.0.1</target>
         <typeTargetNeuron>2</typeTargetNeuron>
         <w>1</w>
         <fx>nA</fx>
@@ -101,8 +101,8 @@
         <idGlobalSynapse>1</idGlobalSynapse>
     </Synapse>
     <Synapse>
-        <source>233.0.0.2</source>
-        <target>232.0.0.1</target>
+        <source>232.0.0.1</source>
+        <target>233.0.0.2</target>
         <typeTargetNeuron>2</typeTargetNeuron>
         <w>1</w>
         <fx>nA</fx>

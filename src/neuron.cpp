@@ -441,18 +441,17 @@ void Neuron::processPendingDatagrams()
                this->p->Iinh=0;
                this->Iinh_prior=0;
 
-               double w1;
+               double weight = msg.field5.toDouble();
                Synapse *s1;
-               w1=1.13/1000000000;
                quint16 port_target=quint16(msg.field3.toInt());
                int type =msg.field4.toInt();
                QString fx_numberTxt=msg.field6;
                QString fx_unitMeasureTxt =msg.field7;
                int idGlobalSynapse=msg.field9.toInt();
                if (type==TYPE_SYP_EXCITATION)
-                   s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,msg.field1,msg.field2,port_target,type,&p->Iexc,we,fx_numberTxt,fx_unitMeasureTxt,&Iexc_enabled,&V_enabled,timer,&mutexNeuron,&muestra,out,&spkOnOff_exc);
+                   s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,msg.field1,msg.field2,port_target,type,&p->Iexc,weight,fx_numberTxt,fx_unitMeasureTxt,&Iexc_enabled,&V_enabled,timer,&mutexNeuron,&muestra,out,&spkOnOff_exc);
                else
-                   s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,msg.field1,msg.field2,port_target,type,&p->Iinh,wi,fx_numberTxt,fx_unitMeasureTxt,&Iinh_enabled,&V_enabled,timer,&mutexNeuron,&muestra,out,&spkOnOff_inh);
+                   s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,msg.field1,msg.field2,port_target,type,&p->Iinh,weight,fx_numberTxt,fx_unitMeasureTxt,&Iinh_enabled,&V_enabled,timer,&mutexNeuron,&muestra,out,&spkOnOff_inh);
                //cout<<"-I am neuron "<<ipmSource.toStdString()<< " and I have created a synapse with "<<msg.field1.toStdString()<<" type: "<<type<<endl;
                s1->timer->start();
 
@@ -483,6 +482,10 @@ void Neuron::processPendingDatagrams()
                    Vsynapse.at(idx)->fx_unitMeasureTxt=fx_unitMeasureTxt;
                    Vsynapse.at(idx)->type=typeSynapse;
                    //Vsynapse.at(idx)->Iinc = &p->Iinh;&p->Iexcep
+                   if (typeSynapse == TYPE_SYP_EXCITATION)
+                       Vsynapse.at(idx)->Iinc = &p->Iexc;
+                   else
+                       Vsynapse.at(idx)->Iinc = &p->Iinh;
                    if (monitor) // If it is visible from the widget, refresh is done in table
                        monitor->showSynapsys();
                }
