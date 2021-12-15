@@ -188,7 +188,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
         this->liveNeuron();
     }
     this->localRemote= localRemote;
-    file.setFileName("basura10_ExInNx"+label+".csv");
+    file.setFileName("Trash10_ExInNx"+label+".csv");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QMessageBox::warning(this, "Warning","It was not possible to create the data extraction file.");
     }
