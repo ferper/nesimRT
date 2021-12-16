@@ -6,8 +6,8 @@
         <ip>232.0.0.1</ip>
         <id>1</id>
         <label>GEN1</label>
-        <posX>726.25</posX>
-        <posY>84.75</posY>
+        <posX>751</posX>
+        <posY>132.5</posY>
         <scale>2.8</scale>
         <typeNeuron>2</typeNeuron>
         <frecuency>1000</frecuency>
@@ -28,8 +28,8 @@
         <ip>233.0.0.1</ip>
         <id>2</id>
         <label>G1</label>
-        <posX>992.75</posX>
-        <posY>255.5</posY>
+        <posX>932.25</posX>
+        <posY>330.75</posY>
         <scale>1.8</scale>
         <typeNeuron>3</typeNeuron>
         <frecuency>1000</frecuency>
@@ -50,8 +50,8 @@
         <ip>233.0.0.2</ip>
         <id>3</id>
         <label>G2</label>
-        <posX>720.25</posX>
-        <posY>231</posY>
+        <posX>686.25</posX>
+        <posY>266.75</posY>
         <scale>1.8</scale>
         <typeNeuron>3</typeNeuron>
         <frecuency>1000</frecuency>
@@ -72,8 +72,8 @@
         <ip>233.0.0.3</ip>
         <id>4</id>
         <label>G3</label>
-        <posX>601.25</posX>
-        <posY>407</posY>
+        <posX>634.5</posX>
+        <posY>501</posY>
         <scale>1.8</scale>
         <typeNeuron>3</typeNeuron>
         <frecuency>1000</frecuency>
@@ -94,8 +94,8 @@
         <ip>233.0.0.4</ip>
         <id>5</id>
         <label>G4</label>
-        <posX>546.25</posX>
-        <posY>185.25</posY>
+        <posX>510</posX>
+        <posY>253.5</posY>
         <scale>1.8</scale>
         <typeNeuron>3</typeNeuron>
         <frecuency>1000</frecuency>
@@ -114,17 +114,17 @@
     </Node>
     <Synapsys>NEURONAL SYNAPSES</Synapsys>
     <Synapse>
-        <source>233.0.0.1</source>
-        <target>232.0.0.1</target>
+        <source>232.0.0.1</source>
+        <target>233.0.0.1</target>
         <typeTargetNeuron>2</typeTargetNeuron>
-        <w>0.58</w>
+        <w>1</w>
         <fx>nA</fx>
         <typeSynapse>1</typeSynapse>
         <idGlobalSynapse>1</idGlobalSynapse>
     </Synapse>
     <Synapse>
-        <source>233.0.0.2</source>
-        <target>233.0.0.1</target>
+        <source>233.0.0.1</source>
+        <target>233.0.0.2</target>
         <typeTargetNeuron>3</typeTargetNeuron>
         <w>1.67</w>
         <fx>nA</fx>
@@ -132,8 +132,8 @@
         <idGlobalSynapse>2</idGlobalSynapse>
     </Synapse>
     <Synapse>
-        <source>233.0.0.3</source>
-        <target>233.0.0.1</target>
+        <source>233.0.0.1</source>
+        <target>233.0.0.3</target>
         <typeTargetNeuron>3</typeTargetNeuron>
         <w>1.5</w>
         <fx>nA</fx>
@@ -141,13 +141,13 @@
         <idGlobalSynapse>3</idGlobalSynapse>
     </Synapse>
     <Synapse>
-        <source>233.0.0.4</source>
-        <target>233.0.0.2</target>
+        <source>233.0.0.2</source>
+        <target>233.0.0.4</target>
         <typeTargetNeuron>3</typeTargetNeuron>
         <w>1</w>
         <fx>nA</fx>
         <typeSynapse>1</typeSynapse>
-        <idGlobalSynapse>6</idGlobalSynapse>
+        <idGlobalSynapse>4</idGlobalSynapse>
     </Synapse>
     <Synapse>
         <source>233.0.0.2</source>
@@ -156,6 +156,6 @@
         <w>0.78</w>
         <fx>nA</fx>
         <typeSynapse>-1</typeSynapse>
-        <idGlobalSynapse>7</idGlobalSynapse>
+        <idGlobalSynapse>5</idGlobalSynapse>
     </Synapse>
 </xNeuronalScheme>

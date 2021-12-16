@@ -493,6 +493,7 @@ void MainGraphics::processPendingDatagrams()
             synap.w=w;
             synap.idGlobal=idGlobalSynapse;
             synap.ipmTarget=target;
+            synap.ipmSource=source;
             synap.port=(quint16) port;
             synap.type=typeSynapse;
 

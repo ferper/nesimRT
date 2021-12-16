@@ -19,6 +19,7 @@ public:
         QString idGlobal;
         int type;
         QString ipmTarget;
+        QString ipmSource;
         quint16 port;
         double w;
         QString fx_numberTxt;       //fx's value Text

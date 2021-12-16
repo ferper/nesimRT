@@ -205,8 +205,8 @@ void Removeitem::fill_GlobalSynapsys(QString key, QString value) {
                         QTableWidgetItem *tAmount = new QTableWidgetItem();
                         QTableWidgetItem *tidGlobalSynapse = new QTableWidgetItem();
 
-                        tSource->setText(n->label);
-                        tTarget->setText(findNode("ip",n->synapsys.at(j).ipmTarget)->label);
+                        tTarget->setText(n->label);
+                        tSource->setText(findNode("ip",n->synapsys.at(j).ipmSource)->label);
 
 
                         if (n->synapsys.at(j).type==TYPE_SYP_EXCITATION) {
