@@ -453,8 +453,8 @@ void WidgetGeneralMonitor::on_pushButton_3_clicked() {
             QString ip=ui->tableWidget_Legend->item(ui->tableWidget_Legend->currentRow(),0)->text();
             QString signal=ui->tableWidget_Legend->item(ui->tableWidget_Legend->currentRow(),1)->text();
             QString serie=ui->tableWidget_Legend->item(ui->tableWidget_Legend->currentRow(),2)->text();
-            std::cout<<"ip: "<<ip.toStdString()<<" signal: "<<signal.toStdString()<<" Serie: "<<serie.toStdString()<<std::endl;
-
+            //std::cout<<"ip: "<<ip.toStdString()<<" signal: "<<signal.toStdString()<<" Serie: "<<serie.toStdString()<<std::endl;
+            ui->tableWidget->setItem(ui->tableWidget->currentRow(),1 , new QTableWidgetItem(""));
             signalsSelected.remove(serie);
             //Comprobamos si existe otro registro que tenga la misma ip en signalsSelected,
             //si no lo hay, entonces hay que eliminar el registro de signalsReceived para que no quede huérfano
