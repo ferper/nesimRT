@@ -31,29 +31,29 @@ WidgetGeneralMonitor::WidgetGeneralMonitor(QWidget *parent, typeDataNeurons *Qne
     QString cadena="General Monitor: ";
     setWindowTitle(tr(cadena.toStdString().c_str()));
 
-    //Cambiar aqui por si se quiere añadir más controles
-    windowWidth=1200; //window width size
-    windowHeight=700; //window height size
+    // Change here if you want to add more controls
+    windowWidth=1200; // Window width size
+    windowHeight=700; // Window height size
 
-    rightMargen=350; //graph right margen
-    bottomMargen=25; //graph bottom margen
-    posCanvasX=360; //graph posX
-    posCanvasY=100; //graph posY
+    rightMargen=350; // Graph right margen
+    bottomMargen=25; // Graph bottom margen
+    posCanvasX=360; // Graph posX
+    posCanvasY=100; // Graph posY
 
-    //Parameters to paint
+    // Parameters to paint
     this->Iexc=0;
     this->Iinh=0;
     this->V1=0;
     this->V2=0;
 
-    resize(windowWidth, windowHeight); //Window Size
+    resize(windowWidth, windowHeight); // Window Size
     ui->spinSizeX->setValue(-250);
     ui->spinSizeY->setValue(100);
 
     QGridLayout * layout = new QGridLayout(this);
     graph = new TickerGraph(this);
 
-    //graph Dimensions
+    // Graph Dimensions
     graph->setFixedWidth(windowWidth-rightMargen-posCanvasX);
     graph->setFixedHeight(windowHeight-bottomMargen-posCanvasY);
     graph->setRange(-250,100);
@@ -135,11 +135,11 @@ WidgetGeneralMonitor::WidgetGeneralMonitor(QWidget *parent, typeDataNeurons *Qne
     connect(&timer, SIGNAL(timeout()), this, SLOT(paintGraphic()));
     connect(ui->tableWidget, SIGNAL(cellDoubleClicked (int, int) ),this, SLOT( cellSelected( int, int ) ) );
 
-    //-- Para recibir todas las señales
+    // To receive all the signals
     udpSocket4_GeneralMonitor = new QUdpSocket();
     groupAddress4_GeneralMonitor = new QHostAddress(IPM_NEURON_PROMISCUOUS);
 
-    //Escuchamos por un unico puerto todas las señales
+    // All signals are heard through a single port
     udpSocket4_GeneralMonitor->bind(QHostAddress::AnyIPv4,  MONITOR_PORT, QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
     udpSocket4_GeneralMonitor->joinMulticastGroup(*groupAddress4_GeneralMonitor);
     connect(udpSocket4_GeneralMonitor, SIGNAL(readyRead()),this, SLOT(processDataGeneralMonitor()));
@@ -159,7 +159,7 @@ WidgetGeneralMonitor::~WidgetGeneralMonitor() {
 
 void WidgetGeneralMonitor::keyPressEvent(QKeyEvent *event) {
     switch(event->key()) {
-       case Qt::Key_Escape: // if ESCAPE key is pressed, the window is closed
+       case Qt::Key_Escape: // If ESCAPE key is pressed, the window is closed
           close();
           break;
     }
@@ -231,7 +231,7 @@ void WidgetGeneralMonitor::paintGraphic(){
    QMap<QString, double *>::const_iterator i;
    for (i = signalsMonitor.begin(); i != signalsMonitor.end(); ++i) {
        graph->appendPoint(i.key(),*(i.value()));
-      std::cout<<"Paint: "<<i.key().toStdString()<<" "<<*i.value()<<std::endl;
+       //std::cout<<"Paint: "<<i.key().toStdString()<<" "<<*i.value()<<std::endl;
    }
 }
 
@@ -242,9 +242,9 @@ bool WidgetGeneralMonitor::event(QEvent *event) {
 }
 
 void WidgetGeneralMonitor::onShow(){
-    graph->move(posCanvasX,posCanvasY); //graph position
+    graph->move(posCanvasX,posCanvasY); // Graph position
     typeDataNeurons::const_iterator it1=Qneurons->cbegin();
-    int n=0; //Amount of TYPENEURON_NORMAL
+    int n=0; // Amount of TYPENEURON_NORMAL
     while (it1!=Qneurons->cend()) {
         if (it1.value().typeNeuron==TYPENEURON_NORMAL)
             n++;
@@ -266,7 +266,7 @@ void WidgetGeneralMonitor::onShow(){
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     typeDataNeurons::const_iterator it=Qneurons->cbegin();
     for (int pos=0;it!=Qneurons->cend();++it) {
-        if (it.value().typeNeuron==TYPENEURON_NORMAL) { //Only show a kind of NEURON
+        if (it.value().typeNeuron==TYPENEURON_NORMAL) { // Only show a kind of NEURON
             QString id=it.value().id;
             QString ipm=it.key();
             QString sending="";
@@ -309,7 +309,7 @@ void WidgetGeneralMonitor::processDataGeneralMonitor()
 
         if (encontrado) {
            int idx=0;
-           while (pos>=0) { //Se puede proteger el vector con idx<=paramsMonitor.size Por si se reciben más parametros que elmentos en el vector
+           while (pos>=0) { // TODO: The vector can be protected with idx <= paramsMonitor.size In case more parameters are received than the elements in the vector
                QString p=data.left(pos);
                *(itData.value()+idx)=p.toDouble();
                data.remove(0,pos+1);
@@ -323,9 +323,9 @@ void WidgetGeneralMonitor::processDataGeneralMonitor()
 void WidgetGeneralMonitor::on_pushButton_4_clicked()
 {
     QTableWidgetItem *item = ui->tableWidget->item(ui->tableWidget->currentRow(),3); //ip multicast
-    if (item) { // Hay neuronas en el sistema
+    if (item) { // There are neurons in the system
        QString NeuronSelected=item->text();
-       std::cout<<"Row Selected: "<<ui->tableWidget->currentRow()<<" Neuron: "<<NeuronSelected.toStdString()<<std::endl;
+       //std::cout<<"Row Selected: "<<ui->tableWidget->currentRow()<<" Neuron: "<<NeuronSelected.toStdString()<<std::endl;
        int pos=0; //Spike
        if (ui->radioButton_v2->isChecked())
           pos=1; // Iexe
@@ -347,40 +347,40 @@ void WidgetGeneralMonitor::on_pushButton_4_clicked()
 
        QMap <QString, QPair <QString,int>>::iterator itSS=signalsSelected.begin();
        itSS=signalsSelected.find(serie.toStdString().c_str());
-       if (itSS!=signalsSelected.end())
-          std::cout<<"EXISTS key= "<<itSS.key().toStdString()<<" ip: "<<itSS.value().first.toStdString()<<" pos: "<<itSS.value().second<<std::endl;
-       else
-           std::cout<<"Serie does not exist "<<std::endl;
+       //if (itSS!=signalsSelected.end())
+          //std::cout<<"EXISTS key= "<<itSS.key().toStdString()<<" ip: "<<itSS.value().first.toStdString()<<" pos: "<<itSS.value().second<<std::endl;
+       //else
+           //std::cout<<"Serie does not exist "<<std::endl;
        bool serieFound=true;
        bool pairFound=false;
        if (itSS==signalsSelected.end())
           serieFound=false;
-        //IMPORTANTE: NO OPTIMIZAR, NO CAMBIAR - EL ORDEN ES IMPORTANTE
-        // Tenemos que buscar en la KEY y luegos en todos los values el QPair
+        // IMPORTANT: DO NOT OPTIMIZE, DO NOT CHANGE - THE ORDER IS IMPORTANT 
+        // You have to search in the KEY and then in all the values the QPair
         itSS=signalsSelected.begin();
-        while ((!pairFound) && (itSS!=signalsSelected.end())) { //No existe Pair
+        while ((!pairFound) && (itSS!=signalsSelected.end())) { //  There is no Pair
            if ((itSS.value().first==NeuronSelected) && (itSS.value().second==pos)) {
               pairFound=true;
-              std::cout<<"Found"<<std::endl;
+              //std::cout<<"Found"<<std::endl;
            }
            else ++itSS;
         }
-        //Añadir registro nuevo en SS,SR y SM
-        if (!pairFound && !serieFound){ //NO existe serie
-            std::cout<<"CASE 0 - ADDING"<<std::endl;
+        // Add new record in SS,SR and SM
+        if (!pairFound && !serieFound){ // There is no series
+            //std::cout<<"CASE 0 - ADDING"<<std::endl;
             double *v; //= new double[4];
             QMap <QString, double *>::Iterator it = signalsReceived.begin();
             it=signalsReceived.find(NeuronSelected);
-            if (it==signalsReceived.end()) {//La ip de la neurona no está
+            if (it==signalsReceived.end()) {// The ip of the neuron is not
                 v= new double[4];
                 signalsReceived.insert(NeuronSelected,v);
             }
-            else // Ya existe - Guardamos el vector de parametros a recibir
+            else // It already exists - We save the vector of parameters to receive
                 v=it.value();
             signalsMonitor.insert(serie,v+pos);
             signalsSelected.insert(serie,qMakePair(NeuronSelected,pos));
         }
-        else if (serieFound){ //La serie existe
+        else if (serieFound){ // The series exists
             QMessageBox::StandardButton reply;
             itSS=signalsSelected.find(serie);
             QString msg="1 - Serie '"+serie+"'is assigned to parameter '"+paramsMonitor[itSS.value().second]+"' of neuron '"+itSS.value().first+"' \nWould you like to assign serie '"+serie+"' to parameter '"+paramsMonitor[pos]+"' of  neuron '"+NeuronSelected+"'?";
@@ -393,7 +393,7 @@ void WidgetGeneralMonitor::on_pushButton_4_clicked()
                signalsSelected.insert(serie,qMakePair(NeuronSelected,pos));
                QMap <QString, double*>::Iterator ittmp_SR;
                ittmp_SR=signalsReceived.find(NeuronSelected);
-               if (ittmp_SR==signalsReceived.end()){ //No existe ip en SR
+               if (ittmp_SR==signalsReceived.end()){ // There is no ip in SR
                   double *v= new double[4];
                   signalsReceived.insert(NeuronSelected,v);
                   itSS=signalsSelected.begin();
@@ -412,10 +412,10 @@ void WidgetGeneralMonitor::on_pushButton_4_clicked()
                signalsMonitor.find(serie).value()=signalsReceived.find(NeuronSelected).value()+pos;
             }
         }
-        else if (!serieFound) { //La serie no existe, pero existe un QPair
+        else if (!serieFound) { // The series does not exist, but a QPair exists
             bool encontrado=false;
             itSS=signalsSelected.begin();
-            //Localizamos el QPair
+            // We locate the QPair
             while ((!encontrado) && itSS!=signalsSelected.end()) {
                  if ((itSS.value().first==NeuronSelected) && (itSS.value().second==pos))
                   encontrado=true;
@@ -456,8 +456,8 @@ void WidgetGeneralMonitor::on_pushButton_3_clicked() {
             //std::cout<<"ip: "<<ip.toStdString()<<" signal: "<<signal.toStdString()<<" Serie: "<<serie.toStdString()<<std::endl;
             ui->tableWidget->setItem(ui->tableWidget->currentRow(),1 , new QTableWidgetItem(""));
             signalsSelected.remove(serie);
-            //Comprobamos si existe otro registro que tenga la misma ip en signalsSelected,
-            //si no lo hay, entonces hay que eliminar el registro de signalsReceived para que no quede huérfano
+            // It checks if there is another record that has the same ip in signalsSelected,
+            // if not, then signalsReceived must be unregistered so that it is not orphaned
             QMap  <QString,QPair<QString,int>>::Iterator it;
             it=signalsSelected.begin();
             bool encontrado=false;
@@ -468,7 +468,7 @@ void WidgetGeneralMonitor::on_pushButton_3_clicked() {
                    ++it;
             }
             signalsMonitor.remove(serie);
-            if (!encontrado) //Registro en signalsReceived huérfano.
+            if (!encontrado) // Log in orphan signalsReceived.
                signalsReceived.remove(ip);
             graph->removeSeries(serie);
             if (!signalsMonitor.size())
