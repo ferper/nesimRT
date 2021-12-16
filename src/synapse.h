@@ -15,20 +15,20 @@ public:
 
 
     int *N;
-    int idGlobalSynapse; //Id global of the all synapsys created on the system
+    int idGlobalSynapse; // Id global of the all synapsys created on the system
 
-    QString ipmT; //Ip multicast of the Target Neuron
-    QString ipmS; //Ip multicast of the Source Neuron
-    quint16 port_target; //Neuron's Target port
-    int type; //Inhibidora o excitadora
-    double *Iinc; //Variable to increment, can be Iexc or Iinh because it's a pointer
-    bool *startICalculate; //Flag para empezar a autocalcular Iexc ó Iinh
+    QString ipmT; // Ip multicast of the Target Neuron
+    QString ipmS; // Ip multicast of the Source Neuron
+    quint16 port_target; // Neuron's Target port
+    int type; // Type can be Inhibitory or Excitatory
+    double *Iinc; // Variable to increment, can be Iexc or Iinh because it's a pointer
+    bool *startICalculate; // Flag to start autocalculating Iexc or Iinh
     bool *startVCalculate;
     QTimer *timer;
-    double w; //Current value for synapsys with others neuron
+    double w; // Current value for synapsys with others neuron
 
-    QString fx_numberTxt; //fx's value Text
-    QString fx_unitMeasureTxt; //fx's unit's name
+    QString fx_numberTxt; // fx's value Text
+    QString fx_unitMeasureTxt; // fx's unit's name
     void deleteSynapse();
 
     QUdpSocket udpSocket4;

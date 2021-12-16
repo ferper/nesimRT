@@ -18,7 +18,7 @@ Parameters::Parameters(double V,double Iexc,  double Iinh,double tau_e,double ta
 
 Parameters& Parameters::operator = (const Parameters &p){
 
-    if(this!=&p){ //Comprueba que no se esté intentando igualar un objeto a sí mismo
+    if(this!=&p){ // It is verified that an object is not trying to match itself
 
         this->Iexc=p.Iexc;
         this->Iinh=p.Iinh;

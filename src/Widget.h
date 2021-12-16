@@ -119,7 +119,7 @@ private slots:
     void on_pushButton_22_clicked();
 
 private:
-    int fr; //frecuencia de muestreo
+    int fr; // Sampling rate 
     Ui::Widget *ui;
     TickerGraph * graph;
     QTimer timer;

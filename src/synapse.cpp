@@ -41,7 +41,7 @@ void Synapse::processPendingDatagrams(){
         data=datagram.constData();
         if (data=="SPIKE") {
             mutexNeuron->lock();
-           (*Iinc)+=(*N)*(w); //Se incrementa Iexc ó Iinh es un puntero
+           (*Iinc)+=(*N)*(w); // Iexc or Iinh is incremented in a pointer
             *spkOnOff=true;
             mutexNeuron->unlock();
             (*startICalculate)=true;
