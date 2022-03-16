@@ -244,20 +244,6 @@ void NewSpiNNaker::exportToSpiNNaker(){
             if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
               return;
             QTextStream out(&file);
-            out << "#################################################################"<<"\n";
-            out << "#                                                               #"<<"\n";
-            out << "#     ********************   NESIM-RT  ********************     #"<<"\n";
-            out << "#     -----------------------------------------------------     #"<<"\n";
-            out << "#          A Real Time Spiking Neural Network Simulator         #"<<"\n";
-            out << "#     -----------------------------------------------------     #"<<"\n";
-            out << "#                                                               #"<<"\n";
-            out << "#     Author: Daniel Jesus Rosa Gallardo                        #"<<"\n";
-            out << "#     email: dani.rosagallardo@mail.uca.es                      #"<<"\n";
-            out << "#     Date: 2019                                                #"<<"\n";
-            out << "#     Cadiz University - Spain                                  #"<<"\n";
-            out << "#                                                               #"<<"\n";
-            out << "#################################################################"<<"\n";
-            out << "\n";
             out << "import pyNN.spiNNaker as sim"<< "\n";
             out << "import pyNN.utility.plotting as plot"<< "\n";
             out << "import matplotlib.pyplot as plt"<< "\n";
@@ -284,17 +270,17 @@ void NewSpiNNaker::exportToSpiNNaker(){
                         nodeSource=vectorGraphicsNodes->at(i);
                QString labelNeuron= nodeSource->label+"_"+nodeSource->id;
                if (nodeSource->typeNode==TYPENEURON_GENERATOR) {
-                   out<< labelNeuron<<"= sim.Population(1,sim.SpikeSourceArray(spike_times=[";
+                   out<< labelNeuron<<"= sim.Population(1,sim.SpikeSourceArray, {'spike_times': [[";
                     int s=ui->tableWidget_times->rowCount();
                    for (int j=0; j<ui->tableWidget_times->rowCount();j++) {
                       out<<ui->tableWidget_times->item(j,0)->text();
                       if (j!=ui->tableWidget_times->rowCount()-1)
                           out <<",";
                     }
-                   out<<"],label=\""<<labelNeuron<<"\"))"<<"\n";
+                   out<<"]]},label=\""<<labelNeuron<<"\")"<<"\n";
                }
                else if (nodeSource->typeNode==TYPENEURON_NORMAL) {
-                   out<< labelNeuron<<"= sim.Population("<<nodeSource->amountOfNeurons<<",sim.IF_curr_exp(**cell_params_lif), label=\""<<labelNeuron<<"\")"<<"\n";
+                   out<< labelNeuron<<"= sim.Population("<<nodeSource->amountOfNeurons<<",sim.IF_curr_exp, cell_params_lif, label=\""<<labelNeuron<<"\")"<<"\n";
                }
 
             }
@@ -302,12 +288,12 @@ void NewSpiNNaker::exportToSpiNNaker(){
             /* Export all synapses */
             Node *nodeTarget;
             for (int i=0; i<vectorGraphicsNodes->size();i++ ) {
-                nodeSource=vectorGraphicsNodes->at(i);
-                QString NeuronS=nodeSource->label+"_"+nodeSource->id;
-                for (int j=0; j<nodeSource->synapsys.size();j++) {
-                   nodeTarget= findNode("ip",nodeSource->synapsys.at(j).ipmTarget);
-                   QString NeuronT=nodeTarget->label+"_"+nodeTarget->id;
-                     out<<"input_"<<NeuronT<<NeuronS<<"=sim.Projection("<<NeuronT<<","<<NeuronS<<", sim.OneToOneConnector(), synapse_type=sim.StaticSynapse(weight="<<nodeSource->synapsys.at(j).w<<", delay="<<delay<<"))"<<"\n";
+                nodeTarget=vectorGraphicsNodes->at(i);
+                QString NeuronT=nodeTarget->label+"_"+nodeTarget->id;
+                for (int j=0; j<nodeTarget->synapsys.size();j++) {
+                   nodeSource= findNode("ip",nodeTarget->synapsys.at(j).ipmSource);
+                   QString NeuronS=nodeSource->label+"_"+nodeSource->id;
+                     out<<"input_"<<NeuronS<<NeuronT<<"=sim.Projection("<<NeuronS<<","<<NeuronT<<", sim.OneToOneConnector(), synapse_type=sim.StaticSynapse(weight="<<nodeTarget->synapsys.at(j).w<<", delay="<<delay<<"),receptor_type= \""<< ((nodeTarget->synapsys.at(j).type==1) ? "excitatory" : "inhibitory" )<<"\" )"<<"\n";
                 }
             }
             out <<"\n";
@@ -323,9 +309,9 @@ void NewSpiNNaker::exportToSpiNNaker(){
             out <<"\n";
             out<< "neo = "<<neuron_Monitorized<<".get_data(variables=[\"spikes\",\"v\"])"<<"\n";
             out<< "spikes = neo.segments[0].spiketrains"<<"\n";
-            out<< "print spikes"<<"\n";
+            out<< "print( spikes )"<<"\n";
             out<< "v = neo.segments[0].filter(name='v')[0]"<<"\n";
-            out<< "print v"<<"\n";
+            out<< "print (v)"<<"\n";
             out<< "\n";
             out<< "sim.end()"<<"\n";
             out<< "\n";

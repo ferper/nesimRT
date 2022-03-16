@@ -300,9 +300,9 @@ void Widget::cellSelected(int row, int col) {
 
 void Widget::paintGraphic(){
     if (*dataIsAvailable) {
-       graph->appendPoint("Iexc", *Iexc*1e11);
-       graph->appendPoint("V", *V*50000);
-       graph->appendPoint("Iinh", *Iinh*1e11);
+       graph->appendPoint("Iexc", *Iexc*1e9);   // Convert to nA
+       graph->appendPoint("V", *V*1e3);         // Convert to mV
+       graph->appendPoint("Iinh", *Iinh*1e9);   // Convert to nA
     }
 }
 

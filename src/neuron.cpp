@@ -384,7 +384,8 @@ void Neuron::calculateIexc(){
 }
 void Neuron::calculateV() {
        V_prior=p->V;
-       p->V=V_prior+H*((1/p->tau_v)*(-(V_prior-p->Vr)+p->At*exp((V_prior-p->Vrh)/p->At)+p->R*(Iexc_prior-Iinh_prior)));
+       //p->V=V_prior+H*((1/p->tau_v)*(-(V_prior-p->Vr)+p->At*exp((V_prior-p->Vrh)/p->At)+p->R*(Iexc_prior-Iinh_prior)));
+       p->V=V_prior+H*((1/p->tau_v)*(-(V_prior-p->Vr)+p->R*(Iexc_prior-Iinh_prior)));
 }
 
 void Neuron::calculateValues(){
