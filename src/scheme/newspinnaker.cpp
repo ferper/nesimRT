@@ -281,6 +281,7 @@ void NewSpiNNaker::exportToSpiNNaker(){
                }
                else if (nodeSource->typeNode==TYPENEURON_NORMAL) {
                    out<< labelNeuron<<"= sim.Population("<<nodeSource->amountOfNeurons<<",sim.IF_curr_exp, cell_params_lif, label=\""<<labelNeuron<<"\")"<<"\n";
+                   out<<labelNeuron<<".initialize(v="<<QString::number(v_reset)<<")\n";
                }
 
             }
@@ -309,9 +310,9 @@ void NewSpiNNaker::exportToSpiNNaker(){
             out <<"\n";
             out<< "neo = "<<neuron_Monitorized<<".get_data(variables=[\"spikes\",\"v\"])"<<"\n";
             out<< "spikes = neo.segments[0].spiketrains"<<"\n";
-            out<< "print( spikes )"<<"\n";
+            out<< "print(spikes)"<<"\n";
             out<< "v = neo.segments[0].filter(name='v')[0]"<<"\n";
-            out<< "print (v)"<<"\n";
+            out<< "print(v)"<<"\n";
             out<< "\n";
             out<< "sim.end()"<<"\n";
             out<< "\n";

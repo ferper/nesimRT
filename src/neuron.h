@@ -18,12 +18,17 @@ class Neuron : public QDialog
 
 public:
 
-    explicit Neuron(QWidget *parent = nullptr, int NumberNeuronsGroup=1, QString label="",  float posX=350.0, float posY=350.0, QString ip="", int idGlobalNeuron=1, int typeNeuron=0, int localRemote=(int)LOCAL_NEURON, Parameters *p=nullptr, double w_default=1, QString fx="1e-09");
+    explicit Neuron(QWidget *parent = nullptr, int NumberNeuronsGroup=1, QString label="", float posX=350.0, float posY=350.0, QString ip="", int idGlobalNeuron=1, int typeNeuron=0, int localRemote=(int)LOCAL_NEURON, Parameters *p=nullptr, double w_default=1, QString fx="1e-09");
     ~Neuron();
 
     Parameters *p;
     QTimer *timer;
     QTimer *timer_RequestIP;
+
+    //TODO: Borrar esto
+
+    std::chrono::high_resolution_clock::time_point start;
+
 
     QString MAC;
 

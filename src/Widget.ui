@@ -72,7 +72,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>130</y>
+     <y>160</y>
      <width>61</width>
      <height>31</height>
     </rect>
@@ -100,14 +100,14 @@
     </rect>
    </property>
    <property name="text">
-    <string>Auto X</string>
+    <string>Y max</string>
    </property>
   </widget>
   <widget class="QSpinBox" name="spinSizeY">
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>160</y>
+     <y>130</y>
      <width>61</width>
      <height>31</height>
     </rect>
@@ -135,7 +135,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Auto Y</string>
+    <string>Y min</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">

@@ -14,9 +14,12 @@
 #include "encodeDecodeMsg.h"
 #include "spikeGenerator.h"
 #include "scheme/model_adexlif.h"
+
+#include <chrono>
+
 using namespace std;
 
-Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float posX, float posY, QString ip, int idGlobalNeuron, int typeNeuron, int localRemote, Parameters *p,double w_default, QString fx_numberTxt)
+Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label , float posX, float posY, QString ip, int idGlobalNeuron, int typeNeuron, int localRemote, Parameters *p,double w_default, QString fx_numberTxt)
     : QDialog(parent)
 {
 
@@ -176,6 +179,9 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label, float pos
     timer->stop();
     connect(timer, SIGNAL(timeout()), this, SLOT(calculateValues()));
 
+    //TODO: Borrar
+    this->start = std::chrono::high_resolution_clock::now();
+
     timer_RequestIP = new QTimer(this);
     if (!isBuilded) {
         // Request an IP by message sending my MAC throught a port
@@ -331,7 +337,7 @@ void Neuron::sendDataToGeneralMonitor(bool spiking){
     QString spike="0";
     if (spiking)
         spike="100000000";
-    QString cadena=ipmSource+";"+spike+";"+QString::number((double)IexcCurrent*10000000000)+";"+QString::number((double)IinhCurrent*10000000000)+";"+QString::number((double)VCurrent*5000)+";";
+    QString cadena=ipmSource+";"+spike+";"+QString::number((double)IexcCurrent*1e9)+";"+QString::number((double)IinhCurrent*1e9)+";"+QString::number((double)VCurrent*1e3)+";";
     QByteArray datagram = cadena.toStdString().c_str();
     QHostAddress groupAddress4=QHostAddress(IPM_NEURON_PROMISCUOUS);
     udpSocket4_senderMonitor.writeDatagram(datagram, groupAddress4, GeneralMonitorPort);
@@ -361,6 +367,7 @@ void Neuron::set_At(double value) {
 
 }
 Neuron::~Neuron(){
+    file.close();
     delete out;
     for (int i=0; i<Vsynapse.size();i++)
        delete Vsynapse[i];
@@ -368,9 +375,7 @@ Neuron::~Neuron(){
 }
 
 void Neuron::calculateIinh() {
-   double tmp_Iinh=0;
    if (Iinh_enabled) {
-      tmp_Iinh=p->Iinh;
       Iinh_prior=p->Iinh;
       p->Iinh=Iinh_prior+H*(-Iinh_prior/p->tau_i);
    }
@@ -393,6 +398,13 @@ void Neuron::calculateValues(){
     dataIsAvailable=false;
     mutexNeuron.lock();
     for (int i=0; i<10; i++) {
+        //TODO: Borrar
+        auto start2 = start;
+        auto end = std::chrono::system_clock::now();
+
+        std::chrono::duration<float,std::nano> duration = end - start2;
+        //cout <<"El tiempo es "<< duration.count() << endl;
+
         calculateV();
         if (p->V>p->Vth) { //SPIKE Generator
             p->V=p->Vr;
@@ -412,6 +424,9 @@ void Neuron::calculateValues(){
     dataIsAvailable=true;
     if (enableDataGeneralMonitor)
         sendDataToGeneralMonitor(spiking);
+
+    //Todo Borrar
+    start = std::chrono::high_resolution_clock::now();
 }
 double Neuron::get_IexcCurrent(){
     return IexcCurrent;

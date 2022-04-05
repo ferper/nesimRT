@@ -223,6 +223,18 @@ void TickerGraph::paintEvent(QPaintEvent *)
     painter.drawText(graphRect.adjusted(LABEL_MARGIN, LABEL_MARGIN, -LABEL_MARGIN, -LABEL_MARGIN),
                      Qt::AlignBottom | Qt::AlignLeft, minLabel);
 
+    QString ecuadorLabel = QString("%1 %2").arg(mMax-(abs(mMax-mMin))/2).arg(mUnits);
+    painter.drawText(graphRect.adjusted(LABEL_MARGIN, LABEL_MARGIN, -LABEL_MARGIN, -LABEL_MARGIN),
+                     Qt::AlignVCenter | Qt::AlignLeft, ecuadorLabel);
+
+    QString uppermiddleLabel = QString("%1 %2").arg(mMax-abs((abs(mMax-mMin))/4)).arg(mUnits);
+    painter.drawText(0, graphRect.height()/4  , uppermiddleLabel);
+
+
+    QString lowermiddleLabel = QString("%1 %2").arg(mMin+abs(((abs(mMax-mMin))/4))).arg(mUnits);
+    painter.drawText(0, graphRect.height()-abs(((abs(graphRect.height())-abs(0))/4)) , lowermiddleLabel);
+
+
     // Draw the reference labels, if any
     const int axisLabelHeight = QFontMetrics(mAxisFont).height();
     foreach (double point, mReferencePoints) {
