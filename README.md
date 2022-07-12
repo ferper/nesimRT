@@ -10,19 +10,17 @@ NESIM-RT is ...</p>
 <h2>Table of contents</h2>
 <p align="justify">
 <ul>
-<li><a href="#Description">Description</a></li>
+<li><a href="#Installing">Installing</a></li>
 <li><a href="#GettingStarted">Getting started</a></li>
+<li><a href="#SoftwarePackage">Software package</a></li>
 <li><a href="#Usage">Usage</a></li>
 <li><a href="#Contributing">Contributing</a></li>
-<li><a href="#Credits">Credits</a></li>
 <li><a href="#License">License</a></li>
-<li><a href="#Cite">Cite this work</a></li>
 </ul>
 </p>
 
 
-
-<h2>Installing</h2>
+<h2 name="Installing">Installing</h2>
 
 <p align="justify">
 ........................
@@ -33,7 +31,15 @@ NESIM-RT is ...</p>
 
 
 
-<h2>Getting started</h2>
+<h2 name="GettingStarted">Getting started</h2>
+
+<p align="justify">
+.............................
+</p>
+
+
+
+<h2 name="Usage">Usage</h2>
 
 <p align="justify">
 .............................
@@ -44,8 +50,7 @@ NESIM-RT is ...</p>
 
 
 
-
-<h2>Software package</h2>
+<h2 name="SoftwarePackage">Software package</h2>
 
 <p align="justify">
 The code has been documented .....
@@ -78,23 +83,6 @@ If it is a new feature request (e.g., a new functionality), post an issue to dis
 <p align="justify">
 Thank you for contributing to NESIM-RT.
 </p>
-
-
-<h2 name="Cite">Cite this work</h2>
-<p align="justify">
-<b>APA</b>: .....
-</p>
-<p align="justify">
-<b>ISO 690</b>: .....
-</p>
-<p align="justify">
-<b>MLA</b>: .....
-</p>
-<p align="justify">
-<b>BibTeX</b>: @.......
-</p>
-
-
 
 
 
