@@ -7,6 +7,19 @@ NESIM-RT is ...</p>
 
 
 
+<h2>Table of contents</h2>
+<p align="justify">
+<ul>
+<li><a href="#Description">Description</a></li>
+<li><a href="#GettingStarted">Getting started</a></li>
+<li><a href="#Usage">Usage</a></li>
+<li><a href="#Contributing">Contributing</a></li>
+<li><a href="#Credits">Credits</a></li>
+<li><a href="#License">License</a></li>
+<li><a href="#Cite">Cite this work</a></li>
+</ul>
+</p>
+
 
 
 <h2>Installing</h2>
