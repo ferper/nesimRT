@@ -2,7 +2,9 @@
 
 
 <p align="justify">
-NESIM-RT is ...</p>
+NESIM-RT is an open-source cross-platform software tool for simulating spiking neural networks in real time. A friendly user interface allows users to design and modify the network, together with visualizing its output in real time. NESIM-RT outperforms other widely-used simulators in the neuromorphic engineering field in terms of latencies and network scalability. NESIM-RT also allows exporting the SNN model directly to SpiNNaker, enabling an immediate transition between software simulation and hardware implementation.
+
+</p>
 </p>
 
 
