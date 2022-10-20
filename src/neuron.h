@@ -25,10 +25,6 @@ public:
     QTimer *timer;
     QTimer *timer_RequestIP;
 
-    //TODO: Borrar esto
-
-    std::chrono::high_resolution_clock::time_point start;
-
 
     QString MAC;
 

@@ -28,9 +28,9 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     ui->lineEdit_V->setText("0");
     ui->lineEdit_Iexc->setText("0");
     ui->lineEdit_Iinh->setText("0");
-    ui->lineEdit_tauExc->setText("0.2");
-    ui->lineEdit_tauInh->setText("0.4");
-    ui->lineEdit_tauV->setText("0.5");
+    ui->lineEdit_tauExc->setText("20");
+    ui->lineEdit_tauInh->setText("40");
+    ui->lineEdit_tauV->setText("50");
     ui->lineEdit_R->setText("32000000");
     ui->lineEdit_Vr->setText("0");
     ui->lineEdit_Vrh->setText("0.005");
@@ -44,7 +44,7 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     sceneTmp->addPixmap(p0);
     ui->graphicsView->setScene(sceneTmp);
     sceneTmp = new QGraphicsScene();
-    QPixmap p1(":graphics/equation.png");
+    QPixmap p1(":graphics/equation_CUBALIF.png");
     sceneTmp->addPixmap(p1);
 
     ui->graphicsView_2->setScene(sceneTmp);
@@ -236,7 +236,7 @@ bool NewNeuronGraphic::parametersOK() {
 
 void NewNeuronGraphic::on_pushButton_clicked()
 {
-    if (mathematicalModel==MODEL_ADEXLIF) {
+    if (mathematicalModel==MODEL) {
        if (parametersOK()) {
 
            Parameters *p1 = new Parameters(ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(), ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_tauExc->text().toDouble(), ui->lineEdit_tauInh->text().toDouble(),ui->lineEdit_tauV->text().toDouble(),ui->lineEdit_R->text().toDouble(), ui->lineEdit_Vr->text().toDouble(),ui->lineEdit_Vrh->text().toDouble(),ui->lineEdit_Vth->text().toDouble(), ui->lineEdit_At->text().toDouble());

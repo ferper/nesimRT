@@ -49,3 +49,6 @@ src/CMakeLists.txt.user*
 *creator.user*
 
 *_qmlcache.qrc
+
+# SpiNNaker
+src/reports

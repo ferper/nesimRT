@@ -15,7 +15,6 @@
 #include "spikeGenerator.h"
 #include "scheme/model_adexlif.h"
 
-#include <chrono>
 
 using namespace std;
 
@@ -56,7 +55,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label , float po
     this->Iinh_enabled=false;
     this->Iexc_enabled=false;
     this->V_enabled=false;
-    this->H=0.01;
+    this->H=1.0;
     this->dataIsAvailable=false;
     this->NumberNeuronsGroup=NumberNeuronsGroup;
     this->enableDataGeneralMonitor=false;
@@ -179,8 +178,6 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label , float po
     timer->stop();
     connect(timer, SIGNAL(timeout()), this, SLOT(calculateValues()));
 
-    //TODO: Borrar
-    this->start = std::chrono::high_resolution_clock::now();
 
     timer_RequestIP = new QTimer(this);
     if (!isBuilded) {
@@ -398,12 +395,7 @@ void Neuron::calculateValues(){
     dataIsAvailable=false;
     mutexNeuron.lock();
     for (int i=0; i<10; i++) {
-        //TODO: Borrar
-        auto start2 = start;
-        auto end = std::chrono::system_clock::now();
 
-        std::chrono::duration<float,std::nano> duration = end - start2;
-        //cout <<"El tiempo es "<< duration.count() << endl;
 
         calculateV();
         if (p->V>p->Vth) { //SPIKE Generator
@@ -425,8 +417,7 @@ void Neuron::calculateValues(){
     if (enableDataGeneralMonitor)
         sendDataToGeneralMonitor(spiking);
 
-    //Todo Borrar
-    start = std::chrono::high_resolution_clock::now();
+
 }
 double Neuron::get_IexcCurrent(){
     return IexcCurrent;
