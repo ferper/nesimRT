@@ -181,7 +181,7 @@ MainGraphics::MainGraphics(QWidget *parent )
     btSpiNNaker->setFixedSize(btSpiNNaker->rect().size());
     proxy = scene->addWidget(btSpiNNaker);
 
-    this->mathematicalModel=MODEL_ADEXLIF;
+    this->mathematicalModel=MODEL;
 
     QLabel *label0 = new QLabel();
     label0->setText("model - ");

@@ -1,4 +1,4 @@
-#include "model_adexlif.h"
+#include "model_cubalif.h"
 #include "ui_model_adexlif.h"
 #include "encodeDecodeMsg.h"
 #include <QMessageBox>
@@ -6,13 +6,13 @@
 #include <QFont>
 extern typeFxI fxI;
 
-ModelAdExLIF::ModelAdExLIF(QWidget *parent, Node *node) :
+ModelAdExLIF:ModelAdExLIF(QWidget *parent, Node *node) :
     QWidget(parent),
     ui(new Ui::ModelAdExLIF)
 {
     ui->setupUi(this);
 
-    mathematicalModel=MODEL;
+    mathematicalModel=MODEL_ADEXLIF;
     if (!node) {
         QMessageBox::critical(this, "Warning","No values have been established for this neuron");
     }
@@ -668,7 +668,7 @@ void ModelAdExLIF::on_lineEdit_Iinh_returnPressed()
 
 void ModelAdExLIF::on_pushButton_2_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     int valueInt;
 
@@ -691,7 +691,7 @@ void ModelAdExLIF::on_pushButton_2_clicked()
 void ModelAdExLIF::on_pushButton_19_clicked()
 {
 
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
 
     if (!ui->lineEdit_Label->text().length()) {
@@ -717,7 +717,7 @@ void ModelAdExLIF::on_pushButton_19_clicked()
 
 void ModelAdExLIF::on_pushButton_6_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     double valueDouble;
 
@@ -740,7 +740,7 @@ void ModelAdExLIF::on_pushButton_6_clicked()
 
 void ModelAdExLIF::on_pushButton_9_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     double valueDouble;
 
@@ -766,7 +766,7 @@ void ModelAdExLIF::on_pushButton_9_clicked()
 void ModelAdExLIF::on_pushButton_10_clicked()
 {
 
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     double valueDouble;
 
@@ -791,7 +791,7 @@ void ModelAdExLIF::on_pushButton_10_clicked()
 
 void ModelAdExLIF::on_pushButton_11_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     double valueDouble;
 
@@ -816,7 +816,7 @@ void ModelAdExLIF::on_pushButton_11_clicked()
 
 void ModelAdExLIF::on_pushButton_12_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     double valueDouble;
 
@@ -841,7 +841,7 @@ void ModelAdExLIF::on_pushButton_12_clicked()
 
 void ModelAdExLIF::on_pushButton_13_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     double valueDouble;
 
@@ -865,7 +865,7 @@ void ModelAdExLIF::on_pushButton_13_clicked()
 
 void ModelAdExLIF::on_pushButton_14_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     double valueDouble;
 
@@ -889,7 +889,7 @@ void ModelAdExLIF::on_pushButton_14_clicked()
 
 void ModelAdExLIF::on_pushButton_15_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     double valueDouble;
 
@@ -913,7 +913,7 @@ void ModelAdExLIF::on_pushButton_15_clicked()
 
 void ModelAdExLIF::on_pushButton_16_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     double valueDouble;
 
@@ -937,7 +937,7 @@ void ModelAdExLIF::on_pushButton_16_clicked()
 
 void ModelAdExLIF::on_pushButton_17_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     double valueDouble;
 
@@ -961,7 +961,7 @@ void ModelAdExLIF::on_pushButton_17_clicked()
 
 void ModelAdExLIF::on_pushButton_18_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     bool ok=false;
     double valueDouble;
 
@@ -990,7 +990,7 @@ void ModelAdExLIF::on_pushButton_Exit_clicked()
 
 void ModelAdExLIF::on_pushButton_applyData_clicked()
 {
-    QString model= MODEL;
+    QString model= MODEL_ADEXLIF;
     if (parmatersOK()) {
         QMessageBox::StandardButton reply;
         QString msg="Are you sure you want to apply all these changes to the neuron?";

@@ -51,7 +51,7 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
     posCanvasX=220; //graph posX
     posCanvasY=300; //graph posY
 
-    ui->label_25->setText(MODEL_ADEXLIF);
+    ui->label_25->setText(MODEL);
     ui->spinSampler->setValue(10);
     ui->spinBox_3->setValue(4);
     ui->spinSizeX->setValue(windowWidth);
@@ -133,7 +133,7 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
    sceneTmp->addPixmap(p0);
    ui->graphicsView->setScene(sceneTmp);
    sceneTmp = new QGraphicsScene();
-   QPixmap p1(":graphics/equation.png");
+   QPixmap p1(":graphics/equation_CUBALIF.png");
    sceneTmp->addPixmap(p1);
 
    QPixmap pixmap_ApplyChanges(":graphics/applyChangeNeuron.gif");
@@ -797,7 +797,7 @@ void Widget::on_pushButton_18_clicked() {
     if (!ok)
         QMessageBox::information(this, "Warning","The value introduced for the label is not valid.");
     else {
-        QString model= MODEL_ADEXLIF;
+        QString model= MODEL;
         *this->label=ui->lineEdit_Label->text();
         QUdpSocket udpSocket4_MotherNeuron; //from mother neuron
         QHostAddress groupAddress4_to_MotherNeuron; //I'm listening to the neuron mother
@@ -849,7 +849,7 @@ void Widget::on_pushButton_okChanges_clicked() {
     QString msg="Are you sure you want to apply all these changes to the neuron?";
     reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
     if (reply==QMessageBox::Yes) {
-        QString model= MODEL_ADEXLIF;
+        QString model= MODEL;
         if (parametersOK()) {
             p->V=ui->lineEdit_V->text().toDouble();
             p->Iexc=ui->lineEdit_Iexc->text().toDouble();

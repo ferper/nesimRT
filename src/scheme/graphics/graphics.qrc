@@ -36,5 +36,7 @@
         <file>signal.png</file>
         <file>stop.png</file>
         <file>synapsys.jpeg</file>
+        <file>equation_ADEXLIF.png</file>
+        <file>equation_CUBALIF.png</file>
     </qresource>
 </RCC>

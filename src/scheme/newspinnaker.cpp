@@ -51,7 +51,7 @@ NewSpiNNaker::NewSpiNNaker(QWidget *parent,QList <Node*> *vectorGraphicsNodes,QV
     sceneTmp->addPixmap(p0);
     ui->graphicsView->setScene(sceneTmp);
     sceneTmp = new QGraphicsScene();
-    QPixmap p1(":graphics/equation.png");
+    QPixmap p1(":graphics/equation_CUBALIF.png");
     sceneTmp->addPixmap(p1);
 
     ui->graphicsView_2->setScene(sceneTmp);
@@ -74,6 +74,8 @@ NewSpiNNaker::NewSpiNNaker(QWidget *parent,QList <Node*> *vectorGraphicsNodes,QV
     ui->pushButton_2->setIconSize(s1);
     ui->pushButton_2->setFixedSize(ui->pushButton_2->rect().size());
     ui->pushButton_2->setFlat(true);
+
+    ui->label_17->setText(MODEL);
 
     QGraphicsDropShadowEffect* effect0 = new QGraphicsDropShadowEffect();
     QGraphicsDropShadowEffect* effect1 = new QGraphicsDropShadowEffect();

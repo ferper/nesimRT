@@ -4,6 +4,10 @@
 #include <QGraphicsItem>
 #include <QList>
 #include "neuron.h"
+#include "models/neuron_cubalif.h"
+#include "models/neuron_izhikevich.h"
+#include "models/neuron_adexlif.h"
+
 class JunctionsDraw;
 class MainGraphics;
 QT_BEGIN_NAMESPACE

@@ -22,7 +22,7 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
     ui->graphicsView->setScene(sceneTmp);
 
     sceneTmp = new QGraphicsScene();
-    QPixmap p1(":graphics/equation.png");
+    QPixmap p1(":graphics/equation_CUBALIF.png");
 
     sceneTmp->addPixmap(p1);
     ui->graphicsView_2->setScene(sceneTmp);
@@ -35,7 +35,7 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
         fill_LocalSynapsys("");
     fill_GlobalSynapsys();
 
-    ui->label_25->setText(MODEL_ADEXLIF);
+    ui->label_25->setText(MODEL);
 
     QPixmap pixmap_RemoveNeuron(":graphics/RemoveNeuron.png");
     QIcon ButtonIconRN(pixmap_RemoveNeuron);

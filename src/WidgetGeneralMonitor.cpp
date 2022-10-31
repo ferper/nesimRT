@@ -74,7 +74,7 @@ WidgetGeneralMonitor::WidgetGeneralMonitor(QWidget *parent, typeDataNeurons *Qne
     ui->graphicsView->setScene(sceneTmp);
 
     sceneTmp = new QGraphicsScene();
-    QPixmap p1(":graphics/equation.png");
+    QPixmap p1(":graphics/equation_CUBALIF.png");
     sceneTmp->addPixmap(p1);
     ui->graphicsView_2->setScene(sceneTmp);
 
@@ -148,7 +148,7 @@ WidgetGeneralMonitor::WidgetGeneralMonitor(QWidget *parent, typeDataNeurons *Qne
     p.setColor(QPalette::Base, QColor("#f5c1ec"));
     ui->tableWidget->setPalette(p);
     ui->tableWidget->setStyleSheet("QTableWidget::item {""border: 1px solid black;""}");
-    ui->label_25->setText(MODEL_ADEXLIF);
+    ui->label_25->setText(MODEL);
 
     this->move(QApplication::desktop()->availableGeometry().center() - this->rect().center());
 }

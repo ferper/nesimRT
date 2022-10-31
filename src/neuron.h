@@ -30,40 +30,34 @@ public:
 
     QString id;
     QString label;
-    float posX;
-    float posY;
-    double get_IexcCurrent();
-    double get_IinhCurrent();
-    double get_VCurrent();
-    long long int muestra;
-    Widget *monitor;
-    double IexcCurrent;
-    double IinhCurrent;
-    double VCurrent;
-    bool dataIsAvailable;
     int NumberNeuronsGroup; // If N==1 the neuron es alone. N>1 it's a group
     QString ipmSource;      // Neuron multicast IP. So that others can subscribe to it
-    //QString ipmMother;      // Mother Neuron multicast IP
-    bool enableDataGeneralMonitor;
+    float posX;
+    float posY;
     double we; // Current value for synapsys
     double wi; // Current value for synapsys
     QString fx_numberTxt; // fx's value Text
     QString fx_unitMeasureTxt; // fx's unit's name
-
+    bool isBuilded; // The Neuron is builded. It's operative
+    Widget *monitor;
+    bool dataIsAvailable;
+    long long int muestra;
     int typeNeuron; // 0= none, 1= Mother, 2= Generator, 3= Normal
     void * FormDialog;
     QVector <Synapse *> Vsynapse;
     int localRemote; // Neuron created locally or remotely
     QMutex mutexNeuron;
-
-    int linea;
     bool spkOnOff_exc;
     bool spkOnOff_inh;
+    bool enableDataGeneralMonitor;
+
+
+
 public slots:
-    void paintLocalMonitor();
-    void sendDataToGeneralMonitor(bool spiking);
+    virtual void paintLocalMonitor();
+    virtual void sendDataToGeneralMonitor(bool spiking);
     int get_NSynapses();
-    void calculateValues();
+    virtual void calculateValues();
     void quit();
     void set_At(double value);
 
@@ -74,30 +68,27 @@ private slots:
     void killme();
 
 protected:
+    double Iexc_prior;
+    double Iinh_prior;
+    bool Iexc_enabled;
+    bool Iinh_enabled;
     void closeEvent(QCloseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
+    double H;
+    quint16 GeneralMonitorPort; // Port to send the calculated data to the General Monitor
+    QUdpSocket udpSocket4_senderMonitor; // To public data calculated to General Monitor
+    void generateSpike();
 
 private:
     void killme(bool showMessageBox);
     void liveNeuron();
-    void calculateIexc();
-    void calculateIinh();
-    void calculateV();
-    void generateSpike();
+
     void sendMsg(QString msg, quint16 port);
     QString getLocalMAC();
-    double H;
-    double Iexc_prior;
-    double Iinh_prior;
-    double V_prior;
-    bool Iexc_enabled;
-    bool Iinh_enabled;
     bool V_enabled;
-    bool isBuilded; // The Neuron is builded. It's operative
-
     quint16 Motherneuron_port; // Listening port of the Mother Neuron
     quint16 SourcePort; // Port for connection with other neurons
-    quint16 GeneralMonitorPort; // Port to send the calculated data to the General Monitor
+
     qlonglong nSpikes; // Number of the spikes produced by the neuron
 
     QLabel *statusLabel = nullptr;
@@ -105,7 +96,6 @@ private:
     QHostAddress groupAddress4_to_MotherNeuron; // The mother neuron is listened to
 
     QUdpSocket udpSocket4_sender; // To public a SPIKE
-    QUdpSocket udpSocket4_senderMonitor; // To public data calculated to General Monitor
     QHostAddress groupAddress4_to_Public; // Other neurons listen to me
 
     //QUdpSocket udpSocket4_Promiscuous; // To receive datas in promiscuous mode from a Mother Neuron's port. Ejemplo: Ip from DHCP

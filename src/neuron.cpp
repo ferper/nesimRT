@@ -29,6 +29,10 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label , float po
     this->label=label;
     this->posX=posX;
     this->posY=posY;
+    this->Iexc_prior=0;
+    this->Iinh_prior=0;
+    this->Iinh_enabled=false;
+    this->Iexc_enabled=false;
 
     this->MAC=getLocalMAC();
     this->Motherneuron_port=MOTHER_PORT;
@@ -42,24 +46,16 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label , float po
         this->SourcePort= int(GENERATOR_PORT);
 
     this->nSpikes=0; // Number of the spikes produced by the neuron
-    this->Iexc_prior=0;
-    this->Iinh_prior=0;
-    this->V_prior=0;
+
     this->p=p;
-    this->IexcCurrent=0;
-    this->IinhCurrent=0;
-    this->VCurrent=0;
-    this->muestra=0;
+    this->dataIsAvailable=false;
+    this->enableDataGeneralMonitor=false;
     this->we=w_default;
     this->fx_numberTxt=fx_numberTxt;
-    this->Iinh_enabled=false;
-    this->Iexc_enabled=false;
-    this->V_enabled=false;
     this->H=1.0;
-    this->dataIsAvailable=false;
     this->NumberNeuronsGroup=NumberNeuronsGroup;
-    this->enableDataGeneralMonitor=false;
     this->FormDialog = (QDialog*) this; // By default, all Neurons are TYPENODE_NORMAL
+    this->muestra=0;
 
     if (enableDataGeneralMonitor)
         statusLabel = new QLabel(tr("Neuron ready - General Monitor: ON" ));
@@ -196,7 +192,6 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label , float po
         QMessageBox::warning(this, "Warning","It was not possible to create the data extraction file.");
     }
     out= new QTextStream(&file);
-    linea=0;
     spkOnOff_exc=false;
     spkOnOff_inh=false;
 }
@@ -329,16 +324,7 @@ void Neuron::sendMsg(QString msg,quint16 port){
     udpSocket.writeDatagram(datagram, groupAddress, port);
 }
 
-void Neuron::sendDataToGeneralMonitor(bool spiking){
 
-    QString spike="0";
-    if (spiking)
-        spike="100000000";
-    QString cadena=ipmSource+";"+spike+";"+QString::number((double)IexcCurrent*1e9)+";"+QString::number((double)IinhCurrent*1e9)+";"+QString::number((double)VCurrent*1e3)+";";
-    QByteArray datagram = cadena.toStdString().c_str();
-    QHostAddress groupAddress4=QHostAddress(IPM_NEURON_PROMISCUOUS);
-    udpSocket4_senderMonitor.writeDatagram(datagram, groupAddress4, GeneralMonitorPort);
-}
 void Neuron::generateSpike(){
     nSpikes++;
     QByteArray datagram = "SPIKE";
@@ -346,11 +332,15 @@ void Neuron::generateSpike(){
 
 }
 
-void Neuron::paintLocalMonitor(){
-    if (!monitor)
-        monitor= new Widget(nullptr,&ipmSource,&label, &dataIsAvailable,&muestra,&IexcCurrent,&IinhCurrent,&VCurrent,p,&Vsynapse,&NumberNeuronsGroup);
-    monitor->show();
-}
+
+
+
+void Neuron::paintLocalMonitor(){}
+void Neuron::calculateValues(){}
+void Neuron::sendDataToGeneralMonitor(bool t){}
+
+
+
 
 
 int Neuron::get_NSynapses(){
@@ -371,63 +361,6 @@ Neuron::~Neuron(){
     delete monitor;
 }
 
-void Neuron::calculateIinh() {
-   if (Iinh_enabled) {
-      Iinh_prior=p->Iinh;
-      p->Iinh=Iinh_prior+H*(-Iinh_prior/p->tau_i);
-   }
-}
-
-void Neuron::calculateIexc(){
-   if (Iexc_enabled) {
-      Iexc_prior=p->Iexc;
-      p->Iexc=Iexc_prior+H*(-Iexc_prior/p->tau_e);
-   }
-}
-void Neuron::calculateV() {
-       V_prior=p->V;
-       //p->V=V_prior+H*((1/p->tau_v)*(-(V_prior-p->Vr)+p->At*exp((V_prior-p->Vrh)/p->At)+p->R*(Iexc_prior-Iinh_prior)));
-       p->V=V_prior+H*((1/p->tau_v)*(-(V_prior-p->Vr)+p->R*(Iexc_prior-Iinh_prior)));
-}
-
-void Neuron::calculateValues(){
-    bool spiking=false;
-    dataIsAvailable=false;
-    mutexNeuron.lock();
-    for (int i=0; i<10; i++) {
-
-
-        calculateV();
-        if (p->V>p->Vth) { //SPIKE Generator
-            p->V=p->Vr;
-            spiking = true;
-            generateSpike();
-        }
-        linea++;
-
-        // Initial values for Iexc, Iinh y V
-        IexcCurrent=p->Iexc;
-        IinhCurrent=p->Iinh;
-        VCurrent=p->V;
-        calculateIexc();
-        calculateIinh();
-    }
-    mutexNeuron.unlock();
-    dataIsAvailable=true;
-    if (enableDataGeneralMonitor)
-        sendDataToGeneralMonitor(spiking);
-
-
-}
-double Neuron::get_IexcCurrent(){
-    return IexcCurrent;
-}
-double Neuron::get_IinhCurrent(){
-    return IinhCurrent;
-}
-double Neuron::get_VCurrent(){
-   return VCurrent;
-}
 
 void Neuron::processPendingDatagrams()
 {

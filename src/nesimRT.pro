@@ -30,6 +30,9 @@ CONFIG+=wwwidgets
 
 SOURCES += \
         main.cpp \
+    models/neuron_adexlif.cpp \
+    models/neuron_cubalif.cpp \
+    models/neuron_izhikevich.cpp \
     spikeGenerator.cpp \
     neuron.cpp \
     synapse.cpp \
@@ -53,6 +56,9 @@ SOURCES += \
     scheme/junctionsDraw.cpp
 
 HEADERS += \
+    models/neuron_adexlif.h \
+    models/neuron_cubalif.h \
+    models/neuron_izhikevich.h \
     spikeGenerator.h \
     neuron.h \
     synapse.h \

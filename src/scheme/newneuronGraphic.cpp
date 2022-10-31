@@ -38,6 +38,11 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     ui->lineEdit_At->setText("0.0015");
     ui->lineEdit_Amount->setText("1");
 
+    ui->comboBox->addItem("Cubalif");
+    ui->comboBox->addItem("Adexlif");
+    ui->comboBox->addItem("Izhikevich");
+
+
     QGraphicsScene *sceneTmp = new QGraphicsScene();
     QPixmap p0(":graphics/neuron.png");
 
@@ -70,6 +75,7 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
 
     QGraphicsDropShadowEffect* effect0 = new QGraphicsDropShadowEffect();
     QGraphicsDropShadowEffect* effect1 = new QGraphicsDropShadowEffect();
+    QGraphicsDropShadowEffect* effect2 = new QGraphicsDropShadowEffect();
 
     effect0->setBlurRadius(100);
     effect0->setOffset(3,3);
@@ -78,6 +84,7 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
 
     ui->pushButton->setGraphicsEffect(effect0);
     ui->pushButton_2->setGraphicsEffect(effect1);
+    ui->pushButton_3->setGraphicsEffect(effect2);
 }
 
 
@@ -245,12 +252,38 @@ void NewNeuronGraphic::on_pushButton_clicked()
            graphWidget->generateIPReal(QString::number(TYPENEURON_NORMAL));
 
            (*idGlobalNeuron)++;
-           Neuron *n = new Neuron(nullptr,ui->lineEdit_Amount->text().toInt() ,ui->lineEdit_Label->text(),ui->lineEdit_PosX->text().toFloat(),ui->lineEdit_PosY->text().toFloat(), ui->lineEdit_Ip->text(),*idGlobalNeuron, TYPENEURON_NORMAL,LOCAL_NEURON, p1,1,"1E-9");
 
-           localNeurons->append(n);
+           // TODO: implementar la neurona Adexlif
+           if( ui->comboBox->currentText() == "Adexlif" ){
+               neuron_adexlif *n = new neuron_adexlif(nullptr,ui->lineEdit_Amount->text().toInt() ,ui->lineEdit_Label->text(),ui->lineEdit_PosX->text().toFloat(),ui->lineEdit_PosY->text().toFloat(), ui->lineEdit_Ip->text(),*idGlobalNeuron, TYPENEURON_NORMAL,LOCAL_NEURON, p1,1,"1E-9",ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(),ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_V->text().toDouble()); //V_prior,IexcCurrent,IinhCurrent,VCurrent);
+
+               // aqui convertir de un tipo a otro con dinamicast
+
+               localNeurons->append(dynamic_cast<Neuron*>(n));
+               *sceneBeSaved=true;
+               close();
+               QMessageBox::information(this, "Warning","The neuron has been succesfully created.");
+
+           }else if(ui->comboBox->currentText() == "Cubalif"){
+               neuron_cubalif *n = new neuron_cubalif(nullptr,ui->lineEdit_Amount->text().toInt() ,ui->lineEdit_Label->text(),ui->lineEdit_PosX->text().toFloat(),ui->lineEdit_PosY->text().toFloat(), ui->lineEdit_Ip->text(),*idGlobalNeuron, TYPENEURON_NORMAL,LOCAL_NEURON, p1,1,"1E-9",ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(),ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_V->text().toDouble()); //V_prior,IexcCurrent,IinhCurrent,VCurrent);
+
+               // aqui convertir de un tipo a otro con dinamicast
+
+               localNeurons->append(dynamic_cast<Neuron*>(n));
+               *sceneBeSaved=true;
+               close();
+               QMessageBox::information(this, "Warning","The neuron has been succesfully created.");
+           }else if(ui->comboBox->currentText() == "Izhikevich"){
+           neuron_izhikevich *n = new neuron_izhikevich(nullptr,ui->lineEdit_Amount->text().toInt() ,ui->lineEdit_Label->text(),ui->lineEdit_PosX->text().toFloat(),ui->lineEdit_PosY->text().toFloat(), ui->lineEdit_Ip->text(),*idGlobalNeuron, TYPENEURON_NORMAL,LOCAL_NEURON, p1,1,"1E-9",ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(),ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_V->text().toDouble()); //V_prior,IexcCurrent,IinhCurrent,VCurrent);
+
+           // aqui convertir de un tipo a otro con dinamicast
+
+           localNeurons->append(dynamic_cast<Neuron*>(n));
            *sceneBeSaved=true;
            close();
            QMessageBox::information(this, "Warning","The neuron has been succesfully created.");
+       }
+
        }
    }
 }
@@ -258,6 +291,12 @@ void NewNeuronGraphic::on_pushButton_2_clicked()
 {
     graphWidget->restaurateIPSimulated(QString::number(TYPENEURON_NORMAL));
     close();
+}
+
+void NewNeuronGraphic::on_pushButton_3_clicked()
+{
+    //TODO: cambiar imagen de la formula y parametos de la nueva neurona
+    QMessageBox::information(this, "Info","Se ha cambiado al modelo ",ui->comboBox->currentText());
 }
 
 void NewNeuronGraphic::on_lineEdit_Label_returnPressed()
