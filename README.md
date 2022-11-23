@@ -7,6 +7,10 @@ NESIM-RT is an open-source cross-platform software tool for simulating spiking n
 </p>
 </p>
 
+</p>
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/src/scheme/graphics/neuron_background.jpg">
+</p>
 
 
 <h2>Table of contents</h2>
