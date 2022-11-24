@@ -45,13 +45,17 @@ NESIM-RT is an open-source cross-platform software tool for simulating spiking n
 
 <p align="justify">
 
-</p> The following buttoms are shown at the main view of the simulator: 
+</p> The following buttons are shown at the main view of the simulator: 
 <ul>
 <li> 'Neural Scheme' to access to the Neural Scheme screen. </li> 
 <li> 'General monitor' where you can see all the current active signals. </li>
 <li> 'About us' where you can get to know more about the team. </li>
 <li> 'Exit' to close the simulator. </li>
 </ul>
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/main.PNG">
+</p>
 
 <p> Once you are in the Neural Scheme screen which is the main one of the simulator, the column to the left shows the options that are available. Firstly, the standard options to handle the simulation file are show:
 <ul>
@@ -129,8 +133,6 @@ Copyright © 2022 .....
 <a href="mailto:.....@.....com">...........</a>
 </p>
 
-<p align="center">
-<img align="center" src="https://github.com/ferper/nesimRT/blob/main/src/scheme/graphics/neuron_background.jpg">
-</p>
+
 
 
