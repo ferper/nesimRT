@@ -74,6 +74,10 @@ NESIM-RT is an open-source cross-platform software tool for simulating spiking n
 <li> 'SpiNNaker': use this option if you want to export your network simulation to SpiNNaker code. Once selected, you can modify the neuron parameters, edit the spike timming and eventually, set the path for the file to be generated. </li>
 </ul>
 
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/neuron.PNG">
+</p>
+
 <p> Once the network is defined, to run the simulation, the first step is to start the generator. To do it, docuble click on the generator to visualize the running options. You can change the firing rate and you can start ir by clicking on 'Start'.
   
 <p> Now, the simulation is running! You can double click on any neuron to see the options available: 
@@ -83,8 +87,13 @@ NESIM-RT is an open-source cross-platform software tool for simulating spiking n
 <li> 'Kill me': to restart the neuron. </li>
 <li> 'Quit': to close the pop-up window. 
 </ul> 
- 
 
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/synapse.PNG">
+</p>
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/neuronplot.PNG">
+</p>
 
 
 <h2 name="SoftwarePackage">Software package</h2>
