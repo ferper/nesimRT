@@ -189,35 +189,6 @@ background: transparent;
      <number>1</number>
     </property>
    </widget>
-   <widget class="QFrame" name="frame_2">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>570</y>
-      <width>401</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QLabel" name="lb_author">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>6</y>
-       <width>341</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Daniel Jesús Rosa Gallardo - Universidad de Cádiz</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QLabel" name="lb_name">
     <property name="geometry">
      <rect>
@@ -230,13 +201,15 @@ background: transparent;
     <property name="font">
      <font>
       <pointsize>25</pointsize>
-      <weight>75</weight>
       <italic>true</italic>
       <bold>true</bold>
      </font>
     </property>
     <property name="text">
      <string>NESIM-RT</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="lb_title">
@@ -251,7 +224,6 @@ background: transparent;
     <property name="font">
      <font>
       <pointsize>22</pointsize>
-      <weight>75</weight>
       <italic>true</italic>
       <bold>true</bold>
      </font>

@@ -28,7 +28,7 @@ ModelAdExLIF::ModelAdExLIF(QWidget *parent, Node *node) :
     ui->graphicsView->setScene(sceneTmp);
 
     sceneTmp = new QGraphicsScene();
-    QPixmap p1(":graphics/equation.png");
+    QPixmap p1(":graphics/equation_CUBALIF.png");
     sceneTmp->addPixmap(p1);
 
     ui->graphicsView_2->setScene(sceneTmp);

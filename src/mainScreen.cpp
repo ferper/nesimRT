@@ -88,7 +88,7 @@ MainScreen::MainScreen(QWidget *parent) :
 
     ui->lb_name->setStyleSheet("QLabel {background-color: transparent; color: white;}");
     ui->lb_title->setStyleSheet("QLabel {background-color: transparent; color: white;}");
-    ui->lb_author->setStyleSheet("QLabel {background-color: transparent; color: white;}");
+    //ui->lb_author->setStyleSheet("QLabel {background-color: transparent; color: white;}");
     //setWindowFlags(Qt::FramelessWindowHint);
 }
 

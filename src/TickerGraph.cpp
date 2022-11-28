@@ -154,7 +154,7 @@ void TickerGraph::paintEvent(QPaintEvent *)
 
     // Update range if enabled
     if (mAutoRange) {
-        mMin = 0;
+        mMin = nextMin - 1;
         mMax = 1.10 * nextMax;
     }
 

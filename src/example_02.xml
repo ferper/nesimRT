@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xbel>
-<xNeuronalScheme MODEL="ADEXLIF" version="1.0">
+<xNeuronalScheme MODEL="LIF" version="1.0">
     <Nodes>NEURONAL NODES</Nodes>
     <Node>
         <ip>232.0.0.1</ip>

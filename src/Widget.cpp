@@ -133,7 +133,7 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
    sceneTmp->addPixmap(p0);
    ui->graphicsView->setScene(sceneTmp);
    sceneTmp = new QGraphicsScene();
-   QPixmap p1(":graphics/equation.png");
+   QPixmap p1(":graphics/equation_CUBALIF.png");
    sceneTmp->addPixmap(p1);
 
    QPixmap pixmap_ApplyChanges(":graphics/applyChangeNeuron.gif");
@@ -236,6 +236,16 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
    ui->pushButton_6->setGraphicsEffect(effect5);
    ui->pushButton_8->setGraphicsEffect(effect6);
    ui->pushButton_7->setGraphicsEffect(effect7);
+
+   ui->pushButton_11->setEnabled(false);
+   ui->pushButton_13->setEnabled(false);
+   ui->lineEdit_At->setEnabled(false);
+   ui->lineEdit_Vrh->setEnabled(false);
+
+   ui->pushButton_11->setVisible(false);
+   ui->pushButton_13->setVisible(false);
+   ui->lineEdit_At->setVisible(false);
+   ui->lineEdit_Vrh->setVisible(false);
 
    this->move(QApplication::desktop()->availableGeometry().center() - this->rect().center());
 
