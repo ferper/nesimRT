@@ -138,8 +138,7 @@ This project is licensed under the GPL License - see the <a href="https://github
 </p>
 
 <p align="justify">
-Copyright © 2022 .....
-<a href="mailto:.....@.....com">...........</a>
+Copyright © 2022
 </p>
 
 
