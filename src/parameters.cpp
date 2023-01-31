@@ -1,8 +1,8 @@
 #include "parameters.h"
 
-Parameters::Parameters(double V,double Iexc,  double Iinh,double tau_e,double tau_i, double tau_v,
+Parameters::Parameters(int neuronModel,double V,double Iexc,  double Iinh,double tau_e,double tau_i, double tau_v,
                double R, double Vr, double Vrh, double Vth, double At) {
-
+    this->neuronModel=neuronModel;
     this->V=V;
     this->Iexc=Iexc;
     this->Iinh=Iinh;
@@ -31,6 +31,7 @@ Parameters& Parameters::operator = (const Parameters &p){
         this->Vth=p.Vth;
         this->At=p.At;
         this->V=p.V;
+        this->neuronModel=p.neuronModel;
     }
     return *this;
 }

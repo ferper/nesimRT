@@ -130,9 +130,10 @@ void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
     }
 
     if ((!found) && (this->typeNode==TYPENEURON_NORMAL)) {
+        // TODO: Node has Parameter field. Can be used to select the Form dialog model
         if (FormDialog) {
-            ((ModelAdExLIF*)FormDialog)->show();
-            ((ModelAdExLIF*)FormDialog)->activateWindow();
+            ((QDialog*)FormDialog)->show();
+            ((QDialog*)FormDialog)->activateWindow();
         }
         else {
             // A ModelAdExLIF form is only created when the Node is double clicked

@@ -373,26 +373,25 @@ void MotherNeuron::createNeuron(EncodeDecodeMsg *msg) {
     QString ip =msg->field6;
     int typeNeuron=msg->field7.toInt();
     int localRemote=msg->field8.toInt();
-    double w=msg->field9.toDouble();;
-    double fx=msg->field10.toDouble();;
-
-    //TODO: here can put a Determinant to identify the Neural Model
+    double w=msg->field9.toDouble();
+    double fx=msg->field10.toDouble();
     double V=msg->field11.toDouble();
     double Iexc=msg->field12.toDouble();
     double Iinh=msg->field13.toDouble();
-    double tauExc=msg->field14.toDouble();
-    double tauInh=msg->field15.toDouble();;
-    double tauV=msg->field16.toDouble();;
-    double R=msg->field17.toDouble();
-    double Vr=msg->field18.toDouble();;
-    double Vrh=msg->field19.toDouble();
-    double Vth=msg->field20.toDouble();
-    double At=msg->field21.toDouble();;
+    int neuronModel=msg->field14.toInt();
+    double tauExc=msg->field15.toDouble();
+    double tauInh=msg->field16.toDouble();
+    double tauV=msg->field17.toDouble();
+    double R=msg->field18.toDouble();
+    double Vr=msg->field19.toDouble();
+    double Vrh=msg->field20.toDouble();
+    double Vth=msg->field21.toDouble();
+    double At=msg->field22.toDouble();
 
     QString msg1=QString("#")+sep_operation+CREATE_GRAPHIC_NEURON_FROM_MOTHER_TO_GRAPHICS+sep_operation+ip+separator;
     msg1+=id+separator+label+separator+QString::number(posX)+separator+QString::number(posY)+separator+QString::number(typeNeuron)+separator+QString::number(amountOfNeurons)+separator;
     msg1+=QString::number(localRemote)+separator+QString::number(w)+separator+QString::number(fx)+separator;
-    msg1+=QString::number(V)+separator+QString::number(Iexc)+separator+QString::number(Iinh)+separator+QString::number(tauExc)+separator;
+    msg1+=QString::number(V)+separator+QString::number(Iexc)+separator+QString::number(Iinh)+separator+QString::number(neuronModel)+separator+QString::number(tauExc)+separator;
     msg1+=QString::number(tauInh)+separator+QString::number(tauV)+separator+QString::number(R)+separator+QString::number(Vr)+separator;
     msg1+=QString::number(Vrh)+separator+QString::number(Vth)+separator+QString::number(At)+separator;
     publicAMessage(msg1, IPM_MOTHER, (quint16) GRAPHICS_PORT);

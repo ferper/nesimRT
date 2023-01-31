@@ -82,7 +82,6 @@ protected:
 private:
     void killme(bool showMessageBox);
     void liveNeuron();
-
     void sendMsg(QString msg, quint16 port);
     QString getLocalMAC();
     bool V_enabled;

@@ -18,7 +18,7 @@
 using namespace std;
 
 
-neuron_cubalif::neuron_cubalif(QWidget *parent, int NumberNeuronsGroup, QString label, float posX, float posY, QString ip, int idGlobalNeuron, int typeNeuron, int localRemote, Parameters *p, double w_default, QString fx,
+neuron_cubalif::neuron_cubalif(QWidget *parent, int NumberNeuronsGroup, QString label, float posX, float posY, QString ip, int idGlobalNeuron, int typeNeuron,int localRemote, Parameters *p, double w_default, QString fx,
         double V_prior,double IexcCurrent,double IinhCurrent,double VCurrent): Neuron(parent,NumberNeuronsGroup,label,posX,posY,ip,idGlobalNeuron,typeNeuron,localRemote,p,w_default,fx)
 {
 

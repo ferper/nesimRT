@@ -436,6 +436,7 @@ void MainGraphics::processPendingDatagrams()
             node->posX=msg.field4.toFloat();
             node->posY=msg.field5.toFloat();
             node->typeNode=msg.field6.toInt();
+
             if (node->typeNode==TYPENEURON_MOTHER)
                 node->scale= SIZE0_NODE;
             else if (node->typeNode==TYPENEURON_GENERATOR)
@@ -453,20 +454,47 @@ void MainGraphics::processPendingDatagrams()
 
             // Parameters of Neuronal Model
             Parameters *p = new Parameters();
-
-            p->V=msg.field11.toDouble();
-            p->Iexc=msg.field12.toDouble();
-            p->Iinh=msg.field13.toDouble();
-            p->tau_e=msg.field14.toDouble();
-            p->tau_i=msg.field15.toDouble();
-            p->tau_v=msg.field16.toDouble();
-            p->R=msg.field17.toDouble();
-            p->Vr=msg.field18.toDouble();
-            p->Vrh=msg.field19.toDouble();
-            p->Vth=msg.field20.toDouble();
-            p->At=msg.field21.toDouble();
-            node->parameters=p;
-
+            p->neuronModel=msg.field14.toInt();
+            if (msg.field14.toInt() == 1){   //"CUBALIF"{
+                p->V=msg.field11.toDouble();
+                p->Iexc=msg.field12.toDouble();
+                p->Iinh=msg.field13.toDouble();
+                p->tau_e=msg.field15.toDouble();
+                p->tau_i=msg.field16.toDouble();
+                p->tau_v=msg.field17.toDouble();
+                p->R=msg.field18.toDouble();
+                p->Vr=msg.field19.toDouble();
+                p->Vrh=msg.field20.toDouble();
+                p->Vth=msg.field21.toDouble();
+                p->At=msg.field22.toDouble();
+                node->parameters=p;
+            }else if (msg.field14.toInt() == 2){   //"Izhikevich"{
+                p->V=msg.field11.toDouble();
+                p->Iexc=msg.field12.toDouble();
+                p->Iinh=msg.field13.toDouble();
+                p->tau_e=msg.field15.toDouble();
+                p->tau_i=msg.field16.toDouble();
+                p->tau_v=msg.field17.toDouble();
+                p->R=msg.field18.toDouble();
+                p->Vr=msg.field19.toDouble();
+                p->Vrh=msg.field20.toDouble();
+                p->Vth=msg.field21.toDouble();
+                p->At=msg.field22.toDouble();
+                node->parameters=p;
+            }else if (msg.field14.toInt() == 0){    //"Adexlif"{
+                p->V=msg.field11.toDouble();
+                p->Iexc=msg.field12.toDouble();
+                p->Iinh=msg.field13.toDouble();
+                p->tau_e=msg.field15.toDouble();
+                p->tau_i=msg.field16.toDouble();
+                p->tau_v=msg.field17.toDouble();
+                p->R=msg.field18.toDouble();
+                p->Vr=msg.field19.toDouble();
+                p->Vrh=msg.field20.toDouble();
+                p->Vth=msg.field21.toDouble();
+                p->At=msg.field22.toDouble();
+                node->parameters=p;
+            }
             node->FormDialog=nullptr; // The Neuron has been created outside // (QDialog*) this;
             scene->addItem(node);
             vectorGraphicsNodes.push_back(node);
@@ -500,7 +528,7 @@ void MainGraphics::processPendingDatagrams()
             Node *node1=findNode(target);
             node1->synapsys.push_back(synap);
             if (node1->FormDialog!=nullptr)
-                ((ModelAdExLIF *) node1->FormDialog)->showSynapsys();
+                ((ModelAdExLIF *) node1->FormDialog)->showSynapsys(); // TODO: Change
 
             // It is NOT necessary to add synapses, because only Neurons are of interest
         }
@@ -800,7 +828,8 @@ void MainGraphics::saveScene(QString fileName) {
     xml.writeStartDocument();
     xml.writeDTD(QStringLiteral("<!DOCTYPE xbel>"));
     xml.writeStartElement(QStringLiteral("xNeuronalScheme"));
-    xml.writeAttribute( QStringLiteral("MODEL"), mathematicalModel.toStdString().c_str()); //QStringLiteral(QString::strcat(mathematicalModel)));
+    // TODO: DElete mathematical model in general XML
+    //xml.writeAttribute( QStringLiteral("MODEL"), mathematicalModel.toStdString().c_str()); //QStringLiteral(QString::strcat(mathematicalModel)));
     xml.writeAttribute( QStringLiteral("version"), QStringLiteral("1.0"));
     xml.writeTextElement("Nodes","NEURONAL NODES");
     for (int i=0; i<vectorGraphicsNodes.size();i++) {
@@ -814,8 +843,7 @@ void MainGraphics::saveScene(QString fileName) {
         xml.writeTextElement("typeNeuron", QString::number(vectorGraphicsNodes.at(i)->typeNode));
         xml.writeTextElement("frecuency", QString::number(vectorGraphicsNodes.at(i)->frecuency));
         xml.writeTextElement("amountOfNeurons", QString::number(vectorGraphicsNodes.at(i)->amountOfNeurons));
-
-        //Mathematical model parameters
+        xml.writeTextElement("Model", QString::number((int)vectorGraphicsNodes.at(i)->parameters->neuronModel));
         xml.writeTextElement("V", QString::number((double)vectorGraphicsNodes.at(i)->parameters->V));
         xml.writeTextElement("Iexc", QString::number((double)vectorGraphicsNodes.at(i)->parameters->Iexc));
         xml.writeTextElement("Iinh", QString::number((double)vectorGraphicsNodes.at(i)->parameters->Iinh));
@@ -956,6 +984,7 @@ void MainGraphics::loadSceneFromMsg(QString filename) {
          file.close();
          QDomElement root=XML.documentElement();
          std::cout<<"ROOT: "<<root.tagName().toStdString()<<std::endl;
+         // DElete mathematical model
          mathematicalModel=root.attribute("MODEL","No assigned");
          std::cout<<"MODEL: "<<mathematicalModel.toStdString()<<std::endl;
          QString version=root.attribute("version","No assigned");
@@ -1007,6 +1036,7 @@ void MainGraphics::loadSceneFromMsg(QString filename) {
                      if (Child.tagName()=="amountOfNeurons") amountOfNeurons=Child.firstChild().toText().data().toInt();
 
                      //Mathematical model parameters
+                     // Load mathematical model and parameters
                      if (Child.tagName()=="V") V=Child.firstChild().toText().data().toDouble();
                      if (Child.tagName()=="Iexc") Iexc=Child.firstChild().toText().data().toDouble();
                      if (Child.tagName()=="Iinh") Iinh=Child.firstChild().toText().data().toDouble();

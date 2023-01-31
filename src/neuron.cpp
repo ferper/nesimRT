@@ -13,7 +13,7 @@
 #include "config.h"
 #include "encodeDecodeMsg.h"
 #include "spikeGenerator.h"
-#include "scheme/model_adexlif.h"
+//#include "scheme/model_adexlif.h"
 
 
 using namespace std;
@@ -301,11 +301,10 @@ void Neuron::liveNeuron(){ // The neuron is completly functional
     msg+=QString::number(NumberNeuronsGroup)+separator+ipmSource+separator+QString::number(typeNeuron)+separator;
     msg+=QString::number(localRemote)+separator+QString::number(we)+separator+fx_numberTxt+separator;
     msg+=QString::number(double(p->V))+separator+QString::number(double(p->Iexc))+separator+QString::number(double (p->Iinh))+separator;
-
+    msg+=QString::number(p->neuronModel)+separator;
     msg+=QString::number(p->tau_e)+separator+QString::number(p->tau_i)+separator+QString::number(p->tau_v)+separator;
     msg+=QString::number(p->R)+separator+QString::number(p->Vr)+separator+QString::number(p->Vrh)+separator+QString::number(p->Vth)+separator;
     msg+=QString::number(p->At)+separator;//+QString::number(w)+separator+ fx_numberTxt+separator;
-
     sendMsg(msg,NEURON_PROMISCUOS_PORT);
 
     QString cadena="Neuron: " + ipmSource;
@@ -349,6 +348,7 @@ int Neuron::get_NSynapses(){
     //cout<<"Current Iexc value:"<<p->Iexc<<endl;
     return Vsynapse.size();
 }
+
 void Neuron::set_At(double value) {
     p->At=value;
 
