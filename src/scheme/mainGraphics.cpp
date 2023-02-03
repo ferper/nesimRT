@@ -1009,6 +1009,7 @@ void MainGraphics::loadSceneFromMsg(QString filename) {
                  int frecuency=1000; //For the Generator case
 
                  //Neuronal Model
+                 int neuronModel=0;
                  double V;
                  double Iexc;
                  double Iinh;
@@ -1037,6 +1038,7 @@ void MainGraphics::loadSceneFromMsg(QString filename) {
 
                      //Mathematical model parameters
                      // Load mathematical model and parameters
+                     if (Child.tagName()=="Model") neuronModel=Child.firstChild().toText().data().toInt();
                      if (Child.tagName()=="V") V=Child.firstChild().toText().data().toDouble();
                      if (Child.tagName()=="Iexc") Iexc=Child.firstChild().toText().data().toDouble();
                      if (Child.tagName()=="Iinh") Iinh=Child.firstChild().toText().data().toDouble();
@@ -1070,14 +1072,22 @@ void MainGraphics::loadSceneFromMsg(QString filename) {
                  }
 
                  idGlobalNeuron= id.toInt();
-                 Parameters *p1= new Parameters(V,Iexc,Iinh,tauExc,tauInh,tauV,R,Vr,Vrh,Vth,At);
-                 Neuron *n = new Neuron(nullptr,amountOfNeurons, label, posX, posY, ip, idGlobalNeuron, typeNeuron,LOCAL_NEURON, p1,1,"1E-9");
+                 Parameters *p1= new Parameters(neuronModel,V,Iexc,Iinh,tauExc,tauInh,tauV,R,Vr,Vrh,Vth,At);
                  if (typeNeuron==TYPENEURON_GENERATOR) {
+                    Neuron *n = new Neuron(nullptr,amountOfNeurons, label, posX, posY, ip, idGlobalNeuron, typeNeuron,LOCAL_NEURON, p1,1,"1E-9");
                     SpikeGenerator *spikeGenerator = new SpikeGenerator(nullptr,frecuency,ip);
                     n->FormDialog=spikeGenerator;
+                    localNeurons.append(n);
+                 }else if(neuronModel==0){
+                     neuron_adexlif *n = new neuron_adexlif(nullptr,amountOfNeurons ,label,posX,posY, ip,idGlobalNeuron, typeNeuron,LOCAL_NEURON, p1,1,"1E-9",V,Iexc,Iinh,Vr);
+                     localNeurons.append(dynamic_cast<Neuron*>(n));
+                 }else if(neuronModel==1){
+                     neuron_cubalif *n = new neuron_cubalif(nullptr,amountOfNeurons ,label,posX,posY, ip,idGlobalNeuron, typeNeuron,LOCAL_NEURON, p1,1,"1E-9",V,Iexc,Iinh,Vr);
+                     localNeurons.append(dynamic_cast<Neuron*>(n));
+                 }else if(neuronModel==2){
+                     neuron_izhikevich *n = new neuron_izhikevich(nullptr,amountOfNeurons ,label,posX,posY, ip,idGlobalNeuron, typeNeuron,LOCAL_NEURON, p1,1,"1E-9",V,Iexc,Iinh,Vr);
+                     localNeurons.append(dynamic_cast<Neuron*>(n));
                  }
-                 localNeurons.append(n);
-
              }
              else if (Component.tagName()=="Synapse") {
 
