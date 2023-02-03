@@ -25,89 +25,44 @@ NESIM-RT is an open-source cross-platform software tool for simulating spiking n
 <h2 name="Installing">Installing</h2>
 
 <p align="justify">
-En primer lugar debemos ir a la url de qt y descargar Qt opensource. Para ello debemos ir a la url https://www.qt.io/download-open-source .
-Debemos pulsar el siguiente botón y seguir las instrucciones para bajar el instalador:
-(Foto 1)
-Cuando tengamos descargado el instalador:
-(Foto2)
-Lo ejecutamos y debemos loguear nuestro correo y contraseña de Qt (si no se tiene cuenta debemos registrarnos). 
-(Foto 3) 
-Debemos aceptar las condiciones de usos:
-(Foto 4)
-Ahora debemos seguir al pie de la letra las siguientes instrucciones.
-En primer lugar debemos pulsar el botón de “Instalación personalizada”
-(Foto 5)
-Debemos seleccionar la versión de Qt. Este proyecto se ha desarrollado en Qt 5.15 por lo que debemos seleccionar esta versión de Qt junto a sus Herramientas.
-(Foto 6)
-Aceptamos de nuevo los acuerdos de licencia:
-(Foto 7)
-Y por último instalamos.
-(Foto 8)
-
-
-Una vez descargado Todo he instalado abrimos Qt creator
-(Foto 9)
-Abrimos el proyecto descargado de GitHub:
-(Foto 10)
-Para cargar el proyecto abrimos la carpeta “src”:
-(Foto 11)
-Y dentro de esta abrimos el archivo “nesimRT.pro”:
-(Foto 12)
-Una vez termine de actualizar todo y cargar el compilador tendremos el proyecto ya abierto:
-(Foto 13)
-
-Para ejecutar la aplicación Primero debemos compilarla:
-(Foto 14)
-Cuando finalice de compilar ya solo tendremos que pulsar el botón “play”:
-(Foto 15)
-
-
-
-installation tutorial
-
-First of all we must go to the qt url and download Qt opensource. For this we must go to the url https://www.qt.io/download-open-source .
-We must press the following button and follow the instructions to download the installer:
-(Photo 1)
-When we have downloaded the installer:
-(Photo2)
-We run it and we must log in our Qt email and password (if we do not have an account we must register).
-(Photo 3)
-We must accept the conditions of use:
-(Photo 4)
-Now we must follow the following instructions to the letter.
-First of all we must press the “Custom installation” button
-(Photo 5)
-We must select the version of Qt. This project has been developed in Qt 5.15, so we must select this version of Qt next to its Tools.
-(Photo 6)
-We accept the new license agreements:
-(Photo 7)
-And finally we installed it.
-
+</p>First of all we must go to the qt url and download Qt opensource. For this we must go to the url https://www.qt.io/download-open-source .
+</p>We must press the following button and follow the instructions to download the installer:
+</p>(Photo 1)
+</p>When we have downloaded the installer:
+</p>(Photo2)
+</p>We run it and we must log in our Qt email and password (if we do not have an account we must register).
+</p>(Photo 3)
+</p>We must accept the conditions of use:
+</p>(Photo 4)
+</p>Now we must follow the following instructions to the letter.
+</p>First of all we must press the “Custom installation” button
+</p>(Photo 5)
+</p>We must select the version of Qt. This project has been developed in Qt 5.15, so we must select this version of Qt next to its Tools.
+</p>(Photo 6)
+</p>We accept the new license agreements:
+</p>(Photo 7)
+</p>And finally we installed it.
 
 </p>
-
-
-
 
 
 <h2 name="GettingStarted">Getting started</h2>
 
 <p align="justify">
-Once downloaded, I have installed everything, open Qt Creator
-(Photo 9)
-We open the project downloaded from GitHub:
-(Photo 10)
-To load the project we open the “src” folder:
-(Photo 11)
-And inside this we open the file "nesimRT.pro":
-(Photo 12)
-Once you finish updating everything and loading the compiler we will have the project already open:
-(Photo 13)
-
-To run the application, we must first compile it:
-(Photo 14)
-When it finishes compiling, we will only have to press the "play" button:
-(Photo 15)
+</p>Once downloaded, I have installed everything, open Qt Creator
+</p>(Photo 9)
+</p>We open the project downloaded from GitHub:
+</p>(Photo 10)
+</p>To load the project we open the “src” folder:
+</p>(Photo 11)
+</p>And inside this we open the file "nesimRT.pro":
+</p>(Photo 12)
+</p>Once you finish updating everything and loading the compiler we will have the project already open:
+</p>(Photo 13)
+</p>To run the application, we must first compile it:
+</p>(Photo 14)
+</p>When it finishes compiling, we will only have to press the "play" button:
+</p>(Photo 15)
 
 
 </p>
