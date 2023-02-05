@@ -27,21 +27,53 @@ NESIM-RT is an open-source cross-platform software tool for simulating spiking n
 <p align="justify">
 </p>First of all we must go to the qt url and download Qt opensource. For this we must go to the url https://www.qt.io/download-open-source .
 </p>We must press the following button and follow the instructions to download the installer:
-</p>(Photo 1)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/01.jpg">
+</p>
+
 </p>When we have downloaded the installer:
-</p>(Photo2)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/02.jpg">
+</p>
+
 </p>We run it and we must log in our Qt email and password (if we do not have an account we must register).
-</p>(Photo 3)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/03.jpg">
+</p>
+
 </p>We must accept the conditions of use:
-</p>(Photo 4)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/04.jpg">
+</p>
+
 </p>Now we must follow the following instructions to the letter.
 </p>First of all we must press the “Custom installation” button
-</p>(Photo 5)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/05.jpg">
+</p>
+
 </p>We must select the version of Qt. This project has been developed in Qt 5.15, so we must select this version of Qt next to its Tools.
-</p>(Photo 6)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/06.jpg">
+</p>
+
 </p>We accept the new license agreements:
-</p>(Photo 7)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/07.jpg">
+</p>
+
 </p>And finally we installed it.
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/08.jpg">
+</p>
 
 </p>
 
@@ -50,19 +82,46 @@ NESIM-RT is an open-source cross-platform software tool for simulating spiking n
 
 <p align="justify">
 </p>Once downloaded, I have installed everything, open Qt Creator
-</p>(Photo 9)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/09.jpg">
+</p>
+
 </p>We open the project downloaded from GitHub:
-</p>(Photo 10)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/10.jpg">
+</p>
+
 </p>To load the project we open the “src” folder:
-</p>(Photo 11)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/11.jpg">
+</p>
+
 </p>And inside this we open the file "nesimRT.pro":
-</p>(Photo 12)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/12.jpg">
+</p>
+
 </p>Once you finish updating everything and loading the compiler we will have the project already open:
-</p>(Photo 13)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/13.jpg">
+</p>
+
 </p>To run the application, we must first compile it:
-</p>(Photo 14)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/14.jpg">
+</p>
+
 </p>When it finishes compiling, we will only have to press the "play" button:
-</p>(Photo 15)
+
+<p align="center">
+<img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/15.jpg">
+</p>
 
 
 </p>
