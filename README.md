@@ -40,6 +40,25 @@ NESIM-RT is an open-source cross-platform software tool for simulating spiking n
 <img align="center" src="https://github.com/ferper/nesimRT/blob/main/imgs/02.jpg">
 </p>
 
+</p>Before we can run we need to install certain libraries so that qt can be installed. To do this we execute the following commands on our machine:
+</p>
+<strong> sudo apt-get update && sudo apt-get upgrade</strong>
+</p>
+<strong> sudo apt-get -y install build-essential openssl libssl-dev libssl1.0 libgl1-mesa-dev libqt5x11extras5 </strong>
+</p>
+
+</p>Then, we must change the permissions of our executable with the following command:
+</p>
+<strong> chmod +x qt*.run</strong>
+</p>
+
+
+</p>
+</p>Finally we run the application with the following command
+</p>
+<strong> ./qt*.run</strong>
+</p>
+
 </p>We run it and we must log in our Qt email and password (if we do not have an account we must register).
 
 </p>
