@@ -16,28 +16,10 @@ NewSpiNNaker::NewSpiNNaker(QWidget *parent,QList <Node*> *vectorGraphicsNodes,QV
 
 
     fileName="";
-    cm=0.25;
-    i_offset=0.0;
-    tau_m=20.0;
-    tau_refrac=2.0;
-    tau_syn_E=50.0;
-    tau_syn_I=5.0;
-    v_reset=-70.0;
-    v_rest=-65.0;
-    v_thresh=-55.0;
     timeStep=0.25;
     delay=0;
     timeSimulation=50;
 
-    ui->lineEdit_cm->setText(QString::number(cm));
-    ui->lineEdit_i_offset->setText(QString::number(i_offset));
-    ui->lineEdit_tau_m->setText(QString::number(tau_m));
-    ui->lineEdit_tau_refrac->setText(QString::number(tau_refrac));
-    ui->lineEdit_tau_syn_E->setText(QString::number(tau_syn_E));
-    ui->lineEdit_tau_syn_I->setText(QString::number(tau_syn_I));
-    ui->lineEdit_v_reset->setText(QString::number(v_reset));
-    ui->lineEdit_v_rest->setText(QString::number(v_rest));
-    ui->lineEdit_v_thresh->setText(QString::number(v_thresh));
     ui->lineEdit_timeStep->setText(QString::number(timeStep));
     ui->lineEdit_delay->setText(QString::number(delay));
     ui->lineEdit_timeSimulation->setText(QString::number(timeSimulation));
@@ -57,7 +39,6 @@ NewSpiNNaker::NewSpiNNaker(QWidget *parent,QList <Node*> *vectorGraphicsNodes,QV
     ui->graphicsView_2->setScene(sceneTmp);
 
     this->setWindowTitle("Export to SpiNNaker");
-    ui->lineEdit_cm->setFocus();
 
     QPixmap pixmap_ok(":graphics/createNeuron.png");
     QIcon ButtonIcon(pixmap_ok);
@@ -125,82 +106,8 @@ bool NewSpiNNaker::ParametersOk() {
     bool ok=true;
     bool error=false;
 
-    cm=ui->lineEdit_cm->text().toFloat(&ok);
     if (!ok) {
-       QMessageBox::warning(this, "Error","The value of the cm parameter is not valid.");
-       ui->lineEdit_cm->setFocus();
-       error=true;
-    }
-    if (!error) {
-        i_offset=ui->lineEdit_i_offset->text().toFloat(&ok);
-        if (!ok) {
-            QMessageBox::warning(this, "Error","The value of the i_offset parameter is not valid.");
-            ui->lineEdit_i_offset->setFocus();
-            error=true;
-        }
-    }
-    if (!error) {
-        tau_m=ui->lineEdit_tau_m->text().toFloat(&ok);
-        if (!ok) {
-            QMessageBox::warning(this, "Error","The value of the tau_m parameter is not valid.");
-            ui->lineEdit_tau_m->setFocus();
-            error=true;
-        }
-    }
-    if (!error) {
-        tau_refrac=ui->lineEdit_tau_refrac->text().toFloat(&ok);
-        if (!ok) {
-            QMessageBox::warning(this, "Error","The value of the tau_refrac parameter is not valid.");
-            ui->lineEdit_tau_refrac->setFocus();
-            error=true;
-        }
-    }
-    if (!error) {
-        tau_syn_E=ui->lineEdit_tau_syn_E->text().toFloat(&ok);
-        if (!ok) {
-            QMessageBox::warning(this, "Error","The value of the tau_syn_E parameter is not valid.");
-            ui->lineEdit_tau_syn_E->setFocus();
-            error=true;
-        }
-    }
-
-    if (!error) {
-        tau_syn_I=ui->lineEdit_tau_syn_I->text().toFloat(&ok);
-        if (!ok) {
-            QMessageBox::warning(this, "Error","The value of the tau_syn_I parameter is not valid.");
-            ui->lineEdit_tau_syn_I->setFocus();
-            error=true;
-        }
-    }
-
-    if (!error) {
-        v_reset=ui->lineEdit_v_reset->text().toFloat(&ok);
-        if (!ok) {
-            QMessageBox::warning(this, "Error","The value of the v_reset parameter is not valid.");
-            ui->lineEdit_v_reset->setFocus();
-            error=true;
-        }
-    }
-
-    if (!error) {
-        v_rest=ui->lineEdit_v_rest->text().toFloat(&ok);
-        if (!ok) {
-            QMessageBox::warning(this, "Error","The value of the v_rest parameter is not valid.");
-            ui->lineEdit_v_rest->setFocus();
-            error=true;
-        }
-    }
-
-    if (!error) {
-        v_thresh=ui->lineEdit_v_thresh->text().toFloat(&ok);
-        if (!ok) {
-            QMessageBox::warning(this, "Error","The value of the v_thresh parameter is not valid.");
-            ui->lineEdit_v_thresh->setFocus();
-            error=true;
-        }
-    }
-    if (!error) {
-         timeStep=ui->lineEdit_timeStep->text().toFloat(&ok);
+        timeStep=ui->lineEdit_timeStep->text().toFloat(&ok);
         if (!ok) {
             QMessageBox::warning(this, "Error","The value of the timeStep parameter is not valid.");
             ui->lineEdit_timeStep->setFocus();
@@ -237,6 +144,113 @@ bool NewSpiNNaker::ParametersOk() {
     return !error;
 
 }
+
+void NewSpiNNaker::exportToBrian2()
+{
+    if (fileName.length()) {
+         QFile file(fileName);
+         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+           return;
+         QTextStream out(&file);
+         out << "from brian2 import *"<< "\n";
+         out << "import matplotlib.pyplot as plt"<< "\n";
+         out << "\n\n";
+
+         out << "eqs = '''\n";
+         out << "dv/dt  = (-(v-Vrest) + R*(Iexc - Iinh))/taum : volt (unless refractory)\n";
+         out << "dIexc/dt = -Iexc/taue : amp\n";
+         out << "dIinh/dt = -Iinh/taui : amp\n";
+         out << "R : ohm\n";
+         out << "Vth : volt\n";
+         out << "Vreset : volt\n";
+         out << "Vrest : volt\n";
+         out << "taum : second\n";
+         out << "taue : second\n";
+         out << "taui : second\n";
+         out << "'''\n";
+
+         /* Export all neurons including Generators*/
+         Node *nodeSource;
+         for (int i=0; i<vectorGraphicsNodes->size();i++ ) {
+                     nodeSource=vectorGraphicsNodes->at(i);
+            QString labelNeuron= nodeSource->label+"_"+nodeSource->id;
+            if (nodeSource->typeNode==TYPENEURON_GENERATOR) { // Use frequency instead of time
+                out << "times = array([";
+                for (int j=0; j<ui->tableWidget_times->rowCount();j++)
+                {
+                    out<<ui->tableWidget_times->item(j,0)->text();
+                    if (j!=ui->tableWidget_times->rowCount()-1)
+                        out <<",";
+                }
+                out<<"])*ms\n";
+
+                out << "indices = array([";
+                for (int j=0; j<ui->tableWidget_times->rowCount();j++)
+                {
+                    out<<"0";
+                    if (j!=ui->tableWidget_times->rowCount()-1)
+                        out <<",";
+                }
+                out<<"])\n";
+                out<< labelNeuron<<"= SpikeGeneratorGroup(1, indices, times)\n";
+            }
+            else if (nodeSource->typeNode==TYPENEURON_NORMAL) { // TODO: Use nodeSource->parameters to create parameter per node
+                out << labelNeuron<<"= NeuronGroup("<<nodeSource->amountOfNeurons<<", eqs, threshold='v>Vth', reset='v = Vreset',method='exact')\n";
+                out << labelNeuron<<".v = "<<QString::number(nodeSource->parameters->Vrh)<<"*volt\n";
+                out << labelNeuron<<".Iexc = 0*nA\n";
+                out << labelNeuron<<".Iinh = 0*nA\n";
+                out << labelNeuron<<".R = "<<QString::number(nodeSource->parameters->R)<<"*ohm\n";
+                out << labelNeuron<<".Vth = "<<QString::number(nodeSource->parameters->Vth)<<"*volt\n";
+                out << labelNeuron<<".Vreset = "<<QString::number(nodeSource->parameters->Vr)<<"*volt\n";
+                out << labelNeuron<<".Vrest = "<<QString::number(nodeSource->parameters->Vrh)<<"*volt\n";
+                out << labelNeuron<<".taum = "<<QString::number(nodeSource->parameters->tau_v)<<"*ms\n";
+                out << labelNeuron<<".taue = "<<QString::number(nodeSource->parameters->tau_e)<<"*ms\n";
+                out << labelNeuron<<".taui = "<<QString::number(nodeSource->parameters->tau_i)<<"*ms\n";
+            }
+
+         }
+         out << "\n";
+         /* Export all synapses */
+         Node *nodeTarget;
+         for (int i=0; i<vectorGraphicsNodes->size();i++ ) {
+             nodeTarget=vectorGraphicsNodes->at(i);
+             QString NeuronT=nodeTarget->label+"_"+nodeTarget->id;
+             for (int j=0; j<nodeTarget->synapsys.size();j++) {
+                nodeSource= findNode("ip",nodeTarget->synapsys.at(j).ipmSource);
+                QString NeuronS=nodeSource->label+"_"+nodeSource->id;
+                  out<<"input_"<<NeuronS<<NeuronT<<"=Synapses("<<NeuronS<<", "<<NeuronT<<", 'w : amp', on_pre='"<<((nodeTarget->synapsys.at(j).type==1) ? "Iexc" : "Iinh")<<" += w')\n";
+                  out<<"input_"<<NeuronS<<NeuronT<<".connect(True)\n";
+                  out<<"input_"<<NeuronS<<NeuronT<<".w = "<<nodeTarget->synapsys.at(j).w<<"*"<<nodeTarget->synapsys.at(j).fx_unitMeasureTxt<<"\n";
+             }
+         }
+         out <<"\n";
+         QTableWidgetItem *item = ui->tableWidget_Neurons->item(ui->tableWidget_Neurons->currentRow(),0);
+         QString neuron_Monitorized;
+         if (item) {
+             neuron_Monitorized=ui->tableWidget_Neurons->item(ui->tableWidget_Neurons->currentRow(),0)->text()+"_"+ui->tableWidget_Neurons->item(ui->tableWidget_Neurons->currentRow(),2)->text();
+             out << neuron_Monitorized << "_smon = SpikeMonitor(" << neuron_Monitorized  <<")\n";
+             out << neuron_Monitorized << "_mon = StateMonitor(" << neuron_Monitorized  <<", 'v', record=0)\n";
+         }
+         out <<"\n";
+         out << "simtime ="<<timeSimulation<<"\n";
+         out << "run(simtime * second)\n";
+         out <<"\n";
+
+         if (ui->checkBox_plot->isChecked()) {
+             out << "plot(" << neuron_Monitorized << "_smon.t/ms, " << neuron_Monitorized << "_smon.i, ',k')\n";
+             out << "xlabel('Time (ms)')\n";
+             out << "ylabel('Neuron index')\n";
+             out << "show()\n";
+             out<<"\n";
+             out<< "plt.show()"<<"\n";
+         }
+
+         QMessageBox::information(this, "Warning","The file has been succesfully exported.");
+
+     }
+     else QMessageBox::warning(nullptr, tr("Save Error"), tr("The file name is empty."));
+}
+
 void NewSpiNNaker::exportToSpiNNaker(){
 
    if (fileName.length()) {
@@ -248,18 +262,7 @@ void NewSpiNNaker::exportToSpiNNaker(){
             out << "import pyNN.utility.plotting as plot"<< "\n";
             out << "import matplotlib.pyplot as plt"<< "\n";
             out << "sim.setup(timestep="<< QString::number(timeStep)<<")"<<"\n";
-            out << "\n";
-            out << "cell_params_lif = {"<<"\n";
-            out << "\t\t'cm': "<<QString::number(cm)<<",\n";
-            out << "\t\t'i_offset': "<<QString::number(i_offset)<<",\n";
-            out << "\t\t'tau_m': "<<QString::number(tau_m)<<",\n";
-            out << "\t\t'tau_refrac': "<<QString::number(tau_refrac)<<",\n";
-            out << "\t\t'tau_syn_E': "<<QString::number(tau_syn_E)<<",\n";
-            out << "\t\t'tau_syn_I': "<<QString::number(tau_syn_I)<<",\n";
-            out << "\t\t'v_reset': "<<QString::number(v_reset)<<",\n";
-            out << "\t\t'v_rest': "<<QString::number(v_rest)<<",\n";
-            out << "\t\t'v_thresh': "<<QString::number(v_thresh)<<"\n";
-            out << "}" << "\n\n";
+            out << "\n\n";
 
             out <<"sim.set_number_of_neurons_per_core(sim.IF_curr_exp, 100)"<<"\n";
 
@@ -269,7 +272,7 @@ void NewSpiNNaker::exportToSpiNNaker(){
             for (int i=0; i<vectorGraphicsNodes->size();i++ ) {
                         nodeSource=vectorGraphicsNodes->at(i);
                QString labelNeuron= nodeSource->label+"_"+nodeSource->id;
-               if (nodeSource->typeNode==TYPENEURON_GENERATOR) {
+               if (nodeSource->typeNode==TYPENEURON_GENERATOR) { // Use frequency instead of time
                    out<< labelNeuron<<"= sim.Population(1,sim.SpikeSourceArray, {'spike_times': [[";
                     int s=ui->tableWidget_times->rowCount();
                    for (int j=0; j<ui->tableWidget_times->rowCount();j++) {
@@ -279,9 +282,20 @@ void NewSpiNNaker::exportToSpiNNaker(){
                     }
                    out<<"]]},label=\""<<labelNeuron<<"\")"<<"\n";
                }
-               else if (nodeSource->typeNode==TYPENEURON_NORMAL) {
-                   out<< labelNeuron<<"= sim.Population("<<nodeSource->amountOfNeurons<<",sim.IF_curr_exp, cell_params_lif, label=\""<<labelNeuron<<"\")"<<"\n";
-                   out<<labelNeuron<<".initialize(v="<<QString::number(v_reset)<<")\n";
+               else if (nodeSource->typeNode==TYPENEURON_NORMAL) { // TODO: Use nodeSource->parameters to create parameter per node
+                   out << "cell_params_" << labelNeuron << " = {"<<"\n"; // TODO: Change
+                   out << "\t\t'cm': "<<QString::number(1)<<",\n"; // Capacity of the membrane in nF
+                   out << "\t\t'i_offset': "<<QString::number(0)<<",\n"; // Offset current in nA
+                   out << "\t\t'tau_m': "<<QString::number(nodeSource->parameters->tau_v)<<",\n"; // Membrane time constant in ms.
+                   out << "\t\t'tau_refrac': "<<QString::number(0.1)<<",\n"; //Duration of refractory period in ms.
+                   out << "\t\t'tau_syn_E': "<<QString::number(nodeSource->parameters->tau_e)<<",\n"; // Decay time of excitatory synaptic current in ms.
+                   out << "\t\t'tau_syn_I': "<<QString::number(nodeSource->parameters->tau_i)<<",\n"; // Decay time of inhibitory synaptic current in ms.
+                   out << "\t\t'v_reset': "<<QString::number(nodeSource->parameters->Vr*1000)<<",\n"; // Reset potential after a spike in mV.
+                   out << "\t\t'v_rest': "<<QString::number(nodeSource->parameters->Vrh*1000)<<",\n"; // Resting membrane potential in mV.
+                   out << "\t\t'v_thresh': "<<QString::number(nodeSource->parameters->Vth*1000)<<"\n"; //Spike threshold in mV.
+                   out << "}" << "\n";
+                   out << labelNeuron<<"= sim.Population("<<nodeSource->amountOfNeurons<<",sim.IF_curr_exp, cell_params_" << labelNeuron << ", label=\""<<labelNeuron<<"\")"<<"\n";
+                   out << labelNeuron<<".initialize(v="<<QString::number(nodeSource->parameters->Vr)<<")\n\n";
                }
 
             }
@@ -417,10 +431,14 @@ void NewSpiNNaker::on_pushButton_clicked()
                 QString msg="There is no selected neuron to monitor.\nWould you still like to export this?";
                 reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
                 if (reply==QMessageBox::Yes)
+                {
                     exportToSpiNNaker();
+                }
             }
             else
-               exportToSpiNNaker();
+            {
+                exportToSpiNNaker();
+            }
         }
     }
 }
@@ -438,7 +456,7 @@ void NewSpiNNaker::on_pushButton_3_clicked()
 
    if (fileName.isEmpty())
       return;
-   fileName=fileName+".py";
+   //fileName=fileName+".py";
    ui->lineEdit_fileName->setText(fileName);
 }
 
@@ -489,4 +507,38 @@ void NewSpiNNaker::on_pushButton_5_clicked()
         ui->tableWidget_times->removeRow(ui->tableWidget_times->currentRow());
 }
 
+
+
+void NewSpiNNaker::on_bt_exportBrian2_clicked()
+{
+    if (ParametersOk()) {
+        QString baseName = QFileInfo(ui->lineEdit_fileName->text()).baseName();
+        QString extension= QFileInfo(fileName).completeSuffix();
+        if (extension!="py") {
+            extension=".py";
+            fileName=fileName+extension;
+        }
+        if (!baseName.length())
+            QMessageBox::warning(this, "Error","The filename is empty");
+        else {
+            fileName=ui->lineEdit_fileName->text();
+            ui->lineEdit_fileName->setText(fileName);
+
+            QTableWidgetItem *item = ui->tableWidget_Neurons->item(ui->tableWidget_Neurons->currentRow(),0);
+            if (!item) {
+                QMessageBox::StandardButton reply;
+                QString msg="There is no selected neuron to monitor.\nWould you still like to export this?";
+                reply=QMessageBox::question(this, "Atención",msg,QMessageBox::Yes|QMessageBox::No,QMessageBox::Yes);
+                if (reply==QMessageBox::Yes)
+                {
+                    exportToBrian2();
+                }
+            }
+            else
+            {
+                exportToBrian2();
+            }
+        }
+    }
+}
 

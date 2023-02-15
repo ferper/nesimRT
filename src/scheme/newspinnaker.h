@@ -19,6 +19,7 @@ public:
     explicit NewSpiNNaker(QWidget *parent = nullptr,QList <Node*> *vectorGraphicsNodes=nullptr,QVector <JunctionsDraw*> *vectorGraphicsEdge=nullptr);
     void showEvent(QShowEvent *) override;
     void exportToSpiNNaker();
+    void exportToBrian2();
     ~NewSpiNNaker();
 
 protected:
@@ -38,19 +39,12 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_bt_exportBrian2_clicked();
+
 private:
     Ui::NewSpiNNaker *ui;
     QString fileName;
     bool ParametersOk();
-    float cm;
-    float i_offset;
-    float tau_m;
-    float tau_refrac;
-    float tau_syn_E;
-    float tau_syn_I;
-    float v_reset;
-    float v_rest;
-    float v_thresh;
     float timeStep;
     int delay;
     int timeSimulation;
