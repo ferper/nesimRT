@@ -56,7 +56,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label , float po
     this->Iinh_enabled=false;
     this->Iexc_enabled=false;
     this->V_enabled=false;
-    this->H=0.01;
+    this->H=0.1;
     this->dataIsAvailable=false;
     this->NumberNeuronsGroup=NumberNeuronsGroup;
     this->enableDataGeneralMonitor=false;
@@ -163,7 +163,6 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label , float po
             EncodeDecodeMsg msg;
 
             QByteArray datagram = msg.encondeMsg(ENABLE_SEND_GENERAL_MONITOR,ipmSource,QString::number(enableDataGeneralMonitor)).toStdString().c_str();
-            //cout<<"salida:::  "<<datagram.toStdString()<<endl;
 
             QUdpSocket udpSocket;
             QHostAddress groupAddress;
@@ -374,38 +373,36 @@ Neuron::~Neuron(){
     delete monitor;
 }
 
-void Neuron::calculateIinh() {
+void Neuron::calculateIinh(float dt) {
    if (Iinh_enabled) {
       Iinh_prior=p->Iinh;
-      p->Iinh=Iinh_prior+H*(-Iinh_prior/p->tau_i);
+      p->Iinh=Iinh_prior+dt*(-Iinh_prior/p->tau_i);
    }
 }
 
-void Neuron::calculateIexc(){
+void Neuron::calculateIexc(float dt){
    if (Iexc_enabled) {
       Iexc_prior=p->Iexc;
-      p->Iexc=Iexc_prior+H*(-Iexc_prior/p->tau_e);
+      p->Iexc=Iexc_prior+dt*(-Iexc_prior/p->tau_e);
    }
 }
-void Neuron::calculateV() {
+void Neuron::calculateV(float dt) {
        V_prior=p->V;
        //p->V=V_prior+H*((1/p->tau_v)*(-(V_prior-p->Vr)+p->At*exp((V_prior-p->Vrh)/p->At)+p->R*(Iexc_prior-Iinh_prior)));
-       p->V=V_prior+H*((1/p->tau_v)*(-(V_prior-p->Vr)+p->R*(Iexc_prior-Iinh_prior)));
+       p->V=V_prior+dt*(p->R*(Iexc_prior-Iinh_prior)-(V_prior-p->Vr))/p->tau_v;
 }
 
 void Neuron::calculateValues(){
     bool spiking=false;
     dataIsAvailable=false;
     mutexNeuron.lock();
+    auto end = std::chrono::system_clock::now();
+    std::chrono::duration<float,std::milli> duration = end - start;
+    float dt = duration.count() * H;
     for (int i=0; i<10; i++) {
         //TODO: Borrar
-        auto start2 = start;
-        auto end = std::chrono::system_clock::now();
 
-        std::chrono::duration<float,std::nano> duration = end - start2;
-        //cout <<"El tiempo es "<< duration.count() << endl;
-
-        calculateV();
+        calculateV(dt);
         if (p->V>p->Vth) { //SPIKE Generator
             p->V=p->Vr;
             spiking = true;
@@ -417,8 +414,8 @@ void Neuron::calculateValues(){
         IexcCurrent=p->Iexc;
         IinhCurrent=p->Iinh;
         VCurrent=p->V;
-        calculateIexc();
-        calculateIinh();
+        calculateIexc(dt);
+        calculateIinh(dt);
     }
     mutexNeuron.unlock();
     dataIsAvailable=true;

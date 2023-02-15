@@ -4,7 +4,6 @@
 
 #include <QMainWindow>
 #include "WidgetGeneralMonitor.h"
-#include "spikeGenerator.h"
 #include "neuron.h"
 #include "motherNeuron.h"
 #include <QVector>
@@ -28,7 +27,6 @@ public:
     MainGraphics *schemeNeuron;
     MotherNeuron *motherNeuron;//= MotherNeuron(nullptr,IPM_MOTHER,schemeNeuron);
     QGraphicsScene *scene;
-    SpikeGenerator *spikeGenerator;
 
     QUdpSocket udpSocketX;
     QHostAddress groupX;

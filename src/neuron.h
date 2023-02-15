@@ -84,9 +84,9 @@ protected:
 private:
     void killme(bool showMessageBox);
     void liveNeuron();
-    void calculateIexc();
-    void calculateIinh();
-    void calculateV();
+    void calculateIexc(float dt=1.0);
+    void calculateIinh(float dt=1.0);
+    void calculateV(float dt=1.0);
     void generateSpike();
     void sendMsg(QString msg, quint16 port);
     QString getLocalMAC();

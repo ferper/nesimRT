@@ -130,7 +130,6 @@ void MotherNeuron::processPendingDatagramsPromiscuous()
                 it.value().N=N;
             }
         }
-
         else if (msg.operation==REMOVE_SYNAPSE_MOTHER) { // A synapse sent from a Neuron is removed
             typeDataNeurons::Iterator it;
             it=dataNeurons.find(msg.field1);

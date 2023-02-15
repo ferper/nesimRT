@@ -1,6 +1,7 @@
 #include "newgeneratorGraphic.h"
 #include "ui_newgeneratorform.h"
 #include <QRandomGenerator>
+#include "spikeGenerator.h"
 
 NewGeneratorGraphics::NewGeneratorGraphics(QWidget *parent,MainGraphics *graphWidget,float posX, float posY, int *idGlobalNeuron, QList <Node*> *vectorGraphicsNodes, QList <Neuron *> *localNeurons,bool *sceneBeSaved) :
     QWidget(parent),

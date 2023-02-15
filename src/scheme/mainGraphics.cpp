@@ -28,9 +28,6 @@ MainGraphics::MainGraphics(QWidget *parent )
     : QGraphicsView(parent), timerId(0)
 
 {
-
-
-
     fileNameToSave="";
     scene = new QGraphicsScene(this);
 
@@ -243,13 +240,15 @@ MainGraphics::MainGraphics(QWidget *parent )
     connect(timerEmpty, SIGNAL(timeout()), this, SLOT(emptyVectors()));
 }
 
-void MainGraphics::emptyVectors() {
+void MainGraphics::emptyVectors()
+{
     timerEmpty->stop();
     emptyVectorGraphicsEdges();
     emptyVectorGraphicsNodes();
 }
 
-int MainGraphics::getNumberItemOf(int typeOfItem) {
+int MainGraphics::getNumberItemOf(int typeOfItem)
+{
    int total=0;
 
    for (int idx=0; idx<vectorGraphicsNodes.size();idx++)
@@ -260,7 +259,8 @@ int MainGraphics::getNumberItemOf(int typeOfItem) {
 
 }
 
-bool MainGraphics::existIp(QString ip) {
+bool MainGraphics::existIp(QString ip)
+{
 
     bool encontrado=false;
     int idx=0;
@@ -274,7 +274,8 @@ bool MainGraphics::existIp(QString ip) {
 }
 
 
-void MainGraphics::restaurateIPSimulated(QString type) {
+void MainGraphics::restaurateIPSimulated(QString type)
+{
     if (type.toInt()==TYPENEURON_NORMAL) {
         sim_DHCP_NORMAL_A=DHCP_NORMAL_A;
         sim_DHCP_NORMAL_B=DHCP_NORMAL_B;
@@ -289,8 +290,8 @@ void MainGraphics::restaurateIPSimulated(QString type) {
     }
 }
 
-QString MainGraphics::generateIPSimulated(QString type) {
-
+QString MainGraphics::generateIPSimulated(QString type)
+{
     if (type.toInt()==TYPENEURON_NORMAL) {
         if (sim_DHCP_NORMAL_D<=253)
             sim_DHCP_NORMAL_D++;
@@ -339,8 +340,8 @@ QString MainGraphics::generateIPSimulated(QString type) {
     }
 }
 
-QString MainGraphics::generateIPReal(QString type) {
-
+QString MainGraphics::generateIPReal(QString type)
+{
     if (type.toInt()==TYPENEURON_NORMAL) {
         if (DHCP_NORMAL_D<=253)
             DHCP_NORMAL_D++;
@@ -399,7 +400,8 @@ QString MainGraphics::generateIPReal(QString type) {
     }
 }
 
-Node* MainGraphics::findNode(QString key){
+Node* MainGraphics::findNode(QString key)
+{
     bool founded=false;
     int idx=0;
     int total=vectorGraphicsNodes.size();
@@ -505,7 +507,7 @@ void MainGraphics::processPendingDatagrams()
             // It is NOT necessary to add synapses, because only Neurons are of interest
         }
         else if (msg.operation==REMOVE_NEURON_FROM_MOTHER_TO_GRAPHIC){
-        // Synapses are already being created
+            // Synapses are already being created
             int idx=0;
             bool found=false;
             QString ipmSource=msg.field1;
@@ -599,7 +601,6 @@ void MainGraphics::processPendingDatagrams()
             }
         }
         else if (msg.operation==LOADSCENE_FROM_MOTHER_TO_GRAPHIC){
-
            loadSceneFromMsg(msg.field1);
         }
    }
@@ -743,17 +744,6 @@ void MainGraphics::newRemove() {
        removeitem->show();
     }
 }
-
-//void MainGraphics::updateDataNeuronsNeuron(QString ip, QString id, int N) {
-   // It is not necessary to put anything here, since the Neuron constructor sends
-   // a message to the Mother Neruon and registers itself
-//}
-
-//void MainGraphics::updateDataNeuronSypnapse(QString idGlobal, QString ipmSourceNeuron, QString ipmTarget, int type, quint16 port, double w, double fx){
-// You can copy the same code from CREATE_SYNAPSYS,  
-// or you can send the message to Mother for CREATE_SYNAPSYS
-
-//}
 
 void MainGraphics::saveCurrentScene(){
     if (fileNameToSave.length())

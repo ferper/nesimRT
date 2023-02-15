@@ -29,7 +29,6 @@ MainScreen::MainScreen(QWidget *parent) :
     fxI.insert("nA","1E-9");
     fxI.insert("pA","1E-12");
 
-    spikeGenerator=nullptr;
     schemeNeuron = new MainGraphics(nullptr);
     motherNeuron = new MotherNeuron(nullptr, schemeNeuron);
 
@@ -141,6 +140,8 @@ void MainScreen::closeEvent(QCloseEvent *event){
 
 MainScreen::~MainScreen()
 {
+    delete schemeNeuron;
+    delete motherNeuron;
     delete ui;
 }
 

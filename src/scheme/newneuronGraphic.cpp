@@ -28,9 +28,9 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     ui->lineEdit_V->setText("0");
     ui->lineEdit_Iexc->setText("0");
     ui->lineEdit_Iinh->setText("0");
-    ui->lineEdit_tauExc->setText("0.2");
-    ui->lineEdit_tauInh->setText("0.4");
-    ui->lineEdit_tauV->setText("0.5");
+    ui->lineEdit_tauExc->setText("2");
+    ui->lineEdit_tauInh->setText("4");
+    ui->lineEdit_tauV->setText("5");
     ui->lineEdit_R->setText("32000000");
     ui->lineEdit_Vr->setText("0");
     ui->lineEdit_Vrh->setText("0.005");
