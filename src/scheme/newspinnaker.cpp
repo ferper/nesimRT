@@ -282,6 +282,7 @@ void NewSpiNNaker::exportToSpiNNaker(){
                    out<<"]]},label=\""<<labelNeuron<<"\")"<<"\n";
                }
                else if (nodeSource->typeNode==TYPENEURON_NORMAL) {
+                   //TODO: if con los 3 modelos
                    out<< labelNeuron<<"= sim.Population("<<nodeSource->amountOfNeurons<<",sim.IF_curr_exp, cell_params_lif, label=\""<<labelNeuron<<"\")"<<"\n";
                    out<<labelNeuron<<".initialize(v="<<QString::number(v_reset)<<")\n";
                }
