@@ -50,6 +50,14 @@ public:
     bool spkOnOff_exc;
     bool spkOnOff_inh;
     bool enableDataGeneralMonitor;
+    std::chrono::high_resolution_clock::time_point start;
+
+    double get_IexcCurrent();
+    double get_IinhCurrent();
+    double get_VCurrent();
+    double IexcCurrent;
+    double IinhCurrent;
+    double VCurrent;
 
 
 
@@ -57,7 +65,7 @@ public slots:
     virtual void paintLocalMonitor();
     virtual void sendDataToGeneralMonitor(bool spiking);
     int get_NSynapses();
-    virtual void calculateValues();
+    void calculateValues();
     void quit();
     void set_At(double value);
 
@@ -78,6 +86,9 @@ protected:
     quint16 GeneralMonitorPort; // Port to send the calculated data to the General Monitor
     QUdpSocket udpSocket4_senderMonitor; // To public data calculated to General Monitor
     void generateSpike();
+    virtual void calculateV(float dt=1.0){};
+    virtual void calculateIinh(float dt=1.0){};
+    virtual void calculateIexc(float dt=1.0){};
 
 private:
     void killme(bool showMessageBox);

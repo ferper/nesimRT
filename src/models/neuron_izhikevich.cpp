@@ -46,62 +46,22 @@ void neuron_izhikevich::paintLocalMonitor(){
     monitor->show();
 }
 
-void neuron_izhikevich::calculateIinh() {
+void neuron_izhikevich::calculateIinh(float dt) {
    if (Iinh_enabled) {
       Iinh_prior=p->Iinh;
-      p->Iinh=Iinh_prior+H*(-Iinh_prior/p->tau_i);
+      p->Iinh=Iinh_prior+dt*(-Iinh_prior/p->tau_i);
    }
 }
 
-void neuron_izhikevich::calculateIexc(){
+void neuron_izhikevich::calculateIexc(float dt){
    if (Iexc_enabled) {
       Iexc_prior=p->Iexc;
-      p->Iexc=Iexc_prior+H*(-Iexc_prior/p->tau_e);
+      p->Iexc=Iexc_prior+dt*(-Iexc_prior/p->tau_e);
    }
 }
 
-void neuron_izhikevich::calculateV() {
+void neuron_izhikevich::calculateV(float dt) {
        V_prior=p->V;
        //p->V=V_prior+H*((1/p->tau_v)*(-(V_prior-p->Vr)+p->At*exp((V_prior-p->Vrh)/p->At)+p->R*(Iexc_prior-Iinh_prior)));
-       p->V=V_prior+H*((1/p->tau_v)*(-(V_prior-p->Vr)+p->R*(Iexc_prior-Iinh_prior)));
-}
-void neuron_izhikevich::calculateValues(){
-    bool spiking=false;
-    dataIsAvailable=false;
-    mutexNeuron.lock();
-    for (int i=0; i<10; i++) {
-
-
-        calculateV();
-        if (p->V>p->Vth) { //SPIKE Generator
-            p->V=p->Vr;
-            spiking = true;
-            generateSpike();
-        }
-
-
-        // Initial values for Iexc, Iinh y V
-        IexcCurrent=p->Iexc;
-        IinhCurrent=p->Iinh;
-        VCurrent=p->V;
-        calculateIexc();
-        calculateIinh();
-    }
-    mutexNeuron.unlock();
-    dataIsAvailable=true;
-    if (enableDataGeneralMonitor)
-        sendDataToGeneralMonitor(spiking);
-
-
-}
-
-
-double neuron_izhikevich::get_IexcCurrent(){
-    return IexcCurrent;
-}
-double neuron_izhikevich::get_IinhCurrent(){
-    return IinhCurrent;
-}
-double neuron_izhikevich::get_VCurrent(){
-   return VCurrent;
+       p->V=V_prior+dt*((1/p->tau_v)*(-(V_prior-p->Vr)+p->R*(Iexc_prior-Iinh_prior)));
 }

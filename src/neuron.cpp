@@ -52,7 +52,7 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label , float po
     this->enableDataGeneralMonitor=false;
     this->we=w_default;
     this->fx_numberTxt=fx_numberTxt;
-    this->H=1.0;
+    this->H=0.1;
     this->NumberNeuronsGroup=NumberNeuronsGroup;
     this->FormDialog = (QDialog*) this; // By default, all Neurons are TYPENODE_NORMAL
     this->muestra=0;
@@ -174,7 +174,6 @@ Neuron::Neuron(QWidget *parent, int NumberNeuronsGroup, QString label , float po
     timer->stop();
     connect(timer, SIGNAL(timeout()), this, SLOT(calculateValues()));
 
-
     timer_RequestIP = new QTimer(this);
     if (!isBuilded) {
         // Request an IP by message sending my MAC throught a port
@@ -288,6 +287,7 @@ void Neuron::liveNeuron(){ // The neuron is completly functional
 
     this->isBuilded=true;
     timer_RequestIP->stop();
+    this->start = std::chrono::high_resolution_clock::now();
 
     groupAddress4_to_Public=QHostAddress(ipmSource);
     // Force binding to their respective families
@@ -335,7 +335,37 @@ void Neuron::generateSpike(){
 
 
 void Neuron::paintLocalMonitor(){}
-void Neuron::calculateValues(){}
+void Neuron::calculateValues()
+{
+    bool spiking=false;
+    dataIsAvailable=false;
+    mutexNeuron.lock();
+
+    auto end = std::chrono::system_clock::now();
+    std::chrono::duration<float,std::milli> duration = end - start;
+    float dt = duration.count() * H;
+    for (int i=0; i<10; i++) {
+        calculateV(dt);
+        if (p->V>p->Vth) { //SPIKE Generator
+            p->V=p->Vr;
+            spiking = true;
+            generateSpike();
+        }
+
+        // Initial values for Iexc, Iinh y V
+        IexcCurrent=p->Iexc;
+        IinhCurrent=p->Iinh;
+        VCurrent=p->V;
+        calculateIexc(dt);
+        calculateIinh(dt);
+    }
+    mutexNeuron.unlock();
+    dataIsAvailable=true;
+    if (enableDataGeneralMonitor)
+        sendDataToGeneralMonitor(spiking);
+
+    start = std::chrono::high_resolution_clock::now();
+}
 void Neuron::sendDataToGeneralMonitor(bool t){}
 
 
