@@ -5,7 +5,22 @@
 #include <QtWidgets>
 #include <QtNetwork>
 #include "encodeDecodeMsg.h"
-Synapse::Synapse(int *N,int idGlobalSynapse, QString ipmS, QString ipmT, quint16 port, int type, double *Iinc, double w, QString fx_numberTxt,QString fx_unitMeasureTxt, bool *startICalculate, bool *startVCalculate, QTimer *timer,QTimer *pre_siaptico,QTimer *post_sinaptico, QMutex *mutexNeuron, long long int *muestra, QTextStream *out, bool *spkOnOff)
+Synapse::Synapse(int *N,
+                 int idGlobalSynapse,
+                 QString ipmS, QString ipmT,
+                 quint16 port,
+                 int type,
+                 double *Iinc,
+                 double w,
+                 QString fx_numberTxt,
+                 QString fx_unitMeasureTxt,
+                 bool *startICalculate,
+                 bool *startVCalculate,
+                 QTimer *timer,
+                 QMutex *mutexNeuron,
+                 long long int *muestra,
+                 QTextStream *out,
+                 bool *spkOnOff)
 {
    this->N=N;
    this->idGlobalSynapse=idGlobalSynapse;
@@ -20,15 +35,16 @@ Synapse::Synapse(int *N,int idGlobalSynapse, QString ipmS, QString ipmT, quint16
    this->startICalculate=startICalculate;
    this->startVCalculate=startVCalculate;
    this->timer=timer;
-   this->pre_sinaptico=pre_sinaptico;
-   this->post_sinaptico=post_sinaptico;
    this->mutexNeuron=mutexNeuron;
    this->muestra=muestra;
    this->out=out;
    this->spkOnOff=spkOnOff;
 
-   // TODO: La sinapsis tiene que tener un estado interno de cuando se ha recibido un spike pre-sinaptico
-   // TODO: La sinapsis tiene que tener un estado interno de cuando se ha recibido un spike post-sinaptico
+   pre_trace=0.0;
+   post_trace=0.0;
+
+   pre_spiketime = std::chrono::high_resolution_clock::now();
+   post_spiketime = std::chrono::high_resolution_clock::now();
 
    groupAddress4=QHostAddress(ipmS);
    udpSocket4.bind(QHostAddress::AnyIPv4, port_target, QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
@@ -44,9 +60,17 @@ Synapse::Synapse(int *N,int idGlobalSynapse, QString ipmS, QString ipmT, quint16
 // Se incrementa el valor del peso de la variable (w)
 // Cuando se recibe un spike postsinaptico, se guarda el valor de la variable postinaptica
 // Se incrementa el valor de la variable w
-void Synapse::updateTime(){
-    post_sinaptico->start();
+void Synapse::postSpike(){
+    auto actual_time = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<float,std::milli> dt_pre = pre_spiketime - actual_time;
 
+    pre_trace = pre_trace*exp(dt_pre.count()/1000);
+    //w += pre_trace*fx_numberTxt.toDouble();
+
+    std::chrono::duration<float,std::milli> dt_post = post_spiketime - actual_time;
+    post_trace = post_trace*exp(dt_post.count()/1000);
+    post_trace -= 0.05; // TODO: Put as parameter as well as time constant
+    post_spiketime = actual_time;
 }
 
 void Synapse::processPendingDatagrams(){
@@ -59,15 +83,23 @@ void Synapse::processPendingDatagrams(){
         data=datagram.constData();
         if (data=="SPIKE") {
             mutexNeuron->lock();
-           (*Iinc)+=(*N)*(w); // Iexc or Iinh is incremented in a pointer
-            //TODO: Leer el valor del spike presinaptico y del postsinaptico
-            pre_sinaptico->stop();
-            pre_sinaptico->stop();
-            //int diferencia =
-            // TODO: Actualizar el valor de w de acorde a la formula de STDP
-            // TODO: Actualizar el valor del tiempo pre-sinaptico
-            pre_sinaptico->start();
+            (*Iinc)+=(*N)*(w); // Iexc or Iinh is incremented in a pointer
             *spkOnOff=true;
+
+            /********* LEARNING ***********/
+            auto actual_time = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<float,std::milli> dt_pre = pre_spiketime - actual_time;
+
+            pre_trace = pre_trace*exp(dt_pre.count()/20);
+            pre_trace += 0.1; // TODO: Put as parameter as well as time constant
+
+            std::chrono::duration<float,std::milli> dt_post = post_spiketime - actual_time;
+            post_trace = post_trace*exp(dt_post.count()/20);
+
+            //w += post_trace*fx_numberTxt.toDouble();
+            pre_spiketime = actual_time;
+            /******************************/
+
             mutexNeuron->unlock();
             (*startICalculate)=true;
             (*startVCalculate)=true;

@@ -329,10 +329,11 @@ void Neuron::generateSpike(){
     QByteArray datagram = "SPIKE";
     udpSocket4_sender.writeDatagram(datagram, groupAddress4_to_Public, SourcePort);
 
+    for (Synapse* synapse : Vsynapse)
+    {
+        synapse->postSpike();
+    }
 }
-
-
-
 
 void Neuron::paintLocalMonitor(){}
 void Neuron::calculateValues()
@@ -420,9 +421,32 @@ void Neuron::processPendingDatagrams()
                QString fx_unitMeasureTxt =msg.field7;
                int idGlobalSynapse=msg.field9.toInt();
                if (type==TYPE_SYP_EXCITATION)
-                   s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,msg.field1,msg.field2,port_target,type,&p->Iexc,weight,fx_numberTxt,fx_unitMeasureTxt,&Iexc_enabled,&V_enabled,timer,&mutexNeuron,&muestra,out,&spkOnOff_exc);
+                   s1 = new Synapse(&NumberNeuronsGroup,
+                                    idGlobalSynapse,
+                                    msg.field1,msg.field2,
+                                    port_target,
+                                    type,&p->Iexc,
+                                    weight,
+                                    fx_numberTxt,fx_unitMeasureTxt,
+                                    &Iexc_enabled,
+                                    &V_enabled,
+                                    timer,
+                                    &mutexNeuron,
+                                    &muestra,out,
+                                    &spkOnOff_exc);
                else
-                   s1 = new Synapse(&NumberNeuronsGroup,idGlobalSynapse,msg.field1,msg.field2,port_target,type,&p->Iinh,weight,fx_numberTxt,fx_unitMeasureTxt,&Iinh_enabled,&V_enabled,timer,&mutexNeuron,&muestra,out,&spkOnOff_inh);
+                   s1 = new Synapse(&NumberNeuronsGroup,
+                                    idGlobalSynapse,
+                                    msg.field1,msg.field2,
+                                    port_target,
+                                    type,&p->Iinh,
+                                    weight,
+                                    fx_numberTxt,fx_unitMeasureTxt,
+                                    &Iinh_enabled,&V_enabled,
+                                    timer,
+                                    &mutexNeuron,
+                                    &muestra,out,
+                                    &spkOnOff_inh);
                //cout<<"-I am neuron "<<ipmSource.toStdString()<< " and I have created a synapse with "<<msg.field1.toStdString()<<" type: "<<type<<endl;
                s1->timer->start();
 

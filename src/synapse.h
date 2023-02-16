@@ -11,7 +11,20 @@ class Synapse:public QObject
 
 public:
 
-    explicit Synapse(int *N,int idGlobalSynapse,QString ipmS, QString ipmT, quint16 port, int type, double *Iinc, double w, QString fx_numberTxt, QString fx_unitMeasureTxt, bool *startICalculate, bool *startVCalculate,  QTimer *timer,QTimer *pre_sinaptico,QTimer *post_sinaptico, QMutex *mutexNeuron,long long int *muestra, QTextStream *out, bool *spkOnOff);
+    explicit Synapse(int *N,
+                     int idGlobalSynapse,
+                     QString ipmS, QString ipmT,
+                     quint16 port,
+                     int type,
+                     double *Iinc,
+                     double w,
+                     QString fx_numberTxt, QString fx_unitMeasureTxt,
+                     bool *startICalculate,
+                     bool *startVCalculate,
+                     QTimer *timer,
+                     QMutex *mutexNeuron,
+                     long long int *muestra, QTextStream *out,
+                     bool *spkOnOff);
 
 
     int *N;
@@ -26,13 +39,11 @@ public:
     bool *startVCalculate;
     QTimer *timer;
     double w; // Current value for synapsys with others neuron
-    QTimer *pre_sinaptico;
-    QTimer *post_sinaptico;
 
     QString fx_numberTxt; // fx's value Text
     QString fx_unitMeasureTxt; // fx's unit's name
     void deleteSynapse();
-    void updateTime();
+    void postSpike();
     QUdpSocket udpSocket4;
     QHostAddress groupAddress4;
     QMutex *mutexNeuron;
@@ -40,6 +51,13 @@ public:
     long long int *muestra;
     QTextStream *out;
     bool *spkOnOff;
+
+    /* STDP parameters */
+    std::chrono::high_resolution_clock::time_point pre_spiketime;
+    std::chrono::high_resolution_clock::time_point post_spiketime;
+
+    double pre_trace;
+    double post_trace;
 
 private:
     QString data; //Receive data
