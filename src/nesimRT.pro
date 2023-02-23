@@ -105,8 +105,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 SUBDIRS += \
     scheme/NeuronsScheme.pro
 
-DISTFILES += \
-    scheme/graphics/Neuron.png
+DISTFILES +=
 
 RESOURCES += \
     scheme/graphics/graphics.qrc
