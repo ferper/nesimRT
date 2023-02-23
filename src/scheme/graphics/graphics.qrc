@@ -39,5 +39,8 @@
         <file>equation_ADEXLIF.png</file>
         <file>equation_CUBALIF.png</file>
         <file>equation_IZHIKEVICH.png</file>
+        <file>adexlif_eq.png</file>
+        <file>cubalif_eq.png</file>
+        <file>izhikevich_eq.png</file>
     </qresource>
 </RCC>
