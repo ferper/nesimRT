@@ -23,7 +23,7 @@
 #define SIZE0_NODE 3.8 //Graphic scale for another kind of node, i.e MotherNeuron
 #define SIZE1_NODE 2.8 //Graphic scale for a kind of node, i.e. Generator
 #define SIZE2_NODE 1.8 //Graphic scale for another kind of node, i.e Normal
-#define MODEL "CubaLif"
+#define MODEL "Adexlif"
 #define EDIT_STYLE_DEFAULT "QLineEdit {background-color: white;}"
 #define EDIT_STYLE_MODIFIED "QLineEdit {background-color: green;}"
 #define LOCAL_NEURON 1 // The neuron is created locally

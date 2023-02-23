@@ -38,8 +38,8 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     ui->lineEdit_At->setText("0.0015");
     ui->lineEdit_Amount->setText("1");
 
-    ui->comboBox->addItem("Cubalif");
     ui->comboBox->addItem("Adexlif");
+    ui->comboBox->addItem("Cubalif");
     ui->comboBox->addItem("Izhikevich");
 
 
@@ -49,7 +49,7 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     sceneTmp->addPixmap(p0);
     ui->graphicsView->setScene(sceneTmp);
     sceneTmp = new QGraphicsScene();
-    QPixmap p1(":graphics/equation_CUBALIF.png");
+    QPixmap p1(":graphics/equation_ADEXLIF.png");
     sceneTmp->addPixmap(p1);
 
     ui->graphicsView_2->setScene(sceneTmp);
@@ -307,10 +307,11 @@ void NewNeuronGraphic::on_pushButton_3_clicked()
         ui->label_17->setText("Cubalif");
         QPixmap p1(":graphics/equation_CUBALIF.png");
         sceneTmp->addPixmap(p1);
+
     }else if(ui->comboBox->currentText() == "Izhikevich"){
         ui->label_17->setText("Izhikevich");
         //TODO:introducir la imagen de la ecuacion de izhikevich y cabiar el nombre de la siguiente linea
-        QPixmap p1(":graphics/equation_CUBALIF.png");
+        QPixmap p1(":graphics/equation_IZHIKEVICH.png");
         sceneTmp->addPixmap(p1);
     }
     QMessageBox::information(this, "Info","The model has been changed",ui->comboBox->currentText());
