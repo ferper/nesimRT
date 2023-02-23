@@ -106,8 +106,7 @@ SUBDIRS += \
     scheme/NeuronsScheme.pro
 
 DISTFILES += \
-    scheme/graphics/Neuron.png \
-    scheme/graphics/equation_IZHIKEVICH.png
+    scheme/graphics/Neuron.png
 
 RESOURCES += \
     scheme/graphics/graphics.qrc

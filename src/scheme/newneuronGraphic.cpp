@@ -37,10 +37,19 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     ui->lineEdit_Vth->setText("0.015");
     ui->lineEdit_At->setText("0.0015");
     ui->lineEdit_Amount->setText("1");
+    ui->lineEdit_a->setText("0.02");
+    ui->lineEdit_b->setText("0.2");
+    ui->lineEdit_d->setText("8");
 
     ui->comboBox->addItem("Adexlif");
     ui->comboBox->addItem("Cubalif");
     ui->comboBox->addItem("Izhikevich");
+    ui->label_a->hide();
+    ui->label_b->hide();
+    ui->label_d->hide();
+    ui->lineEdit_a->hide();
+    ui->lineEdit_b->hide();
+    ui->lineEdit_d->hide();
 
 
     QGraphicsScene *sceneTmp = new QGraphicsScene();
@@ -300,15 +309,64 @@ void NewNeuronGraphic::cambioModeloSlot()
 
     if(ui->comboBox->currentText() == "Adexlif"){
         ui->label_17->setText("Adexlif");
+        ui->label_R->show();
+        ui->label_a->hide();
+        ui->label_b->hide();
+        ui->label_d->hide();
+        ui->lineEdit_a->hide();
+        ui->lineEdit_b->hide();
+        ui->lineEdit_d->hide();
+
+        ui->lineEdit_At->show();
+        ui->label_At->show();
+        ui->lineEdit_Vrh->show();
+        ui->label_Vrh->show();
+        ui->lineEdit_tauV->show();
+        ui->label_tauV->show();
+        ui->lineEdit_R->show();
+
         QPixmap p1(":graphics/equation_ADEXLIF.png");
         sceneTmp->addPixmap(p1);
     }else if(ui->comboBox->currentText() == "Cubalif"){
         ui->label_17->setText("Cubalif");
+
+        ui->lineEdit_At->hide();
+        ui->label_At->hide();
+        ui->lineEdit_Vrh->hide();
+        ui->label_Vrh->hide();
+        ui->label_a->hide();
+        ui->label_b->hide();
+        ui->label_d->hide();
+        ui->lineEdit_a->hide();
+        ui->lineEdit_b->hide();
+        ui->lineEdit_d->hide();
+
+        ui->lineEdit_tauV->show();
+        ui->label_tauV->show();
+        ui->lineEdit_R->show();
+        ui->label_R->show();
+
         QPixmap p1(":graphics/equation_CUBALIF.png");
         sceneTmp->addPixmap(p1);
 
     }else if(ui->comboBox->currentText() == "Izhikevich"){
         ui->label_17->setText("Izhikevich");
+
+        ui->lineEdit_At->hide();
+        ui->label_At->hide();
+        ui->lineEdit_Vrh->hide();
+        ui->label_Vrh->hide();
+        ui->lineEdit_tauV->hide();
+        ui->label_tauV->hide();
+        ui->lineEdit_R->hide();
+        ui->label_R->hide();
+
+        ui->label_a->show();
+        ui->label_b->show();
+        ui->label_d->show();
+        ui->lineEdit_a->show();
+        ui->lineEdit_b->show();
+        ui->lineEdit_d->show();
 
         QPixmap p1(":graphics/equation_IZHIKEVICH.png");
         sceneTmp->addPixmap(p1);

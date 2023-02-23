@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>811</width>
-    <height>565</height>
+    <height>671</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,121 +19,6 @@
   <property name="windowOpacity">
    <double>1.000000000000000</double>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>70</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Label</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>160</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Pos X</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>190</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Pos Y</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>220</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>V</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>250</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>I exc</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_Label">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>70</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_PosX">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>160</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_PosY">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>190</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_V">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>220</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_Iexc">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>250</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
@@ -215,213 +100,6 @@
     <enum>QFrame::Sunken</enum>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_Iinh">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>280</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>280</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>I inh</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_tauExc">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>310</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>310</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>tau exc</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_tauInh">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>340</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_9">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>340</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>tau inh</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_tauV">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>370</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_10">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>370</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>tau V</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_R">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>400</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_11">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>400</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>R</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_Vr">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>430</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_12">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>430</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Vr</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_Vrh">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>460</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_13">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>460</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Vrh</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_Vth">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>490</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_14">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>490</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Vth</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_At">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>520</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_15">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>520</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>At</string>
-   </property>
-  </widget>
   <widget class="QGraphicsView" name="graphicsView_2">
    <property name="geometry">
     <rect>
@@ -485,74 +163,229 @@
     <string>Universal measures</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_19">
+  <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>130</y>
-     <width>67</width>
-     <height>17</height>
+     <x>20</x>
+     <y>60</y>
+     <width>201</width>
+     <height>591</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Amount</string>
-   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_IP">
+      <property name="text">
+       <string>IP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="1">
+     <widget class="QLineEdit" name="lineEdit_Vrh"/>
+    </item>
+    <item row="13" column="0">
+     <widget class="QLabel" name="label_Vrh">
+      <property name="text">
+       <string>Vrh</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="1">
+     <widget class="QLineEdit" name="lineEdit_a"/>
+    </item>
+    <item row="9" column="0">
+     <widget class="QLabel" name="label_tauinh">
+      <property name="text">
+       <string>tau inh</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1">
+     <widget class="QLineEdit" name="lineEdit_tauInh"/>
+    </item>
+    <item row="15" column="1">
+     <widget class="QLineEdit" name="lineEdit_At"/>
+    </item>
+    <item row="17" column="0">
+     <widget class="QLabel" name="label_b">
+      <property name="text">
+       <string>b</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLineEdit" name="lineEdit_Iexc"/>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="lineEdit_V"/>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="label_tauexc">
+      <property name="text">
+       <string>tau exc</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="0">
+     <widget class="QLabel" name="label_R">
+      <property name="text">
+       <string>R</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QLineEdit" name="lineEdit_tauExc"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_Amount">
+      <property name="text">
+       <string>Amount</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_PosY">
+      <property name="text">
+       <string>Pos Y</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="0">
+     <widget class="QLabel" name="label_a">
+      <property name="text">
+       <string>a</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="1">
+     <widget class="QLineEdit" name="lineEdit_Vth"/>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="lineEdit_Label"/>
+    </item>
+    <item row="11" column="0">
+     <widget class="QLabel" name="label_Vr">
+      <property name="text">
+       <string>Vr</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="1">
+     <widget class="QLineEdit" name="lineEdit_R"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="lineEdit_Amount"/>
+    </item>
+    <item row="15" column="0">
+     <widget class="QLabel" name="label_At">
+      <property name="text">
+       <string>At</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="label_Iexec">
+      <property name="text">
+       <string>I exc</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Label</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_PosX">
+      <property name="text">
+       <string>Pos X</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
+     <widget class="QLineEdit" name="lineEdit_Vr"/>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="lineEdit_PosX"/>
+    </item>
+    <item row="10" column="1">
+     <widget class="QLineEdit" name="lineEdit_tauV"/>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_V">
+      <property name="text">
+       <string>V</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="lineEdit_PosY"/>
+    </item>
+    <item row="10" column="0">
+     <widget class="QLabel" name="label_tauV">
+      <property name="text">
+       <string>tau V</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="1">
+     <widget class="QLineEdit" name="lineEdit_b"/>
+    </item>
+    <item row="7" column="1">
+     <widget class="QLineEdit" name="lineEdit_Iinh"/>
+    </item>
+    <item row="12" column="0">
+     <widget class="QLabel" name="label_Vth">
+      <property name="text">
+       <string>Vth</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="lineEdit_Ip"/>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="label_Iinh">
+      <property name="text">
+       <string>I inh</string>
+      </property>
+     </widget>
+    </item>
+    <item row="18" column="0">
+     <widget class="QLabel" name="label_d">
+      <property name="text">
+       <string>d</string>
+      </property>
+     </widget>
+    </item>
+    <item row="18" column="1">
+     <widget class="QLineEdit" name="lineEdit_d"/>
+    </item>
+   </layout>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_Amount">
+  <widget class="QWidget" name="gridLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>130</y>
-     <width>113</width>
-     <height>25</height>
+     <x>650</x>
+     <y>60</y>
+     <width>111</width>
+     <height>61</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QLabel" name="label_20">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>100</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>IP</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_Ip">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>100</y>
-     <width>113</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_21">
-   <property name="geometry">
-    <rect>
-     <x>680</x>
-     <y>50</y>
-     <width>91</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Select Model</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>680</x>
-     <y>100</y>
-     <width>86</width>
-     <height>25</height>
-    </rect>
-   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="2" column="0">
+     <widget class="QComboBox" name="comboBox"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_21">
+      <property name="text">
+       <string>Select Model</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <tabstops>

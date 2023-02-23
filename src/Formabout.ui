@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>654</width>
-    <height>432</height>
+    <height>597</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,7 +44,6 @@
    <property name="font">
     <font>
      <pointsize>25</pointsize>
-     <weight>75</weight>
      <italic>true</italic>
      <bold>true</bold>
     </font>
@@ -65,7 +64,6 @@
    <property name="font">
     <font>
      <pointsize>25</pointsize>
-     <weight>75</weight>
      <italic>true</italic>
      <bold>true</bold>
     </font>
@@ -87,35 +85,6 @@
     <number>1</number>
    </property>
   </widget>
-  <widget class="QFrame" name="frame_2">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>384</y>
-     <width>401</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
-   </property>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>6</y>
-      <width>341</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Daniel Jesús Rosa Gallardo - Universidad de Cádiz</string>
-    </property>
-   </widget>
-  </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
@@ -128,7 +97,6 @@
    <property name="font">
     <font>
      <pointsize>14</pointsize>
-     <weight>75</weight>
      <italic>true</italic>
      <bold>true</bold>
     </font>
@@ -149,7 +117,6 @@
    <property name="font">
     <font>
      <pointsize>14</pointsize>
-     <weight>75</weight>
      <italic>true</italic>
      <bold>true</bold>
     </font>
@@ -179,6 +146,67 @@
    <property name="default">
     <bool>true</bool>
    </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>390</y>
+     <width>413</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Daniel Jesús Rosa Gallardo - Universidad de Cádiz</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Fernando M. Quintana Velázquez - Universidad de Cádiz</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Juan Andrés Herrera Rodríguez - Universidad de Cádiz</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>Juan Pedro Domínguez Morales - Universidad de Sevilla</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>Elisa Guerrero Vázquez - Universidad de Cádiz</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_10">
+      <property name="text">
+       <string>Juan Carlos De la Torre Macias - Universidad de Cádiz</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>Fernando Pérez Peña - Universidad de Cádiz</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
