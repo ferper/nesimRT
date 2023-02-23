@@ -365,22 +365,6 @@ synapse</string>
     </rect>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>890</x>
-     <y>210</y>
-     <width>261</width>
-     <height>191</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Sunken</enum>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_8">
    <property name="geometry">
     <rect>
@@ -463,19 +447,6 @@ synapse</string>
      <width>101</width>
      <height>25</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QGraphicsView" name="graphicsView_2">
-   <property name="geometry">
-    <rect>
-     <x>860</x>
-     <y>40</y>
-     <width>311</width>
-     <height>141</height>
-    </rect>
-   </property>
-   <property name="lineWidth">
-    <number>1</number>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_Iexc">
@@ -1019,6 +990,38 @@ Fixed</string>
     <string>...</string>
    </property>
   </widget>
+  <widget class="QLabel" name="neuron_img">
+   <property name="geometry">
+    <rect>
+     <x>890</x>
+     <y>210</y>
+     <width>261</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="scheme/graphics/graphics.qrc">:/graphics/neuron.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_equation">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>40</y>
+     <width>311</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
@@ -1046,9 +1049,7 @@ Fixed</string>
   <tabstop>pushButton_6</tabstop>
   <tabstop>pushButton_3</tabstop>
   <tabstop>pushButton_4</tabstop>
-  <tabstop>graphicsView_2</tabstop>
   <tabstop>tableWidget</tabstop>
-  <tabstop>graphicsView</tabstop>
   <tabstop>comboBox_2</tabstop>
   <tabstop>comboBox</tabstop>
   <tabstop>lineEdit</tabstop>
@@ -1068,6 +1069,9 @@ Fixed</string>
   <tabstop>pushButton_19</tabstop>
   <tabstop>pushButton_20</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="scheme/graphics/graphics.qrc"/>
+  <include location="scheme/graphics/graphics.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -85,22 +85,6 @@
     <string>v_rest</string>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>700</x>
-     <y>250</y>
-     <width>261</width>
-     <height>251</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Sunken</enum>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_16">
    <property name="geometry">
     <rect>
@@ -615,7 +599,29 @@
     <string>-</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>250</y>
+     <width>261</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="graphics/graphics.qrc">:/graphics/neuron.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="graphics/graphics.qrc"/>
+  <include location="graphics/graphics.qrc"/>
+ </resources>
  <connections/>
 </ui>

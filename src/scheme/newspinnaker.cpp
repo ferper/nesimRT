@@ -45,11 +45,11 @@ NewSpiNNaker::NewSpiNNaker(QWidget *parent,QList <Node*> *vectorGraphicsNodes,QV
     fillAllNeurons();
     connect(ui->lineEdit_Neuron, SIGNAL(textChanged(const QString &)), this, SLOT(neuronFilterSearch()));
 
-    QGraphicsScene *sceneTmp = new QGraphicsScene();
-    QPixmap p0(":graphics/neuron.png");
+    QGraphicsScene *sceneTmp;// = new QGraphicsScene();
+    //QPixmap p0(":graphics/neuron.png");
 
-    sceneTmp->addPixmap(p0);
-    ui->graphicsView->setScene(sceneTmp);
+    //sceneTmp->addPixmap(p0);
+    //ui->graphicsView->setScene(sceneTmp);
     sceneTmp = new QGraphicsScene();
     QPixmap p1(":graphics/equation_CUBALIF.png");
     sceneTmp->addPixmap(p1);
@@ -91,7 +91,7 @@ NewSpiNNaker::NewSpiNNaker(QWidget *parent,QList <Node*> *vectorGraphicsNodes,QV
 
 //To strecht the images into the container
 void NewSpiNNaker::showEvent(QShowEvent *) {
-    ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
+    //ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
     ui->graphicsView_2->fitInView(ui->graphicsView_2->sceneRect(),Qt::KeepAspectRatio);
 
     ui->tableWidget_times->clearContents();

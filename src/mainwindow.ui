@@ -54,8 +54,18 @@
      <property name="text">
       <string/>
      </property>
+     <property name="icon">
+      <iconset resource="scheme/graphics/graphics.qrc">
+       <normaloff>:/graphics/schemeNeurons.jpg</normaloff>:/graphics/schemeNeurons.jpg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>121</width>
+       <height>91</height>
+      </size>
+     </property>
      <property name="flat">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="bt_general_monitor">
@@ -73,6 +83,19 @@
      <property name="text">
       <string/>
      </property>
+     <property name="icon">
+      <iconset resource="scheme/graphics/graphics.qrc">
+       <normaloff>:/graphics/generalMonitorMain.png</normaloff>:/graphics/generalMonitorMain.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>121</width>
+       <height>91</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
     </widget>
     <widget class="QPushButton" name="bt_exit">
      <property name="geometry">
@@ -85,6 +108,19 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="scheme/graphics/graphics.qrc">
+       <normaloff>:/graphics/exit.png</normaloff>:/graphics/exit.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>71</width>
+       <height>71</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="bt_about">
@@ -101,6 +137,19 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="scheme/graphics/graphics.qrc">
+       <normaloff>:/graphics/about3.jpg</normaloff>:/graphics/about3.jpg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>121</width>
+       <height>91</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QLabel" name="lb_neural_scheme">
@@ -170,25 +219,6 @@ background: transparent;
      </property>
     </widget>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>60</y>
-      <width>781</width>
-      <height>431</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Sunken</enum>
-    </property>
-    <property name="lineWidth">
-     <number>1</number>
-    </property>
-   </widget>
    <widget class="QLabel" name="lb_name">
     <property name="geometry">
      <rect>
@@ -255,22 +285,53 @@ background: transparent;
      <enum>QFrame::Sunken</enum>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="gv_logo">
+   <widget class="QLabel" name="lb_logo">
     <property name="geometry">
      <rect>
       <x>880</x>
       <y>500</y>
-      <width>91</width>
-      <height>101</height>
+      <width>76</width>
+      <height>102</height>
      </rect>
     </property>
-    <property name="lineWidth">
-     <number>1</number>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="scheme/graphics/graphics.qrc">:/graphics/logoUCA1.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_background">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>60</y>
+      <width>781</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="scheme/graphics/graphics.qrc">:/graphics/neuron_background.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="scheme/graphics/graphics.qrc"/>
+  <include location="scheme/graphics/graphics.qrc"/>
+ </resources>
  <connections/>
 </ui>

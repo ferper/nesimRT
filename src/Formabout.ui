@@ -63,26 +63,13 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>25</pointsize>
+     <pointsize>18</pointsize>
      <italic>true</italic>
      <bold>true</bold>
     </font>
    </property>
    <property name="text">
-    <string>A Real Time Spiking Neural Network</string>
-   </property>
-  </widget>
-  <widget class="QGraphicsView" name="graphicsView_2">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>90</y>
-     <width>121</width>
-     <height>121</height>
-    </rect>
-   </property>
-   <property name="lineWidth">
-    <number>1</number>
+    <string>A Real Time Spiking Neural Networks Simulator</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -208,7 +195,29 @@
     </item>
    </layout>
   </widget>
+  <widget class="QLabel" name="lb_logo">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>80</y>
+     <width>76</width>
+     <height>102</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="scheme/graphics/graphics.qrc">:/graphics/logoUCA1.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="scheme/graphics/graphics.qrc"/>
+  <include location="scheme/graphics/graphics.qrc"/>
+ </resources>
  <connections/>
 </ui>

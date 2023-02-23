@@ -13,19 +13,19 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
 {
     ui->setupUi(this);
 
-    QGraphicsScene *sceneTmp = new QGraphicsScene();
+    /*QGraphicsScene *sceneTmp = new QGraphicsScene();
     QPixmap p0(":graphics/neuron.png");
     p0=p0.scaledToWidth(ui->graphicsView->width()-5);
-    p0=p0.scaledToHeight(ui->graphicsView->height()-5);
+    p0=p0.scaledToHeight(ui->graphicsView->height()-5);*/
 
-    sceneTmp->addPixmap(p0);
-    ui->graphicsView->setScene(sceneTmp);
+    /*sceneTmp->addPixmap(p0);
+    ui->graphicsView->setScene(sceneTmp);*/
 
-    sceneTmp = new QGraphicsScene();
-    QPixmap p1(":graphics/equation_CUBALIF.png");
+    /*sceneTmp = new QGraphicsScene();
+    QPixmap p1(":graphics/equation_CUBALIF.png");*/
 
-    sceneTmp->addPixmap(p1);
-    ui->graphicsView_2->setScene(sceneTmp);
+    /*sceneTmp->addPixmap(p1);
+    ui->graphicsView_2->setScene(sceneTmp);*/
 
     this->vectorGraphicsNodes=vectorGraphicsNodes;
     fillAllNeurons();
@@ -35,7 +35,7 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
         fill_LocalSynapsys("");
     fill_GlobalSynapsys();
 
-    ui->label_25->setText(MODEL);
+    //ui->label_25->setText(MODEL);
 
     QPixmap pixmap_RemoveNeuron(":graphics/RemoveNeuron.png");
     QIcon ButtonIconRN(pixmap_RemoveNeuron);
@@ -118,8 +118,8 @@ Removeitem::Removeitem(QWidget *parent, QList <Node*> *vectorGraphicsNodes) :
 
 // To strecht the images into the container
 void Removeitem::showEvent(QShowEvent *) {
-    ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
-    ui->graphicsView_2->fitInView(ui->graphicsView_2->sceneRect(),Qt::KeepAspectRatio);
+    //ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
+    //ui->graphicsView_2->fitInView(ui->graphicsView_2->sceneRect(),Qt::KeepAspectRatio);
     on_tableWidget_Neurons_cellClicked(0,0);
 }
 

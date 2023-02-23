@@ -11,12 +11,12 @@ About::About(QWidget *parent) :
     setWindowTitle(tr("About us..."));
     ui->label_version->setText(QString::number(VERSION));
 
-    QGraphicsScene *sceneTmp1 = new QGraphicsScene();
+    /*QGraphicsScene *sceneTmp1 = new QGraphicsScene();
     QPixmap p1(":graphics/logoUCA1.png");
     sceneTmp1->addPixmap(p1);
     ui->graphicsView_2->setStyleSheet("background: transparent");
     ui->graphicsView_2->setScene(sceneTmp1);
-    ui->graphicsView_2->fitInView(sceneTmp1->itemsBoundingRect() ,Qt::IgnoreAspectRatio);
+    ui->graphicsView_2->fitInView(sceneTmp1->itemsBoundingRect() ,Qt::IgnoreAspectRatio);*/
 
 
 

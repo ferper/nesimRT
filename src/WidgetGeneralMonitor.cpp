@@ -68,10 +68,10 @@ WidgetGeneralMonitor::WidgetGeneralMonitor(QWidget *parent, typeDataNeurons *Qne
     timer.setInterval(10);
     timer.stop();
 
-    QGraphicsScene *sceneTmp = new QGraphicsScene();
+    /*QGraphicsScene *sceneTmp = new QGraphicsScene();
     QPixmap p0(":graphics/neuron.png");
     sceneTmp->addPixmap(p0);
-    ui->graphicsView->setScene(sceneTmp);
+    ui->graphicsView->setScene(sceneTmp);*/
 
     //sceneTmp = new QGraphicsScene();
     //QPixmap p1(":graphics/equation_CUBALIF.png");
@@ -242,7 +242,7 @@ void WidgetGeneralMonitor::onShow(){
             pos++;
         }
     }
-    ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
+    //ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
     //ui->graphicsView_2->fitInView(ui->graphicsView_2->sceneRect(),Qt::KeepAspectRatio);
 }
 

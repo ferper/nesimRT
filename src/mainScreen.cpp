@@ -33,7 +33,7 @@ MainScreen::MainScreen(QWidget *parent) :
     schemeNeuron = new MainGraphics(nullptr);
     motherNeuron = new MotherNeuron(nullptr, schemeNeuron);
 
-    QPixmap pixmap_General(":graphics/generalMonitorMain.png");
+    /*QPixmap pixmap_General(":graphics/generalMonitorMain.png");
     QIcon ButtonIconGeneral(pixmap_General);
     ui->bt_general_monitor->setIcon(ButtonIconGeneral);
     QSize s1(ui->bt_general_monitor->rect().size().width()-10,ui->bt_general_monitor->rect().size().height()-10);
@@ -59,7 +59,7 @@ MainScreen::MainScreen(QWidget *parent) :
     ui->bt_exit->setIcon(ButtonIconExit);
     QSize s4(ui->bt_exit->rect().size().width()-10,ui->bt_exit->rect().size().height()-10);
     ui->bt_exit->setIconSize(s4);
-    ui->bt_exit->setFixedSize(ui->bt_exit->rect().size());
+    ui->bt_exit->setFixedSize(ui->bt_exit->rect().size());*/
 
     QGraphicsDropShadowEffect* effect0 = new QGraphicsDropShadowEffect();
     QGraphicsDropShadowEffect* effect1 = new QGraphicsDropShadowEffect();
@@ -100,21 +100,21 @@ void MainScreen::keyPressEvent(QKeyEvent *event){
 }
 void MainScreen::showEvent(QShowEvent *) {
 
-    QGraphicsScene *sceneTmp = new QGraphicsScene();
+    /*QGraphicsScene *sceneTmp = new QGraphicsScene();
     QPixmap p0(":graphics/neuron_background.jpg");
     sceneTmp->addPixmap(p0);
 
     ui->graphicsView->setStyleSheet("background: transparent");
     ui->graphicsView->setScene(sceneTmp);
-    ui->graphicsView->fitInView(sceneTmp->itemsBoundingRect() ,Qt::IgnoreAspectRatio);
+    ui->graphicsView->fitInView(sceneTmp->itemsBoundingRect() ,Qt::IgnoreAspectRatio);*/
 
-    QGraphicsScene *sceneTmp1 = new QGraphicsScene();
-    QPixmap p1(":graphics/logoUCA1.png");
-    sceneTmp1->addPixmap(p1);
+    //QGraphicsScene *sceneTmp1 = new QGraphicsScene();
+    //QPixmap p1(":graphics/logoUCA1.png");
+    //sceneTmp1->addPixmap(p1);
 
-    ui->gv_logo->setStyleSheet("background: transparent");
-    ui->gv_logo->setScene(sceneTmp1);
-    ui->gv_logo->fitInView(sceneTmp1->itemsBoundingRect() ,Qt::IgnoreAspectRatio);
+    //ui->gv_logo->setStyleSheet("background: transparent");
+    //ui->gv_logo->setScene(sceneTmp1);
+    //ui->gv_logo->fitInView(sceneTmp1->itemsBoundingRect() ,Qt::IgnoreAspectRatio);
 
     this->move(QApplication::desktop()->availableGeometry().center() - this->rect().center());
     setFixedSize(width(),height());

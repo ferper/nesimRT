@@ -51,7 +51,6 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
     posCanvasX=220; //graph posX
     posCanvasY=300; //graph posY
 
-    ui->label_25->setText(MODEL);
     ui->spinSampler->setValue(10);
     ui->spinBox_3->setValue(4);
     ui->spinSizeX->setValue(windowWidth);
@@ -128,13 +127,34 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
     }
     connect(ui->tableWidget, SIGNAL(cellClicked (int, int) ),this, SLOT( cellSelected( int, int ) ) );
 
-   QGraphicsScene *sceneTmp = new QGraphicsScene();
-   QPixmap p0(":graphics/neuron.png");
+   //QGraphicsScene *sceneTmp = new QGraphicsScene();
+   /*QPixmap p0(":graphics/neuron.png");
    sceneTmp->addPixmap(p0);
-   ui->graphicsView->setScene(sceneTmp);
-   sceneTmp = new QGraphicsScene();
-   QPixmap p1(":graphics/equation_CUBALIF.png");
-   sceneTmp->addPixmap(p1);
+   ui->graphicsView_2->setScene(sceneTmp);
+   sceneTmp = new QGraphicsScene();*/
+
+   switch (p->neuronModel) {
+   case 0: {
+       QPixmap p_adex(":graphics/adexlif_eq.png");
+       ui->label_equation->setPixmap(p_adex.scaledToWidth(ui->label_equation->width(), Qt::TransformationMode::SmoothTransformation));
+       ui->label_25->setText("Adexlif");
+       break;
+   }case 1: {
+       QPixmap p_cuba(":graphics/cubalif_eq.png");
+       ui->label_equation->setPixmap(p_cuba.scaledToWidth(ui->label_equation->width(), Qt::TransformationMode::SmoothTransformation));
+       ui->label_25->setText("Cubalif");
+       break;
+   }case 2: {
+       QPixmap p_izh(":graphics/izhikevich_eq.png");
+       ui->label_equation->setPixmap(p_izh.scaledToWidth(ui->label_equation->width(), Qt::TransformationMode::SmoothTransformation));
+       ui->label_25->setText("Izhikevich");
+       break;
+   }default:
+       break;
+   }
+
+   //QPixmap p1(":graphics/equation_CUBALIF.png");
+   //sceneTmp->addPixmap(p1);
 
    QPixmap pixmap_ApplyChanges(":graphics/applyChangeNeuron.gif");
    QIcon ButtonIcon4(pixmap_ApplyChanges);
@@ -239,7 +259,7 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
 
    this->move(QApplication::desktop()->availableGeometry().center() - this->rect().center());
 
-   ui->graphicsView_2->setScene(sceneTmp);
+   //ui->graphicsView_2->setScene(sceneTmp);
 
    QPalette pal = ui->tableWidget->palette();
    pal.setColor(QPalette::Base, QColor("#bbc9b6"));
@@ -252,8 +272,8 @@ Widget::Widget(QWidget *parent,QString *ipmSource, QString *label, bool *dataIsA
 
 //To strecht the images into the container
 void Widget::showEvent(QShowEvent *) {
-    ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
-    ui->graphicsView_2->fitInView(ui->graphicsView_2->sceneRect(),Qt::KeepAspectRatio);
+    //ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
+    //ui->graphicsView_2->fitInView(ui->graphicsView_2->sceneRect(),Qt::KeepAspectRatio);
     ui->lineEdit_Label->setFocus();
 }
 

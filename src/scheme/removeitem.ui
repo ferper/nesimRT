@@ -67,19 +67,6 @@
     <string>Global Synapsys</string>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="graphicsView_2">
-   <property name="geometry">
-    <rect>
-     <x>940</x>
-     <y>40</y>
-     <width>341</width>
-     <height>141</height>
-    </rect>
-   </property>
-   <property name="lineWidth">
-    <number>1</number>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_8">
    <property name="geometry">
     <rect>
@@ -91,22 +78,6 @@
    </property>
    <property name="text">
     <string>Exit</string>
-   </property>
-  </widget>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>1080</x>
-     <y>280</y>
-     <width>211</width>
-     <height>181</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Sunken</enum>
    </property>
   </widget>
   <widget class="QFrame" name="frame_2">
@@ -302,37 +273,6 @@ Synapse</string>
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QLabel" name="label_16">
-   <property name="geometry">
-    <rect>
-     <x>1080</x>
-     <y>10</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Model:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_25">
-   <property name="geometry">
-    <rect>
-     <x>1160</x>
-     <y>10</y>
-     <width>141</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>model</string>
-   </property>
-  </widget>
   <widget class="QFrame" name="frame_4">
    <property name="geometry">
     <rect>
@@ -379,7 +319,29 @@ Synapse</string>
     </item>
    </widget>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>1080</x>
+     <y>260</y>
+     <width>211</width>
+     <height>201</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="graphics/graphics.qrc">:/graphics/neuron.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="graphics/graphics.qrc"/>
+  <include location="graphics/graphics.qrc"/>
+ </resources>
  <connections/>
 </ui>
