@@ -75,7 +75,6 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
 
     QGraphicsDropShadowEffect* effect0 = new QGraphicsDropShadowEffect();
     QGraphicsDropShadowEffect* effect1 = new QGraphicsDropShadowEffect();
-    QGraphicsDropShadowEffect* effect2 = new QGraphicsDropShadowEffect();
 
     effect0->setBlurRadius(100);
     effect0->setOffset(3,3);
@@ -84,7 +83,7 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
 
     ui->pushButton->setGraphicsEffect(effect0);
     ui->pushButton_2->setGraphicsEffect(effect1);
-    ui->pushButton_3->setGraphicsEffect(effect2);
+    connect(ui->comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(cambioModeloSlot()));
 }
 
 
@@ -291,7 +290,7 @@ void NewNeuronGraphic::on_pushButton_2_clicked()
     close();
 }
 
-void NewNeuronGraphic::on_pushButton_3_clicked()
+void NewNeuronGraphic::cambioModeloSlot()
 {
 
     QGraphicsScene *sceneTmp = new QGraphicsScene();
@@ -310,11 +309,11 @@ void NewNeuronGraphic::on_pushButton_3_clicked()
 
     }else if(ui->comboBox->currentText() == "Izhikevich"){
         ui->label_17->setText("Izhikevich");
-        //TODO:introducir la imagen de la ecuacion de izhikevich y cabiar el nombre de la siguiente linea
+
         QPixmap p1(":graphics/equation_IZHIKEVICH.png");
         sceneTmp->addPixmap(p1);
     }
-    QMessageBox::information(this, "Info","The model has been changed",ui->comboBox->currentText());
+    //QMessageBox::information(this, "Info","The model has been changed",ui->comboBox->currentText());
 }
 
 void NewNeuronGraphic::on_lineEdit_Label_returnPressed()

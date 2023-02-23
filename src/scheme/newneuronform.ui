@@ -554,19 +554,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
-   <property name="geometry">
-    <rect>
-     <x>680</x>
-     <y>160</y>
-     <width>111</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Change Model</string>
-   </property>
-  </widget>
  </widget>
  <tabstops>
   <tabstop>lineEdit_Label</tabstop>
