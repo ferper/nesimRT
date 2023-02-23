@@ -84,35 +84,6 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>200</y>
-     <width>261</width>
-     <height>251</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Sunken</enum>
-   </property>
-  </widget>
-  <widget class="QGraphicsView" name="graphicsView_2">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>70</y>
-     <width>381</width>
-     <height>121</height>
-    </rect>
-   </property>
-   <property name="lineWidth">
-    <number>1</number>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_16">
    <property name="geometry">
     <rect>
@@ -173,83 +144,6 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_IP">
-      <property name="text">
-       <string>IP</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="1">
-     <widget class="QLineEdit" name="lineEdit_Vrh"/>
-    </item>
-    <item row="13" column="0">
-     <widget class="QLabel" name="label_Vrh">
-      <property name="text">
-       <string>Vrh</string>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="1">
-     <widget class="QLineEdit" name="lineEdit_a"/>
-    </item>
-    <item row="9" column="0">
-     <widget class="QLabel" name="label_tauinh">
-      <property name="text">
-       <string>tau inh</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="1">
-     <widget class="QLineEdit" name="lineEdit_tauInh"/>
-    </item>
-    <item row="15" column="1">
-     <widget class="QLineEdit" name="lineEdit_At"/>
-    </item>
-    <item row="17" column="0">
-     <widget class="QLabel" name="label_b">
-      <property name="text">
-       <string>b</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QLineEdit" name="lineEdit_Iexc"/>
-    </item>
-    <item row="5" column="1">
-     <widget class="QLineEdit" name="lineEdit_V"/>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="label_tauexc">
-      <property name="text">
-       <string>tau exc</string>
-      </property>
-     </widget>
-    </item>
-    <item row="14" column="0">
-     <widget class="QLabel" name="label_R">
-      <property name="text">
-       <string>R</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="1">
-     <widget class="QLineEdit" name="lineEdit_tauExc"/>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_Amount">
-      <property name="text">
-       <string>Amount</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="label_PosY">
-      <property name="text">
-       <string>Pos Y</string>
-      </property>
-     </widget>
-    </item>
     <item row="16" column="0">
      <widget class="QLabel" name="label_a">
       <property name="text">
@@ -257,61 +151,14 @@
       </property>
      </widget>
     </item>
-    <item row="12" column="1">
-     <widget class="QLineEdit" name="lineEdit_Vth"/>
+    <item row="18" column="1">
+     <widget class="QLineEdit" name="lineEdit_d"/>
     </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEdit_Label"/>
-    </item>
-    <item row="11" column="0">
-     <widget class="QLabel" name="label_Vr">
-      <property name="text">
-       <string>Vr</string>
-      </property>
-     </widget>
-    </item>
-    <item row="14" column="1">
-     <widget class="QLineEdit" name="lineEdit_R"/>
-    </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="lineEdit_Amount"/>
-    </item>
-    <item row="15" column="0">
-     <widget class="QLabel" name="label_At">
-      <property name="text">
-       <string>At</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="label_Iexec">
-      <property name="text">
-       <string>I exc</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Label</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_PosX">
-      <property name="text">
-       <string>Pos X</string>
-      </property>
-     </widget>
+    <item row="16" column="1">
+     <widget class="QLineEdit" name="lineEdit_a"/>
     </item>
     <item row="11" column="1">
      <widget class="QLineEdit" name="lineEdit_Vr"/>
-    </item>
-    <item row="3" column="1">
-     <widget class="QLineEdit" name="lineEdit_PosX"/>
-    </item>
-    <item row="10" column="1">
-     <widget class="QLineEdit" name="lineEdit_tauV"/>
     </item>
     <item row="5" column="0">
      <widget class="QLabel" name="label_V">
@@ -323,6 +170,73 @@
     <item row="4" column="1">
      <widget class="QLineEdit" name="lineEdit_PosY"/>
     </item>
+    <item row="18" column="0">
+     <widget class="QLabel" name="label_d">
+      <property name="text">
+       <string>d</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="label_tauexc">
+      <property name="text">
+       <string>tau exc</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QLineEdit" name="lineEdit_tauExc"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Label</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="0">
+     <widget class="QLabel" name="label_b">
+      <property name="text">
+       <string>b</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="lineEdit_Label"/>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="label_Iexec">
+      <property name="text">
+       <string>I exc</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1">
+     <widget class="QLineEdit" name="lineEdit_tauV"/>
+    </item>
+    <item row="14" column="0">
+     <widget class="QLabel" name="label_R">
+      <property name="text">
+       <string>R</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="lineEdit_V"/>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="lineEdit_Ip"/>
+    </item>
+    <item row="13" column="1">
+     <widget class="QLineEdit" name="lineEdit_Vrh"/>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_PosY">
+      <property name="text">
+       <string>Pos Y</string>
+      </property>
+     </widget>
+    </item>
     <item row="10" column="0">
      <widget class="QLabel" name="label_tauV">
       <property name="text">
@@ -330,11 +244,8 @@
       </property>
      </widget>
     </item>
-    <item row="17" column="1">
-     <widget class="QLineEdit" name="lineEdit_b"/>
-    </item>
-    <item row="7" column="1">
-     <widget class="QLineEdit" name="lineEdit_Iinh"/>
+    <item row="12" column="1">
+     <widget class="QLineEdit" name="lineEdit_Vth"/>
     </item>
     <item row="12" column="0">
      <widget class="QLabel" name="label_Vth">
@@ -343,8 +254,35 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEdit_Ip"/>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="lineEdit_PosX"/>
+    </item>
+    <item row="9" column="1">
+     <widget class="QLineEdit" name="lineEdit_tauInh"/>
+    </item>
+    <item row="13" column="0">
+     <widget class="QLabel" name="label_Vrh">
+      <property name="text">
+       <string>Vrh</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QLabel" name="label_Vr">
+      <property name="text">
+       <string>Vr</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0">
+     <widget class="QLabel" name="label_tauinh">
+      <property name="text">
+       <string>tau inh</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="1">
+     <widget class="QLineEdit" name="lineEdit_b"/>
     </item>
     <item row="7" column="0">
      <widget class="QLabel" name="label_Iinh">
@@ -353,15 +291,74 @@
       </property>
      </widget>
     </item>
-    <item row="18" column="0">
-     <widget class="QLabel" name="label_d">
+    <item row="14" column="1">
+     <widget class="QLineEdit" name="lineEdit_R"/>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLineEdit" name="lineEdit_Iexc"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_Amount">
       <property name="text">
-       <string>d</string>
+       <string>Amount</string>
       </property>
      </widget>
     </item>
-    <item row="18" column="1">
-     <widget class="QLineEdit" name="lineEdit_d"/>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_IP">
+      <property name="text">
+       <string>IP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="lineEdit_Amount"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_PosX">
+      <property name="text">
+       <string>Pos X</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QLineEdit" name="lineEdit_Iinh"/>
+    </item>
+    <item row="15" column="1">
+     <widget class="QLineEdit" name="lineEdit_At"/>
+    </item>
+    <item row="15" column="0">
+     <widget class="QLabel" name="label_At">
+      <property name="text">
+       <string>At</string>
+      </property>
+     </widget>
+    </item>
+    <item row="19" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="19" column="0">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>
@@ -387,6 +384,47 @@
     </item>
    </layout>
   </widget>
+  <widget class="QLabel" name="label_equation">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>70</y>
+     <width>381</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="graphics/graphics.qrc">:/graphics/adexlif_eq.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>200</y>
+     <width>261</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="graphics/graphics.qrc">:/graphics/neuron.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>lineEdit_Label</tabstop>
@@ -407,9 +445,10 @@
   <tabstop>lineEdit_At</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>pushButton_2</tabstop>
-  <tabstop>graphicsView</tabstop>
-  <tabstop>graphicsView_2</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="graphics/graphics.qrc"/>
+  <include location="graphics/graphics.qrc"/>
+ </resources>
  <connections/>
 </ui>

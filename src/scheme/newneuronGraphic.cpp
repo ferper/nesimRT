@@ -52,16 +52,16 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
     ui->lineEdit_d->hide();
 
 
-    QGraphicsScene *sceneTmp = new QGraphicsScene();
+    /*QGraphicsScene *sceneTmp = new QGraphicsScene();
     QPixmap p0(":graphics/neuron.png");
 
     sceneTmp->addPixmap(p0);
-    ui->graphicsView->setScene(sceneTmp);
-    sceneTmp = new QGraphicsScene();
+    ui->graphicsView->setScene(sceneTmp);*/
+
+    /*sceneTmp = new QGraphicsScene();
     QPixmap p1(":graphics/equation_ADEXLIF.png");
     sceneTmp->addPixmap(p1);
-
-    ui->graphicsView_2->setScene(sceneTmp);
+    ui->graphicsView_2->setScene(sceneTmp);*/
 
     this->setWindowTitle("Create Neuron");
     ui->lineEdit_Label->setFocus();
@@ -98,8 +98,8 @@ NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QG
 
 //To strecht the images into the container
 void NewNeuronGraphic::showEvent(QShowEvent *) {
-    ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
-    ui->graphicsView_2->fitInView(ui->graphicsView_2->sceneRect(),Qt::KeepAspectRatio);
+    //ui->graphicsView->fitInView(ui->graphicsView->sceneRect(),Qt::KeepAspectRatio);
+    //ui->graphicsView_2->fitInView(ui->graphicsView_2->sceneRect(),Qt::KeepAspectRatio);
 }
 
 void NewNeuronGraphic::keyPressEvent(QKeyEvent *event){
@@ -301,12 +301,6 @@ void NewNeuronGraphic::on_pushButton_2_clicked()
 
 void NewNeuronGraphic::cambioModeloSlot()
 {
-
-    QGraphicsScene *sceneTmp = new QGraphicsScene();
-    sceneTmp = new QGraphicsScene();
-
-    ui->graphicsView_2->setScene(sceneTmp);
-
     if(ui->comboBox->currentText() == "Adexlif"){
         ui->label_17->setText("Adexlif");
         ui->label_R->show();
@@ -325,8 +319,10 @@ void NewNeuronGraphic::cambioModeloSlot()
         ui->label_tauV->show();
         ui->lineEdit_R->show();
 
-        QPixmap p1(":graphics/equation_ADEXLIF.png");
-        sceneTmp->addPixmap(p1);
+
+        // QPixmap p1(":graphics/equation_ADEXLIF.png");
+        QPixmap p1(":graphics/adexlif_eq.png");
+        ui->label_equation->setPixmap(p1);
     }else if(ui->comboBox->currentText() == "Cubalif"){
         ui->label_17->setText("Cubalif");
 
@@ -346,8 +342,8 @@ void NewNeuronGraphic::cambioModeloSlot()
         ui->lineEdit_R->show();
         ui->label_R->show();
 
-        QPixmap p1(":graphics/equation_CUBALIF.png");
-        sceneTmp->addPixmap(p1);
+        QPixmap p1(":graphics/cubalif_eq.png");
+        ui->label_equation->setPixmap(p1);
 
     }else if(ui->comboBox->currentText() == "Izhikevich"){
         ui->label_17->setText("Izhikevich");
@@ -368,8 +364,8 @@ void NewNeuronGraphic::cambioModeloSlot()
         ui->lineEdit_b->show();
         ui->lineEdit_d->show();
 
-        QPixmap p1(":graphics/equation_IZHIKEVICH.png");
-        sceneTmp->addPixmap(p1);
+        QPixmap p1(":graphics/izhikevich_eq.png");
+        ui->label_equation->setPixmap(p1);
     }
     //QMessageBox::information(this, "Info","The model has been changed",ui->comboBox->currentText());
 }
