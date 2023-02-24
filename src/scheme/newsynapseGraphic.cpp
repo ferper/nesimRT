@@ -25,12 +25,6 @@ NewSynapseGraphic::NewSynapseGraphic(QWidget *parent, int *idGlobalSynapse, QGra
         this->scene=scene;
         this->sceneBeSaved=sceneBeSaved;
 
-        QGraphicsScene *sceneTmp = new QGraphicsScene();
-        QPixmap p0(":graphics/synapsys.jpeg");
-        sceneTmp->addPixmap(p0);
-        ui->graphicsView->setStyleSheet("background: transparent");
-        ui->graphicsView->setScene(sceneTmp);
-
         fullTableWidgetdataNeurons(ui->tableWidget_Source);
         fullTableWidgetdataNeurons(ui->tableWidget_Target);
         neuronFilterSearch(0);
@@ -48,22 +42,6 @@ NewSynapseGraphic::NewSynapseGraphic(QWidget *parent, int *idGlobalSynapse, QGra
 
         connect(ui->lineEdit_Source, SIGNAL(textChanged(const QString &)), this, SLOT(neuronFilterSearchSource()));
         connect(ui->lineEdit_Target, SIGNAL(textChanged(const QString &)), this, SLOT(neuronFilterSearchTarget()));
-
-        QPixmap pixmap_create(":graphics/createSynapse.png");
-        QIcon ButtonIcon1(pixmap_create);
-        ui->pushButton_Create->setIcon(ButtonIcon1);
-        QSize s0(ui->pushButton_Create->rect().size().width()-10,ui->pushButton_Create->rect().size().height()-10);
-        ui->pushButton_Create->setIconSize(s0);
-        ui->pushButton_Create->setFixedSize(ui->pushButton_Create->rect().size());
-        ui->pushButton_Create->setFlat(true);
-
-        QPixmap pixmap_exit(":graphics/exit.png");
-        QIcon ButtonIcon2(pixmap_exit);
-        ui->pushButton_Exit->setIcon(ButtonIcon2);
-        QSize s1(ui->pushButton_Exit->rect().size().width()-10,ui->pushButton_Exit->rect().size().height()-10);
-        ui->pushButton_Exit->setIconSize(s0);
-        ui->pushButton_Exit->setFixedSize(ui->pushButton_Exit->rect().size());
-        ui->pushButton_Exit->setFlat(true);
 
         QGraphicsDropShadowEffect* effect0 = new QGraphicsDropShadowEffect();
         QGraphicsDropShadowEffect* effect1 = new QGraphicsDropShadowEffect();

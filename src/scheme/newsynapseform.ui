@@ -22,6 +22,49 @@
      <height>291</height>
     </rect>
    </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>187</red>
+         <green>201</green>
+         <blue>182</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>46</red>
+         <green>47</green>
+         <blue>48</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>240</red>
+         <green>240</green>
+         <blue>240</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget::item {&quot;border: 1px solid black;&quot;}</string>
+   </property>
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
    <property name="sortingEnabled">
     <bool>false</bool>
    </property>
@@ -31,6 +74,21 @@
    <attribute name="verticalHeaderShowSortIndicator" stdset="0">
     <bool>false</bool>
    </attribute>
+   <column>
+    <property name="text">
+     <string>IP Address</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Identification</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Amount</string>
+    </property>
+   </column>
   </widget>
   <widget class="QTableWidget" name="tableWidget_Target">
    <property name="geometry">
@@ -40,6 +98,46 @@
      <width>301</width>
      <height>291</height>
     </rect>
+   </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>224</red>
+         <green>220</green>
+         <blue>162</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>46</red>
+         <green>47</green>
+         <blue>48</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>240</red>
+         <green>240</green>
+         <blue>240</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget::item {&quot;border: 1px solid black;&quot;}</string>
    </property>
   </widget>
   <widget class="QFrame" name="frame">
@@ -129,25 +227,6 @@
     <string>Source</string>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>640</x>
-     <y>50</y>
-     <width>291</width>
-     <height>191</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Sunken</enum>
-   </property>
-   <property name="lineWidth">
-    <number>1</number>
-   </property>
-  </widget>
   <widget class="QFrame" name="frame_3">
    <property name="geometry">
     <rect>
@@ -175,11 +254,18 @@
     <property name="text">
      <string>&amp;Create</string>
     </property>
+    <property name="icon">
+     <iconset resource="graphics/graphics.qrc">
+      <normaloff>:/graphics/createSynapse.png</normaloff>:/graphics/createSynapse.png</iconset>
+    </property>
     <property name="iconSize">
      <size>
-      <width>48</width>
-      <height>48</height>
+      <width>81</width>
+      <height>41</height>
      </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit_w">
@@ -321,11 +407,49 @@
    <property name="text">
     <string>&amp;Exit</string>
    </property>
+   <property name="icon">
+    <iconset resource="graphics/graphics.qrc">
+     <normaloff>:/graphics/exit.png</normaloff>:/graphics/exit.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>141</width>
+     <height>31</height>
+    </size>
+   </property>
    <property name="checkable">
     <bool>false</bool>
    </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>50</y>
+     <width>291</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="graphics/graphics.qrc">:/graphics/synapsys.jpeg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="graphics/graphics.qrc"/>
+  <include location="graphics/graphics.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -163,21 +163,23 @@ MainGraphics::MainGraphics(QWidget *parent )
     QPixmap pixmap_Exit(":graphics/exit.png");
     QIcon ButtonIcon7(pixmap_Exit);
     btExit->setIcon(ButtonIcon7);
-    QSize s8(btExit->rect().size().width()-20,btExit->rect().size().height()-20);
+    QSize s8(btExit->rect().size().width()-10,btExit->rect().size().height()-10);
     btExit->setIconSize(s8);
     btExit->setFixedSize(btExit->rect().size());
+    btExit->setFlat(true);
     proxy = scene->addWidget(btExit);
 
     QPushButton *btSpiNNaker = new QPushButton();
     btSpiNNaker->setGeometry(QRect(50,560,140,70));
     btSpiNNaker->setText("   SpiNNa&ker");
 
-    QPixmap pixmap_SpiNNaker(":graphics/exit.png");
+    /*QPixmap pixmap_SpiNNaker(":graphics/exit.png");
     QIcon ButtonIcon8(pixmap_SpiNNaker);
     btExit->setIcon(ButtonIcon8);
+    btExit->setFlat(true);*/
 
-    QSize s9(btSpiNNaker->rect().size().width()-20,btSpiNNaker->rect().size().height()-20);
-    btExit->setIconSize(s9);
+    //QSize s9(btSpiNNaker->rect().size().width()-20,btSpiNNaker->rect().size().height()-20);
+    //btExit->setIconSize(s9);
     btSpiNNaker->setFixedSize(btSpiNNaker->rect().size());
     proxy = scene->addWidget(btSpiNNaker);
 
