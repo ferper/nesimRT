@@ -8,6 +8,7 @@
 #include "node.h"
 #include "removeitem.h"
 
+#include <QGraphicsView>
 #include <QMessageBox>
 #include <QDesktopWidget>
 
@@ -32,6 +33,17 @@ NeuronScheme::NeuronScheme(QWidget *parent) :
 
     idGlobalSynapse=0;
     idGlobalNeuron=0;
+
+    scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+    scene->setSceneRect(0, 0, 961, 570); // Window size
+
+    ui->graphicsView->setScene(scene);
+    ui->graphicsView->setCacheMode(QGraphicsView::CacheBackground);
+    ui->graphicsView->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing);
+    ui->graphicsView->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+    ui->graphicsView->scale(qreal(0.8), qreal(0.8));
+
 
     // We listen to the PROMISCUOUS_MOTHER_PORT any Neuron
     groupAddress=QHostAddress(IPM_MOTHER);

@@ -1,11 +1,12 @@
 #ifndef NEURONSCHEME_H
 #define NEURONSCHEME_H
 
-#include "node.h"
 #include "junctionsDraw.h"
 #include "neuron.h"
 
 #include <QWidget>
+
+class Node;
 
 namespace Ui {
 class NeuronScheme;

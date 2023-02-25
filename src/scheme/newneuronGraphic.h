@@ -8,6 +8,8 @@
 #include <QGraphicsView>
 #include "mainScreen.h"
 
+class NeuronScheme;
+
 namespace Ui { //form
 class NewNeuronForm;
 }

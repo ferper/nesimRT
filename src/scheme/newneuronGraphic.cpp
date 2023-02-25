@@ -1,5 +1,6 @@
 #include "newneuronGraphic.h"
 #include "ui_newneuronform.h"
+#include "neuronscheme.h"
 #include <QDialog>
 #include <QMessageBox>
 #include <iostream>
