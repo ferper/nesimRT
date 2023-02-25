@@ -1,15 +1,15 @@
 #include "junctionsDraw.h"
 #include "node.h"
-#include "mainGraphics.h"
+//#include "mainGraphics.h"
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QStyleOption>
 #include <iostream>
 #include "scheme/model_adexlif.h"
-#include "scheme/newgeneratorGraphic.h"
+//#include "scheme/newgeneratorGraphic.h"
 
-Node::Node(MainGraphics *graphWidget,float posX, float posY, QList <Neuron*> *localNeurons) : graph(graphWidget)
+Node::Node(QGraphicsView *graphWidget,float posX, float posY, QList <Neuron*> *localNeurons) : graph(graphWidget)
 
 {
     this->localNeurons=localNeurons;
@@ -98,7 +98,7 @@ QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value)
         foreach (JunctionsDraw *edge, edgeList)
             edge->adjust();
 
-        graph->itemMoved();
+        //graph->itemMoved();
 
         break;
     default:

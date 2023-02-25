@@ -9,7 +9,7 @@
 #include "motherNeuron.h"
 #include <QVector>
 #include "typedata.h"
-#include "scheme/mainGraphics.h"
+#include "scheme/neuronscheme.h"
 #define VERSION 4.3
 
 namespace Ui {
@@ -25,7 +25,7 @@ public:
     int generalClock;
     ~MainScreen();
 
-    MainGraphics *schemeNeuron;
+    NeuronScheme *schemeNeuron;
     MotherNeuron *motherNeuron;//= MotherNeuron(nullptr,IPM_MOTHER,schemeNeuron);
     QGraphicsScene *scene;
     SpikeGenerator *spikeGenerator;

@@ -33,6 +33,7 @@ SOURCES += \
     models/neuron_adexlif.cpp \
     models/neuron_cubalif.cpp \
     models/neuron_izhikevich.cpp \
+    scheme/neuronscheme.cpp \
     spikeGenerator.cpp \
     neuron.cpp \
     synapse.cpp \
@@ -59,6 +60,7 @@ HEADERS += \
     models/neuron_adexlif.h \
     models/neuron_cubalif.h \
     models/neuron_izhikevich.h \
+    scheme/neuronscheme.h \
     spikeGenerator.h \
     neuron.h \
     synapse.h \
@@ -68,7 +70,6 @@ HEADERS += \
     WidgetGeneralMonitor.h \
     messages.h \
     config.h \
-    motherNeuron.h \
     motherNeuron.h \
     encodeDecodeMsg.h \
     typedata.h \
@@ -89,6 +90,7 @@ FORMS += \
         mainwindow.ui \
     Widget.ui \
     generalmonitor.ui \
+    scheme/neuronscheme.ui \
     scheme/newneuronform.ui \
     scheme/newsynapseform.ui \
     scheme/newgeneratorform.ui \

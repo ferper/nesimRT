@@ -17,7 +17,7 @@ class NewNeuronGraphic : public QWidget
     Q_OBJECT
 
 public:
-       explicit NewNeuronGraphic(QWidget *parent = nullptr,MainGraphics *graphWidget=nullptr, QGraphicsScene *scene=nullptr, int *idGlobalNeuron=nullptr,  QList <Neuron *> *localNeurons=nullptr, QList <Node*> *vectorGraphicsNodes=nullptr, QString mathematicalModel="", bool *sceneBeSaved=nullptr);
+    explicit NewNeuronGraphic(QWidget *parent = nullptr, NeuronScheme *graphWidget=nullptr, QGraphicsScene *scene=nullptr, int *idGlobalNeuron=nullptr,  QList <Neuron *> *localNeurons=nullptr, QList <Node*> *vectorGraphicsNodes=nullptr, bool *sceneBeSaved=nullptr);
     ~NewNeuronGraphic();
     void showEvent(QShowEvent *) override;
 
@@ -138,7 +138,7 @@ private:
     int *idGlobalNeuron;
     QString mathematicalModel;
 
-    MainGraphics *graphWidget;
+    NeuronScheme *graphWidget;
     QGraphicsScene *scene;
     Ui::NewNeuronForm *ui;
 };

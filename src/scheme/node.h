@@ -1,6 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include <QGraphicsView>
 #include <QGraphicsItem>
 #include <QList>
 #include "neuron.h"
@@ -9,7 +10,6 @@
 #include "models/neuron_adexlif.h"
 
 class JunctionsDraw;
-class MainGraphics;
 QT_BEGIN_NAMESPACE
 class QGraphicsSceneMouseEvent;
 QT_END_NAMESPACE
@@ -31,7 +31,7 @@ public:
 
     }typedef TypeDataSynapsys;
 
-    Node(MainGraphics *graphWidget,float posX=350, float posY=350, QList <Neuron*> *localNeurons=nullptr);
+    Node(QGraphicsView *graphWidget,float posX=350, float posY=350, QList <Neuron*> *localNeurons=nullptr);
 
     void addJunction(JunctionsDraw *junction);
 
@@ -79,12 +79,12 @@ protected:
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 
 private:
-    MainGraphics *graphWidget;
+    QGraphicsView *graphWidget;
 
     QList<JunctionsDraw *> edgeList;
     QList<Neuron*> *localNeurons;
     QPointF newPos;
-    MainGraphics *graph;
+    QGraphicsView *graph;
 };
 
 #endif // NODE_H

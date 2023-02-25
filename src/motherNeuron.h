@@ -6,7 +6,7 @@
 #include <QtCore>
 #include <QMutex>
 #include "encodeDecodeMsg.h"
-#include "scheme/mainGraphics.h"
+#include "scheme/neuronscheme.h"
 struct DataSynapsys
 {
     QString idGlobal;
@@ -36,7 +36,7 @@ class MotherNeuron : public QDialog
     Q_OBJECT
 
 public:
-    explicit MotherNeuron(QWidget *parent = nullptr, MainGraphics *schemeNeuron=nullptr);
+    explicit MotherNeuron(QWidget *parent = nullptr, NeuronScheme *schemeNeuron=nullptr);
     void addNeuron(int typeNeuron, QString ip,QString id, int N, int localRemote);
     void addSynapse(QString idGlobal, QString ipmSourceNeuron, QString ipmTarget, int type, quint16 port, double w, QString fx_numberTxt);
     typeDataNeurons dataNeurons;
@@ -60,7 +60,7 @@ private:
     QUdpSocket udpSocket4;      //To public With my IPmulticast and a Port
     QHostAddress groupAddress4; //This is my IpMulticast group
 
-    MainGraphics *schemeNeuron; //Pointer to graphic environment
+    NeuronScheme *schemeNeuron; //Pointer to graphic environment
 
 };
 

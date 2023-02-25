@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "mainScreen.h"
 #include "node.h"
-
+#include "mainGraphics.h"
 
 namespace Ui {
 class NewGeneratorForm;

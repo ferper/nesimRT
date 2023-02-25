@@ -4,12 +4,12 @@
 #include <QMessageBox>
 #include <iostream>
 
-NewNeuronGraphic::NewNeuronGraphic(QWidget *parent,MainGraphics *graphWidget, QGraphicsScene *scene, int *idGlobalNeuron, QList <Neuron *> *localNeurons, QList <Node*> *vectorGraphicsNodes, QString mathematicalModel,bool *sceneBeSaved):
+NewNeuronGraphic::NewNeuronGraphic(QWidget *parent, NeuronScheme *graphWidget, QGraphicsScene *scene, int *idGlobalNeuron, QList <Neuron *> *localNeurons, QList <Node*> *vectorGraphicsNodes, bool *sceneBeSaved):
     QWidget(parent), ui(new Ui::NewNeuronForm) {
 
     ui->setupUi(this);
     this->idGlobalNeuron=idGlobalNeuron;
-    this->mathematicalModel=mathematicalModel;
+    this->mathematicalModel=""; // TODO: Remove
     this->vectorGraphicsNodes=vectorGraphicsNodes;
     this->localNeurons=localNeurons;
     this->graphWidget=graphWidget;
@@ -251,46 +251,44 @@ bool NewNeuronGraphic::parametersOK() {
 
 void NewNeuronGraphic::on_pushButton_clicked()
 {
-    if (mathematicalModel==MODEL) {
-       if (parametersOK()) {
+   if (parametersOK()) {
 
-           QString ip=ui->lineEdit_Ip->text();
+       QString ip=ui->lineEdit_Ip->text();
 
-           graphWidget->generateIPReal(QString::number(TYPENEURON_NORMAL));
+       graphWidget->generateIPReal(QString::number(TYPENEURON_NORMAL));
 
-           (*idGlobalNeuron)++;
+       (*idGlobalNeuron)++;
 
-           if( ui->comboBox->currentText() == "Adexlif" ){
-               Parameters *p1 = new Parameters(0,ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(), ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_tauExc->text().toDouble(), ui->lineEdit_tauInh->text().toDouble(),ui->lineEdit_tauV->text().toDouble(),ui->lineEdit_R->text().toDouble(), ui->lineEdit_Vr->text().toDouble(),ui->lineEdit_Vrh->text().toDouble(),ui->lineEdit_Vth->text().toDouble(), ui->lineEdit_At->text().toDouble());
+       if( ui->comboBox->currentText() == "Adexlif" ){
+           Parameters *p1 = new Parameters(0,ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(), ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_tauExc->text().toDouble(), ui->lineEdit_tauInh->text().toDouble(),ui->lineEdit_tauV->text().toDouble(),ui->lineEdit_R->text().toDouble(), ui->lineEdit_Vr->text().toDouble(),ui->lineEdit_Vrh->text().toDouble(),ui->lineEdit_Vth->text().toDouble(), ui->lineEdit_At->text().toDouble());
 
-               neuron_adexlif *n = new neuron_adexlif(nullptr,ui->lineEdit_Amount->text().toInt() ,ui->lineEdit_Label->text(),ui->lineEdit_PosX->text().toFloat(),ui->lineEdit_PosY->text().toFloat(), ui->lineEdit_Ip->text(),*idGlobalNeuron, TYPENEURON_NORMAL,LOCAL_NEURON, p1,1,"1E-9",ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(),ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_V->text().toDouble()); //V_prior,IexcCurrent,IinhCurrent,VCurrent);
+           neuron_adexlif *n = new neuron_adexlif(nullptr,ui->lineEdit_Amount->text().toInt() ,ui->lineEdit_Label->text(),ui->lineEdit_PosX->text().toFloat(),ui->lineEdit_PosY->text().toFloat(), ui->lineEdit_Ip->text(),*idGlobalNeuron, TYPENEURON_NORMAL,LOCAL_NEURON, p1,1,"1E-9",ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(),ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_V->text().toDouble()); //V_prior,IexcCurrent,IinhCurrent,VCurrent);
 
-               localNeurons->append(dynamic_cast<Neuron*>(n));
-               *sceneBeSaved=true;
-               close();
-               QMessageBox::information(this, "Warning","The neuron has been succesfully created.");
+           localNeurons->append(dynamic_cast<Neuron*>(n));
+           *sceneBeSaved=true;
+           close();
+           QMessageBox::information(this, "Warning","The neuron has been succesfully created.");
 
-           }else if(ui->comboBox->currentText() == "Cubalif"){
-               Parameters *p1 = new Parameters(1,ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(), ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_tauExc->text().toDouble(), ui->lineEdit_tauInh->text().toDouble(),ui->lineEdit_tauV->text().toDouble(),ui->lineEdit_R->text().toDouble(), ui->lineEdit_Vr->text().toDouble(),ui->lineEdit_Vrh->text().toDouble(),ui->lineEdit_Vth->text().toDouble(), ui->lineEdit_At->text().toDouble());
+       }else if(ui->comboBox->currentText() == "Cubalif"){
+           Parameters *p1 = new Parameters(1,ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(), ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_tauExc->text().toDouble(), ui->lineEdit_tauInh->text().toDouble(),ui->lineEdit_tauV->text().toDouble(),ui->lineEdit_R->text().toDouble(), ui->lineEdit_Vr->text().toDouble(),ui->lineEdit_Vrh->text().toDouble(),ui->lineEdit_Vth->text().toDouble(), ui->lineEdit_At->text().toDouble());
 
-               neuron_cubalif *n = new neuron_cubalif(nullptr,ui->lineEdit_Amount->text().toInt() ,ui->lineEdit_Label->text(),ui->lineEdit_PosX->text().toFloat(),ui->lineEdit_PosY->text().toFloat(), ui->lineEdit_Ip->text(),*idGlobalNeuron, TYPENEURON_NORMAL,LOCAL_NEURON, p1,1,"1E-9",ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(),ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_V->text().toDouble()); //V_prior,IexcCurrent,IinhCurrent,VCurrent);
+           neuron_cubalif *n = new neuron_cubalif(nullptr,ui->lineEdit_Amount->text().toInt() ,ui->lineEdit_Label->text(),ui->lineEdit_PosX->text().toFloat(),ui->lineEdit_PosY->text().toFloat(), ui->lineEdit_Ip->text(),*idGlobalNeuron, TYPENEURON_NORMAL,LOCAL_NEURON, p1,1,"1E-9",ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(),ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_V->text().toDouble()); //V_prior,IexcCurrent,IinhCurrent,VCurrent);
 
-               localNeurons->append(dynamic_cast<Neuron*>(n));
-               *sceneBeSaved=true;
-               close();
-               QMessageBox::information(this, "Warning","The neuron has been succesfully created.");
-           }else if(ui->comboBox->currentText() == "Izhikevich"){
-               Parameters *p1 = new Parameters(2,ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(), ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_tauExc->text().toDouble(), ui->lineEdit_tauInh->text().toDouble(),ui->lineEdit_tauV->text().toDouble(),ui->lineEdit_R->text().toDouble(), ui->lineEdit_Vr->text().toDouble(),ui->lineEdit_Vrh->text().toDouble(),ui->lineEdit_Vth->text().toDouble(), ui->lineEdit_At->text().toDouble());
+           localNeurons->append(dynamic_cast<Neuron*>(n));
+           *sceneBeSaved=true;
+           close();
+           QMessageBox::information(this, "Warning","The neuron has been succesfully created.");
+       }else if(ui->comboBox->currentText() == "Izhikevich"){
+           Parameters *p1 = new Parameters(2,ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(), ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_tauExc->text().toDouble(), ui->lineEdit_tauInh->text().toDouble(),ui->lineEdit_tauV->text().toDouble(),ui->lineEdit_R->text().toDouble(), ui->lineEdit_Vr->text().toDouble(),ui->lineEdit_Vrh->text().toDouble(),ui->lineEdit_Vth->text().toDouble(), ui->lineEdit_At->text().toDouble());
 
-               neuron_izhikevich *n = new neuron_izhikevich(nullptr,ui->lineEdit_Amount->text().toInt() ,ui->lineEdit_Label->text(),ui->lineEdit_PosX->text().toFloat(),ui->lineEdit_PosY->text().toFloat(), ui->lineEdit_Ip->text(),*idGlobalNeuron, TYPENEURON_NORMAL,LOCAL_NEURON, p1,1,"1E-9",ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(),ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_V->text().toDouble()); //V_prior,IexcCurrent,IinhCurrent,VCurrent);
+           neuron_izhikevich *n = new neuron_izhikevich(nullptr,ui->lineEdit_Amount->text().toInt() ,ui->lineEdit_Label->text(),ui->lineEdit_PosX->text().toFloat(),ui->lineEdit_PosY->text().toFloat(), ui->lineEdit_Ip->text(),*idGlobalNeuron, TYPENEURON_NORMAL,LOCAL_NEURON, p1,1,"1E-9",ui->lineEdit_V->text().toDouble(),ui->lineEdit_Iexc->text().toDouble(),ui->lineEdit_Iinh->text().toDouble(),ui->lineEdit_V->text().toDouble()); //V_prior,IexcCurrent,IinhCurrent,VCurrent);
 
-               localNeurons->append(dynamic_cast<Neuron*>(n));
-               *sceneBeSaved=true;
-               close();
-               QMessageBox::information(this, "Warning","The neuron has been succesfully created.");
-           }
-
+           localNeurons->append(dynamic_cast<Neuron*>(n));
+           *sceneBeSaved=true;
+           close();
+           QMessageBox::information(this, "Warning","The neuron has been succesfully created.");
        }
+
    }
 }
 void NewNeuronGraphic::on_pushButton_2_clicked()

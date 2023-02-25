@@ -993,10 +993,10 @@ Fixed</string>
   <widget class="QLabel" name="neuron_img">
    <property name="geometry">
     <rect>
-     <x>890</x>
-     <y>210</y>
-     <width>261</width>
-     <height>191</height>
+     <x>910</x>
+     <y>180</y>
+     <width>241</width>
+     <height>221</height>
     </rect>
    </property>
    <property name="text">

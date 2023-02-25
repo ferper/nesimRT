@@ -6,7 +6,7 @@
 #include "scheme/node.h"
 #include "scheme/model_adexlif.h"
 
-MotherNeuron::MotherNeuron(QWidget *parent, MainGraphics *schemeNeuron)
+MotherNeuron::MotherNeuron(QWidget *parent, NeuronScheme *schemeNeuron)
     : QDialog(parent)
 {
     this->schemeNeuron=schemeNeuron;

@@ -239,14 +239,15 @@ MainGraphics::MainGraphics(QWidget *parent )
     // The window is positioned in the center of the screen
     this->move(QApplication::desktop()->availableGeometry().center() - this->rect().center());
 
-    timerEmpty = new QTimer(this);
+    // TODO:
+    /*timerEmpty = new QTimer(this);
     timerEmpty->setInterval(1000);
     timerEmpty->stop();
-    connect(timerEmpty, SIGNAL(timeout()), this, SLOT(emptyVectors()));
+    connect(timerEmpty, SIGNAL(timeout()), this, SLOT(emptyVectors()));*/
 }
 
 void MainGraphics::emptyVectors() {
-    timerEmpty->stop();
+    //timerEmpty->stop();
     emptyVectorGraphicsEdges();
     emptyVectorGraphicsNodes();
 }
@@ -758,9 +759,9 @@ void MainGraphics::newNeuron(){
     p->At=0.0015;
 
 
-    NewNeuronGraphic *newNeuron = new NewNeuronGraphic(nullptr,this,scene,&idGlobalNeuron, &localNeurons, &vectorGraphicsNodes, mathematicalModel,&sceneBeSaved);
-    newNeuron->setWindowModality(Qt::ApplicationModal);
-    newNeuron->show();
+    //NewNeuronGraphic *newNeuron = new NewNeuronGraphic(nullptr,this,scene,&idGlobalNeuron, &localNeurons, &vectorGraphicsNodes,&sceneBeSaved);
+    //newNeuron->setWindowModality(Qt::ApplicationModal);
+    //newNeuron->show();
 }
 
 void MainGraphics::newRemove() {
