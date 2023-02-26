@@ -1,8 +1,10 @@
 #include "newgeneratorGraphic.h"
+#include "spikeGenerator.h"
 #include "ui_newgeneratorform.h"
+#include <QGraphicsDropShadowEffect>
 #include <QRandomGenerator>
 
-NewGeneratorGraphics::NewGeneratorGraphics(QWidget *parent,MainGraphics *graphWidget,float posX, float posY, int *idGlobalNeuron, QList <Node*> *vectorGraphicsNodes, QList <Neuron *> *localNeurons,bool *sceneBeSaved) :
+NewGeneratorGraphics::NewGeneratorGraphics(QWidget *parent, NeuronScheme *graphWidget,float posX, float posY, int *idGlobalNeuron, QList <Node*> *vectorGraphicsNodes, QList <Neuron *> *localNeurons,bool *sceneBeSaved) :
     QWidget(parent),
     ui(new Ui::NewGeneratorForm)
 {

@@ -37,10 +37,18 @@ public:
     QString fileNameToSave="";
     QGraphicsScene *scene;
 
+protected:
+/*#if QT_CONFIG(wheelevent)
+    void wheelEvent(QWheelEvent *event) override;
+#endif*/
+    void scaleView(qreal scaleFactor);
+
 public slots:
     void removeALLScenary();
     int getNumberItemOf(int typeOfItem);
     void processPendingDatagrams();
+    //void loadScene();
+    void loadSceneFromMsg(QString filename);
 
 private slots:
     void emptyVectors();
@@ -82,7 +90,10 @@ private:
     void emptyLocalNeurons();
     void emptyVectorGraphicsEdges();
     void emptyVectorGraphicsNodes();
+    void saveScene(QString filename);
+    void saveSceneAs();
 
+    Node* findNode(QString key);
     void sendMsg(QString message, QString ipmTarget, int port);
 };
 

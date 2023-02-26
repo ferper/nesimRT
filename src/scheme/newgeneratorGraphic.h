@@ -2,7 +2,7 @@
 #define NEWGENERATORFORM_H
 
 #include <QWidget>
-#include "mainScreen.h"
+#include "neuronscheme.h"
 #include "node.h"
 #include "mainGraphics.h"
 
@@ -15,7 +15,7 @@ class NewGeneratorGraphics : public QWidget
     Q_OBJECT
 
 public:
-    explicit NewGeneratorGraphics(QWidget *parent = nullptr,MainGraphics *graphWidget=nullptr,float posX=350, float posY=350, int *idGlobalNeuron=nullptr, QList <Node*> *vectorGraphicsNodes=nullptr, QList <Neuron *> *localNeurons=nullptr,bool *sceneBeSaved=nullptr);
+    explicit NewGeneratorGraphics(QWidget *parent = nullptr, NeuronScheme *graphWidget=nullptr,float posX=350, float posY=350, int *idGlobalNeuron=nullptr, QList <Node*> *vectorGraphicsNodes=nullptr, QList <Neuron *> *localNeurons=nullptr,bool *sceneBeSaved=nullptr);
     ~NewGeneratorGraphics();
     void showEvent(QShowEvent *);
 
@@ -67,7 +67,7 @@ protected:
 private:
     Ui::NewGeneratorForm *ui;
     int *idGlobalNeuron;
-    MainGraphics *graphWidget;
+    NeuronScheme *graphWidget;
     QList <Node*> *vectorGraphicsNodes;
     QVector <Neuron *> *Vneurons;
     QList <Neuron *> *localNeurons;

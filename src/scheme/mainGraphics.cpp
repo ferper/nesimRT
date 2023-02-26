@@ -640,9 +640,9 @@ void MainGraphics::newGenerator(){
     float posX= QRandomGenerator::global()->bounded(800)+250;
     float posY= QRandomGenerator::global()->bounded(450)+100;
 
-    NewGeneratorGraphics *newGenerator = new NewGeneratorGraphics(nullptr,this,posX,posY,&idGlobalNeuron, &vectorGraphicsNodes,&localNeurons, &sceneBeSaved);
-    newGenerator->setWindowModality(Qt::ApplicationModal);
-    newGenerator->show();
+    //NewGeneratorGraphics *newGenerator = new NewGeneratorGraphics(nullptr,this,posX,posY,&idGlobalNeuron, &vectorGraphicsNodes,&localNeurons, &sceneBeSaved);
+    //newGenerator->setWindowModality(Qt::ApplicationModal);
+    //newGenerator->show();
 }
 void MainGraphics::newSpiNNaker(){
     NewSpiNNaker *SpiNNaker = new NewSpiNNaker(nullptr,&vectorGraphicsNodes,&vectorGraphicsJunction);
@@ -1197,7 +1197,7 @@ void MainGraphics::keyPressEvent(QKeyEvent *event)
 #if QT_CONFIG(wheelevent)
 void MainGraphics::wheelEvent(QWheelEvent *event)
 {
-    scaleView(pow((double)2, -event->delta() / 240.0));
+    scaleView(pow((double)2, -event->angleDelta().y() / 240.0));
 }
 
 #endif
