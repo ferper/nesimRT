@@ -151,9 +151,25 @@ void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
 void Node::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
-    this->posGraph_X=event->scenePos().x();
-    this->posGraph_Y=event->scenePos().y();
-    //std::cout<<"X: "<<posGraph_X<<" Y:"<<posGraph_Y<<std::endl;
+    auto x = event->scenePos().x();
+    auto y = event->scenePos().y();
+
+    if (x < 0)
+        x = 0;
+
+    if (y < 0)
+        y = 0;
+
+    if (x > scene()->width())
+        x = scene()->width();
+
+    if (y > scene()->height())
+        y = scene()->height();
+
+    setPos(QPointF(x, y));
+
+    this->posGraph_X = x;
+    this->posGraph_Y = y;
 
     QGraphicsItem::mouseReleaseEvent(event);
 }
