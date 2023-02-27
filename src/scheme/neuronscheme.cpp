@@ -10,6 +10,7 @@
 #include "newneuronGraphic.h"
 #include "newgeneratorGraphic.h"
 #include "newsynapseGraphic.h"
+#include "newspinnaker.h"
 
 #include <iostream>
 #include <QGraphicsView>
@@ -784,7 +785,9 @@ Node* NeuronScheme::findNode(QString key){
 
 void NeuronScheme::on_btExport_clicked()
 {
-
+    NewSpiNNaker *SpiNNaker = new NewSpiNNaker(nullptr,&vectorGraphicsNodes,&vectorGraphicsJunction);
+    SpiNNaker->setWindowModality(Qt::ApplicationModal);
+    SpiNNaker->show();
 }
 
 void NeuronScheme::on_btExit_clicked()
